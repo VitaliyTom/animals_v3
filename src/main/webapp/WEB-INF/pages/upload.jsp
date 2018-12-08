@@ -16,7 +16,7 @@
 <body>
 
 <center>
-<form action="/animal/upload" enctype="multipart/form-data" method="post">
+<form action="/animal/create" enctype="multipart/form-data" method="post">
     <table>
         <tr>
             <td> Введите животное</td>

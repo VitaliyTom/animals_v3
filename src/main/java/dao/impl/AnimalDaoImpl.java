@@ -71,7 +71,7 @@ public class AnimalDaoImpl implements AnimalDao {
     @Override
     public List<Animal> getAll() {
 
-        String getAllHql = "Select animalId,animalName,idCategory From Animal";
+        String getAllHql = "From Animal";
         Query query = sessionFactory.getCurrentSession().createQuery(getAllHql);
 
 

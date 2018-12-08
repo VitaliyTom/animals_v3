@@ -55,7 +55,7 @@ public class AnimalController {
         System.out.println("test1");
 
 
-        animalDao.create(animal);
+       
         return "saved";
     }
 
@@ -97,7 +97,8 @@ public class AnimalController {
                                  ModelMap model) {
 
 
-        //System.out.println(file);
+        /*System.out.println(filePhoto);
+        System.out.println(filePhoto);*/
         try {
             if (!filePhoto.isEmpty() && !fileAudio.isEmpty()) {
                 // store the bytes somewhere
@@ -119,7 +120,7 @@ public class AnimalController {
 //                System.out.println("---");
 //                System.out.println(base64EncodedPhoto);
 //                System.out.println("---");
-//                animalDao.create(animal);
+                animalDao.create(animal);
 //                model.addAttribute("image", base64EncodedPhoto);
 
 
