@@ -24,41 +24,42 @@ public class AnimalController {
     @Autowired
     private AnimalDao animalDao;
 
-  /*  @ResponseBody
-    @RequestMapping("/create")
-    public String create() {
-        Animal animal = new Animal();
-        animal.setAnimalName("test");
-        animal.setAnimalId((long) 5);
-        animal.setIdCategory(1);
-
-        animalDao.create(animal);
-        return "saved";
-    }*/
-
 
     @ResponseBody
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String updatePost(@RequestParam("id") int animalId) {
+    public String updatePost(@RequestParam("id") int animalId,
+                             @RequestParam("name") String animalName,
+                             @RequestParam("category") int idCategory,
+                             @RequestParam("photo") MultipartFile filePhoto,
+                             @RequestParam("audio") MultipartFile fileAudio) {
+        try {
+            if (!filePhoto.isEmpty() && !fileAudio.isEmpty()) {
         Animal animal = new Animal();
-        System.out.println("test1");
-
+        animal.setAnimalId(animalId);
+        animal.setAnimalName(animalName);
+        animal.setIdCategory(idCategory);
+        animal.setAnimalPicture(Base64.getEncoder().encode(filePhoto.getBytes()));
+        animal.setAnimalSound(Base64.getEncoder().encode(fileAudio.getBytes()));
 
         animalDao.create(animal);
         return "saved";
+
+            } else {
+                return "controllers.redirect:uploadFailure";
+            }
+        } catch (Exception ex) {
+            System.out.println("error");
+        }
+        return "controllers.redirect:uploadSuccess_2";
+
     }
 
-    @ResponseBody
+
     @RequestMapping(value = "/update", method = RequestMethod.GET)
     public String updateGet() {
-        Animal animal = new Animal();
-        System.out.println("test1");
 
-
-       
-        return "saved";
+        return "update";
     }
-
 
 
     @RequestMapping("/readAnimalId")
@@ -124,7 +125,7 @@ public class AnimalController {
 //                model.addAttribute("image", base64EncodedPhoto);
 
 
-                return "getAnimal";
+                return "loginAdmin";
             } else {
                 return "controllers.redirect:uploadFailure";
             }
@@ -139,6 +140,35 @@ public class AnimalController {
 
         return "upload";
     }
+
+    @ResponseBody
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    public String delete(@RequestParam("id") int animalId) {
+        Animal animal = new Animal();
+        animal.setAnimalId(animalId);
+        animalDao.delete(animal);
+
+        //   Animal delete = animalDao.delete(animalId);
+        //  System.out.println(read.getAnimalId());
+        //  System.out.println(read.getAnimalName());
+
+        //  System.out.println(read.getIdCategory());
+        //System.out.println(read.getAnimalPicture());
+//        String image = new String(read.getAnimalPicture());
+//        String sound = new String(read.getAnimalSound());
+        //  System.out.println(image);
+
+//        model.addAttribute("image", image);
+//        model.addAttribute("sound", sound);
+        return "delete";
+    }
+
+    @RequestMapping(value = "/delete", method = RequestMethod.GET)
+    public String deleteGet() {
+
+        return "delete";
+    }
+
 
     @RequestMapping(value = "/loginAdmin", method = RequestMethod.GET)
     public String loginAdmin() {

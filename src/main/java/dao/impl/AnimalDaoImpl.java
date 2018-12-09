@@ -29,7 +29,26 @@ public class AnimalDaoImpl implements AnimalDao {
 
     @Override
     public void update(Animal animal) {
-        sessionFactory.getCurrentSession().update(animal);
+
+//        String hql = "update Contact "            //fixme
+//                + "SET firstName = :name "
+//                +   ", lastName  = :lastName "
+//                +   ", date      = :dateParam "
+//                +  " where id = :idParam"
+//
+//
+//
+//
+//
+//        Query query = sessionFactory.getCurrentSession().createQuery(getAllHql);
+//        query.setParameter("idParam"  , 48);
+//        query.setParameter("name"     , "Киса");
+//        query.setParameter("lastName" , "Воробьянинов");
+//        query.setParameter("dateParam", new Date());
+//        int result = query.executeUpdate();
+//
+
+    //    sessionFactory.getCurrentSession().update(animal);
     }
 
     @Override
@@ -73,23 +92,10 @@ public class AnimalDaoImpl implements AnimalDao {
 
         String getAllHql = "From Animal";
         Query query = sessionFactory.getCurrentSession().createQuery(getAllHql);
-
-
         List<Animal> list =  query.list();
-
         for (Animal list2 : list ) {
-
-            System.out.println(list2.getAnimalId());
+            System.out.println("id: "+list2.getAnimalId() + ", name: " + list2.getAnimalName() + ", category: " + list2.getIdCategory());
         }
-
-
-
-
-
-
-
-
-
 /*
         List<Object[]> animalList= query.getResultList();
         List<Animal> list = new ArrayList<Animal>();
@@ -110,44 +116,7 @@ public class AnimalDaoImpl implements AnimalDao {
 
         System.out.println(list);
 */
-
-//        for (Object list22 : list2) {
-//            Long animalId = ;
-//            String userPassword = user.getPassword();
-//            if (login.equals(userLogin) && password.equals(userPassword)) {
-//                // Bingo!
-//            }
-//        }
-
-
-/*
-        final List<Animal> list = new LinkedList<>();
-        for(final Object o : query.list()) {
-            list.add((Animal) o);
-
-        }
-        System.out.println(list);
-        */
-
         return null;
     }
 
 }
-
-
-// ArrayList<Animal> all = (ArrayList<Animal>) query.list();
-
-//   System.out.println(all.size());
-
-//     for ( Object getAllAni : all   ) {
-//  getAllAni = (Animal) getAllAni;
-//            System.out.println(((Animal) getAllAni).getAnimalId());
-//            System.out.println(((Animal) getAllAni).getAnimalName());
-//            System.out.println(getAllAni);
-//            Animal animal = (Animal) getAllAni;
-//            System.out.println(animal.getAnimalName());
-//
-//        }
-
-//        System.out.println(getAllAnimals);
-//        return  null;

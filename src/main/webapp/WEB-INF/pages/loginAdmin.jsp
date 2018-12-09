@@ -8,12 +8,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>CRUD</title>
 </head>
 <body>
-<p><a href="/animal/create">upload</a></p>
+<p><a href="/animal/create">create</a></p>
 <p><a href="/animal/update">update</a></p>
-<p><a href="/animal/getAll">getall</a></p>
+<p><a href="/animal/delete">delete</a></p>
+<p><a href="/animal/getAll">get all</a></p>
 
 
 </body>
