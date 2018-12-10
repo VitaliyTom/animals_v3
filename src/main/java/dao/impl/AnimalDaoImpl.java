@@ -8,9 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 
 
@@ -63,16 +60,21 @@ public class AnimalDaoImpl implements AnimalDao {
     }
 
     @Override
-    public Animal readIdMax() {
+    public List<Animal> readIdMax() {
 
-
-       /* String animalhqlIdMax = "SELECT animalId FROM Animal ORDER BY RAND() LIMIT 1"; //FIXME
+        String animalhqlIdMax = "FROM Animal WHERE  animalId=(SELECT MAX(animalId) FROM Animal)";
         Query query = sessionFactory.getCurrentSession().createQuery(animalhqlIdMax);
-        List<Animal> ani = query.list();
-        System.out.println(ani);
-       */                 //на будущее
 
-        return null ;
+
+//        String animalhqlIdMax = "SELECT animalId FROM Animal ORDER BY RAND() LIMIT 1"; //FIXME
+//        Query query = sessionFactory.getCurrentSession().createQuery(animalhqlIdMax);
+//        List<Animal> ani = query.list();
+//        System.out.println(ani);
+//                        //на будущее
+
+        List<Animal> listIdMax = query.list();
+
+        return listIdMax;
     }
 
     @Override

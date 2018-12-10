@@ -11,9 +11,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.*;
+import java.util.Base64;
+import java.util.List;
+import java.util.Random;
 
 
 @Controller
@@ -34,15 +34,15 @@ public class AnimalController {
                              @RequestParam("audio") MultipartFile fileAudio) {
         try {
             if (!filePhoto.isEmpty() && !fileAudio.isEmpty()) {
-        Animal animal = new Animal();
-        animal.setAnimalId(animalId);
-        animal.setAnimalName(animalName);
-        animal.setIdCategory(idCategory);
-        animal.setAnimalPicture(Base64.getEncoder().encode(filePhoto.getBytes()));
-        animal.setAnimalSound(Base64.getEncoder().encode(fileAudio.getBytes()));
+                Animal animal = new Animal();
+                animal.setAnimalId(animalId);
+                animal.setAnimalName(animalName);
+                animal.setIdCategory(idCategory);
+                animal.setAnimalPicture(Base64.getEncoder().encode(filePhoto.getBytes()));
+                animal.setAnimalSound(Base64.getEncoder().encode(fileAudio.getBytes()));
 
-        animalDao.create(animal);
-        return "saved";
+                animalDao.create(animal);
+                return "saved";
 
             } else {
                 return "controllers.redirect:uploadFailure";
@@ -62,33 +62,67 @@ public class AnimalController {
     }
 
 
-    @RequestMapping("/readAnimalId")
-    public String read(@RequestParam("id") int animalId, ModelMap model) {
+    @RequestMapping(value = "/readAnimalId", method = RequestMethod.GET)
+    public String readIdMax() {
 
-        Animal read = animalDao.read(animalId);
-        //  System.out.println(read.getAnimalId());
-        //  System.out.println(read.getAnimalName());
+        List<Animal> readIdMax = animalDao.readIdMax();
+        int id = 0;
+        for (Animal rIM : readIdMax) {
+            System.out.println("id: " + rIM.getAnimalId() +
+                    ", name: " + rIM.getAnimalName() +
+                    ", category: " + rIM.getIdCategory());
 
-        //  System.out.println(read.getIdCategory());
-        //System.out.println(read.getAnimalPicture());
-        String image = new String(read.getAnimalPicture());
-        String sound = new String(read.getAnimalSound());
+            Random rnd = new Random();
+            int i = 1;
+            boolean flag = true;
+            while (flag) {
+                id = rnd.nextInt((int) rIM.getAnimalId());
+                Animal animal = animalDao.read((long) id);
+                if (animal == null) {
+
+                    System.out.println(i + " попытка найти существующий идишник");
+                    i++;
+
+                } else {
+
+                    System.out.println("all good");
+                    flag = false;
+                    }
+            }
+        }
+
+//        System.out.println("id: " + animal.getAnimalId() +
+//                ", name: " + animal.getAnimalName() +
+//                ", category: " + animal.getIdCategory());
+
+        // если не равень налу то выбрать произвольный  идишник из базы и вывести на экран
+//            if(rIM.getAnimalId() != 0 ){
+//
+//            }
+//        }
+//        long animalId =
+//        Animal read = animalDao.read(animalId);
+//        //  System.out.println(read.getAnimalId());
+//        //  System.out.println(read.getAnimalName());
+//
+//        //  System.out.println(read.getIdCategory());
+//        //System.out.println(read.getAnimalPicture());
+//        String image = new String(read.getAnimalPicture());
+//        String sound = new String(read.getAnimalSound());
         //  System.out.println(image);
 
-        model.addAttribute("image", image);
-        model.addAttribute("sound", sound);
+        // model.addAttribute("image", image);
+        // model.addAttribute("sound", sound);
         return "getAnimal";
     }
 
-
-    @ResponseBody
-    @RequestMapping(value = "/getAnimal", method = RequestMethod.GET)
-    public String read(@RequestParam("animalName") String f) {
-        Animal read = animalDao.getAnimal(f);
-        System.out.println(read);
-        return "getAll";
-    }
-
+//    @ResponseBody
+//    @RequestMapping(value = "/getAnimal", method = RequestMethod.GET)
+//    public String read(@RequestParam("animalName") String f) {
+//        Animal read = animalDao.getAnimal(f);
+//        System.out.println(read);
+//        return "getAll";
+//    }
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String uploadFilePost(@RequestParam("photo") MultipartFile filePhoto,
@@ -202,33 +236,20 @@ public class AnimalController {
 
 }
 
-/* @Override
-    public String toString() {
-        return "Animal{" +
-                "animalPicture=" + Arrays.toString(animalPicture) +
-                '}';
-                */
-
-
-/*
-* @Controller
-public class FormController {
-    @RequestMapping(value="/handleform",method= RequestMethod.POST)
-    ModelAndView register(@RequestParam String name, @RequestParam int age, @RequestParam MultipartFile file)
-            throws ServletException, IOException {
-
-        System.out.println(name);
-        System.out.println(age);
-        if(!file.isEmpty()){
-            byte[] bytes = file.getBytes();
-            String filename = file.getOriginalFilename();
-            BufferedOutputStream stream =new BufferedOutputStream(new FileOutputStream(new File("D:/" + filename)));
-            stream.write(bytes);
-            stream.flush();
-            stream.close();
-        }
-        return new ModelAndView("index");
-    }
-}*/
-
-
+//    @RequestMapping("/readAnimalId")
+//    public String read(@RequestParam("id") int animalId, ModelMap model) {
+//
+//        Animal read = animalDao.read(animalId);
+//        //  System.out.println(read.getAnimalId());
+//        //  System.out.println(read.getAnimalName());
+//
+//        //  System.out.println(read.getIdCategory());
+//        //System.out.println(read.getAnimalPicture());
+//        String image = new String(read.getAnimalPicture());
+//        String sound = new String(read.getAnimalSound());
+//        //  System.out.println(image);
+//
+//        model.addAttribute("image", image);
+//        model.addAttribute("sound", sound);
+//        return "getAnimal";
+//    }

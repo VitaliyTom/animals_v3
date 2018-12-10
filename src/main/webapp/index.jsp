@@ -17,7 +17,7 @@
      <input type="submit" value="Отправить">  </p>
 </form>--%>
 
-<p><a href="/animal/readAnimalId?id=2">Старт</a></p>
+<p><a href="/animal/readAnimalId">Старт</a></p>
 
 
 

@@ -10,7 +10,7 @@ public interface AnimalDao {
     void update(Animal animal);
     void delete(Animal animal);
     Animal read(long animalId);
-    Animal readIdMax();
+    List<Animal> readIdMax();
     Animal getAnimal(String animalName);
     List<Animal> getAll ();
 }
