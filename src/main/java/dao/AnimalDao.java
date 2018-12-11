@@ -11,6 +11,6 @@ public interface AnimalDao {
     void delete(Animal animal);
     Animal read(long animalId);
     List<Animal> readIdMax();
-    Animal getAnimal(String animalName);
+    Animal getIdMax();
     List<Animal> getAll ();
 }

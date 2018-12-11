@@ -65,45 +65,85 @@ public class AnimalController {
     @RequestMapping("/readAnimalId")
     public String readIdMax(ModelMap model) {
 
-        List<Animal> readIdMax = animalDao.readIdMax();
+        Animal animalIdMax = animalDao.getIdMax();
+
         int id = 0;
-        for (Animal rIM : readIdMax) {
-            System.out.println("id: " + rIM.getAnimalId() +
-                    ", name: " + rIM.getAnimalName() +
-                    ", category: " + rIM.getIdCategory());
+        Random rnd = new Random();
+        int i = 1;
+        boolean flag = true;
+        while (flag) {
 
-            Random rnd = new Random();
-            int i = 1;
-            boolean flag = true;
-            while (flag) {
+            id = 1 + rnd.nextInt((int) animalIdMax.getAnimalId());
+            System.out.println("-------id------" + id);
+            Animal animal = animalDao.read((long) id);
 
-                //int number = min + rnd.nextInt(max - min + 1);
+            if (animal == null) {
 
-                id = 1 + rnd.nextInt((int) rIM.getAnimalId());
-                System.out.println("-------id------" + id);
-                Animal animal = animalDao.read((long) id);
-                if (animal == null) {
+                System.out.println(i + " попытка найти существующий идишник");
+                i++;
 
-                    System.out.println(i + " попытка найти существующий идишник");
-                    i++;
+            } else {
 
-                } else {
+                System.out.println("all good " + "id = " + id);
+                flag = false;
+                String image = new String(animal.getAnimalPicture());
+                String sound = new String(animal.getAnimalSound());
+                System.out.println(animal.getAnimalName());
 
-                    System.out.println("all good");
-                    flag = false;
-                    String image = new String(animal.getAnimalPicture());
-                    String sound = new String(animal.getAnimalSound());
-                    System.out.println(animal.getAnimalName());
+                model.addAttribute("id", animal.getAnimalId());
+                model.addAttribute("name", animal.getAnimalName());
+                model.addAttribute("category", animal.getIdCategory());
+                model.addAttribute("image", image);
+                model.addAttribute("sound", sound);
 
-                    model.addAttribute("id", animal.getAnimalId());
-                    model.addAttribute("name", animal.getAnimalName());
-                    model.addAttribute("category", animal.getIdCategory());
-                    model.addAttribute("image", image);
-                    model.addAttribute("sound", sound);
-
-                }
             }
         }
+
+
+//        System.out.println(animal.getAnimalId());
+//        System.out.println(animal.getAnimalName());
+//        System.out.println(animal.getIdCategory());
+
+
+//        List<Animal> readIdMax = animalDao.readIdMax();
+//        int id = 0;
+//        for (Animal rIM : readIdMax) {
+//            System.out.println("id: " + rIM.getAnimalId() +
+//                    ", name: " + rIM.getAnimalName() +
+//                    ", category: " + rIM.getIdCategory());
+//
+//            Random rnd = new Random();
+//            int i = 1;
+//            boolean flag = true;
+//            while (flag) {
+//
+//                //int number = min + rnd.nextInt(max - min + 1);
+//
+//                id = 1 + rnd.nextInt((int) rIM.getAnimalId());
+//                System.out.println("-------id------" + id);
+//                Animal animal = animalDao.read((long) id);
+//                if (animal == null) {
+//
+//                    System.out.println(i + " попытка найти существующий идишник");
+//                    i++;
+//
+//                } else {
+//
+//                    System.out.println("all good");
+//                    flag = false;
+//                    String image = new String(animal.getAnimalPicture());
+//                    String sound = new String(animal.getAnimalSound());
+//                    System.out.println(animal.getAnimalName());
+//
+//                    model.addAttribute("id", animal.getAnimalId());
+//                    model.addAttribute("name", animal.getAnimalName());
+//                    model.addAttribute("category", animal.getIdCategory());
+//                    model.addAttribute("image", image);
+//                    model.addAttribute("sound", sound);
+//
+//                }
+//            }
+//        }
 
         return "getAnimal";
     }

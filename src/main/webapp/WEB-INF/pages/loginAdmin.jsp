@@ -11,11 +11,15 @@
     <title>CRUD</title>
 </head>
 <body>
+
+<center>
+
 <p><a href="/animal/create">create</a></p>
 <p><a href="/animal/update">update</a></p>
 <p><a href="/animal/delete">delete</a></p>
 <p><a href="/animal/getAll">get all</a></p>
 
+</center>
 
 </body>
 </html>

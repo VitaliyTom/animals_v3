@@ -45,7 +45,7 @@ public class AnimalDaoImpl implements AnimalDao {
 //        int result = query.executeUpdate();
 //
 
-    //    sessionFactory.getCurrentSession().update(animal);
+        //    sessionFactory.getCurrentSession().update(animal);
     }
 
     @Override
@@ -62,29 +62,23 @@ public class AnimalDaoImpl implements AnimalDao {
     @Override
     public List<Animal> readIdMax() {
 
-        String animalhqlIdMax = "FROM Animal WHERE  animalId=(SELECT MAX(animalId) FROM Animal)";
-        Query query = sessionFactory.getCurrentSession().createQuery(animalhqlIdMax);
-
-
-//        String animalhqlIdMax = "SELECT animalId FROM Animal ORDER BY RAND() LIMIT 1"; //FIXME
+//        String animalhqlIdMax = "FROM Animal WHERE  animalId=(SELECT MAX(animalId) FROM Animal)";
 //        Query query = sessionFactory.getCurrentSession().createQuery(animalhqlIdMax);
-//        List<Animal> ani = query.list();
-//        System.out.println(ani);
-//                        //на будущее
+//        List<Animal> listIdMax = query.list();
+//
+////              этот метод больше не используется,
+////              вместо этого использовать
+////              getIdMax
 
-        List<Animal> listIdMax = query.list();
-
-        return listIdMax;
+//        return listIdMax;
+        return null;
     }
 
     @Override                       //fixme
-    public Animal getAnimal(String animalName) {
-        //указываем класс и его поля
-        //то есть поиск по обьктам по полям
-        String animalHQL = "FROM Animal WHERE animalName = :key";
-        Query query = sessionFactory.getCurrentSession().createQuery(animalHQL);
-        query.setParameter("key", animalName);
+    public Animal getIdMax() {
 
+        String animalHQL = "FROM Animal WHERE  animalId=(SELECT MAX(animalId) FROM Animal)";
+        Query query = sessionFactory.getCurrentSession().createQuery(animalHQL);
         return (Animal) query.uniqueResult();
     }
 
@@ -94,7 +88,7 @@ public class AnimalDaoImpl implements AnimalDao {
 
         String getAllHql = "From Animal";
         Query query = sessionFactory.getCurrentSession().createQuery(getAllHql);
-        List<Animal> list =  query.list();
+        List<Animal> list = query.list();
 
 //        List<Object[]> animalList= query.getResultList();
 //        List<Animal> list = new ArrayList<Animal>();
