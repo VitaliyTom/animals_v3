@@ -12,9 +12,23 @@
 </head>
 <body>
 
+<right>
+
+    <form action="/animal/readAnimalId"  method="post">
+
+                <input type="hidden" />
+
+
+                <input type="submit" value="Отправить">
+
+    </form>
+</right>
+
 <center>
 
-
+${id}
+${name}
+${category}
 
 
 <p><img src="data:image/png;base64, ${image}" /> </p>

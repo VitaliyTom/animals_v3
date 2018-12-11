@@ -24,10 +24,10 @@ public class AnimalDaoImpl implements AnimalDao {
         sessionFactory.getCurrentSession().save(animal);
     }
 
-    @Override
+    @Override                        //fixme
     public void update(Animal animal) {
 
-//        String hql = "update Contact "            //fixme
+//        String hql = "update Contact "
 //                + "SET firstName = :name "
 //                +   ", lastName  = :lastName "
 //                +   ", date      = :dateParam "
@@ -77,7 +77,7 @@ public class AnimalDaoImpl implements AnimalDao {
         return listIdMax;
     }
 
-    @Override
+    @Override                       //fixme
     public Animal getAnimal(String animalName) {
         //указываем класс и его поля
         //то есть поиск по обьктам по полям
@@ -95,30 +95,26 @@ public class AnimalDaoImpl implements AnimalDao {
         String getAllHql = "From Animal";
         Query query = sessionFactory.getCurrentSession().createQuery(getAllHql);
         List<Animal> list =  query.list();
-        for (Animal list2 : list ) {
-            System.out.println("id: "+list2.getAnimalId() + ", name: " + list2.getAnimalName() + ", category: " + list2.getIdCategory());
-        }
-/*
-        List<Object[]> animalList= query.getResultList();
-        List<Animal> list = new ArrayList<Animal>();
 
-        Iterator it = animalList.iterator();                                        //рабочий вариант
-        while(it.hasNext()){
-            Object[] line = (Object[]) it.next();
-            Animal eq = new Animal();
-            eq.setAnimalId((Long) line[0]);
-            eq.setAnimalName((String) line[1]);
-            eq.setIdCategory((Integer) line[2]);
-            //And set all the Equip fields here
-            //And last thing add it to the list
-
-            list.add(eq);
-        }
-
-
-        System.out.println(list);
-*/
-        return null;
+//        List<Object[]> animalList= query.getResultList();
+//        List<Animal> list = new ArrayList<Animal>();
+//
+//        Iterator it = animalList.iterator();                                        //рабочий вариант
+//        while(it.hasNext()){
+//            Object[] line = (Object[]) it.next();
+//            Animal eq = new Animal();
+//            eq.setAnimalId((Long) line[0]);
+//            eq.setAnimalName((String) line[1]);
+//            eq.setIdCategory((Integer) line[2]);
+//            //And set all the Equip fields here
+//            //And last thing add it to the list
+//
+//            list.add(eq);
+//        }
+//
+//
+//        System.out.println(list);
+        return list;
     }
 
 }

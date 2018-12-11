@@ -15,6 +15,9 @@
 </head>
 <body>
 
+
+
+
 <center>
 <form action="/animal/create" enctype="multipart/form-data" method="post">
     <table>
@@ -45,6 +48,10 @@
 </form>
 
 </center>
+
+
+
+
 </body>
 
 

@@ -5,7 +5,7 @@
 
 <head>
     <meta charset="utf-8" />
-    <title>Загрузка файла</title>
+    <title>Animals</title>
 </head>
 <body>
 
