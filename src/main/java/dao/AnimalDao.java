@@ -2,7 +2,6 @@ package dao;
 
 import entity.Animal;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public interface AnimalDao {

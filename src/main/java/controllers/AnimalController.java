@@ -1,6 +1,7 @@
 package controllers;
 
 import dao.AnimalDao;
+import dto.AnimalDto;
 import entity.Animal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import service.AnimalService;
 
 import java.util.Base64;
 import java.util.List;
@@ -22,7 +24,54 @@ public class AnimalController {
 
 
     @Autowired
+
     private AnimalDao animalDao;
+
+    @Autowired
+    private AnimalService animalService;
+
+
+
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public String uploadFilePost(@RequestParam("photo") MultipartFile filePhoto,
+                                 @RequestParam("audio") MultipartFile fileAudio,
+                                 @RequestParam String name,
+                                 @RequestParam int category) {
+
+//        AnimalDto animalDto = new AnimalDto();
+//
+//        animalDto.setAnimalNameDto(name);
+//        animalDto.setIdCategoryDto(category);
+//        animalDto.setAnimalPictureDto(filePhoto);
+//        animalDto.setAnimalSoundDto(fileAudio);
+        Animal animal = new Animal();
+        animal.setAnimalName(name);
+        animal.setIdCategory(category);
+
+        try {
+            if (!filePhoto.isEmpty() && !fileAudio.isEmpty()) {
+                animal.setAnimalPicture(Base64.getEncoder().encode(filePhoto.getBytes()));
+                animal.setAnimalSound(Base64.getEncoder().encode(fileAudio.getBytes()));
+//              animalDao.create(animal);
+            }
+        } catch (Exception ex) {
+
+            System.out.println("error_field_upload");
+        }
+
+        animalService.create(animal);
+
+        return "loginAdmin";
+
+
+    }
+
+
+    @RequestMapping(value = "/create", method = RequestMethod.GET)
+    public String uploadFileGet() {
+
+        return "upload";
+    }
 
 
     @ResponseBody
@@ -63,7 +112,9 @@ public class AnimalController {
 
 
     @RequestMapping("/readAnimalId")
-    public String readIdMax(ModelMap model) {
+    public String readAnimalIdMax(ModelMap model) {
+
+        animalService.
 
         Animal animalIdMax = animalDao.getIdMax();
 
@@ -149,41 +200,7 @@ public class AnimalController {
     }
 
 
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String uploadFilePost(@RequestParam("photo") MultipartFile filePhoto,
-                                 @RequestParam("audio") MultipartFile fileAudio,
-                                 @RequestParam String name,
-                                 @RequestParam int category) {
 
-
-        try {
-            if (!filePhoto.isEmpty() && !fileAudio.isEmpty()) {
-
-                Animal animal = new Animal();
-                animal.setAnimalName(name);
-                animal.setIdCategory(category);
-                animal.setAnimalPicture(Base64.getEncoder().encode(filePhoto.getBytes()));
-                animal.setAnimalSound(Base64.getEncoder().encode(fileAudio.getBytes()));
-                animalDao.create(animal);
-
-                return "loginAdmin";
-
-            } else {
-
-                return "upload";
-            }
-        } catch (Exception ex) {
-
-            System.out.println("error");
-        }
-        return "controllers.redirect:uploadSuccess_2";      //fixme
-    }
-
-    @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public String uploadFileGet() {
-
-        return "upload";
-    }
 
     @ResponseBody
     @RequestMapping(value = "/delete", method = RequestMethod.POST)         //fixme
