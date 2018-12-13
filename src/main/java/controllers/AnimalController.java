@@ -1,7 +1,5 @@
 package controllers;
 
-import dao.AnimalDao;
-import dto.AnimalDto;
 import entity.Animal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,8 +12,6 @@ import org.springframework.web.multipart.MultipartFile;
 import service.AnimalService;
 
 import java.util.Base64;
-import java.util.List;
-import java.util.Random;
 
 
 @Controller
@@ -23,9 +19,6 @@ import java.util.Random;
 public class AnimalController {
 
 
-    @Autowired
-
-    private AnimalDao animalDao;
 
     @Autowired
     private AnimalService animalService;
@@ -114,41 +107,41 @@ public class AnimalController {
     @RequestMapping("/readAnimalId")
     public String readAnimalIdMax(ModelMap model) {
 
-        animalService.
-
-        Animal animalIdMax = animalDao.getIdMax();
-
-        int id = 0;
-        Random rnd = new Random();
-        int i = 1;
-        boolean flag = true;
-        while (flag) {
-
-            id = 1 + rnd.nextInt((int) animalIdMax.getAnimalId());
-            System.out.println("-------id------" + id);
-            Animal animal = animalDao.read((long) id);
-
-            if (animal == null) {
-
-                System.out.println(i + " попытка найти существующий идишник");
-                i++;
-
-            } else {
-
-                System.out.println("all good " + "id = " + id);
-                flag = false;
-                String image = new String(animal.getAnimalPicture());
-                String sound = new String(animal.getAnimalSound());
-                System.out.println(animal.getAnimalName());
-
-                model.addAttribute("id", animal.getAnimalId());
-                model.addAttribute("name", animal.getAnimalName());
-                model.addAttribute("category", animal.getIdCategory());
-                model.addAttribute("image", image);
-                model.addAttribute("sound", sound);
-
-            }
-        }
+        animalService.getIdMax(model);
+//
+//        Animal animalIdMax = animalDao.getIdMax();
+//
+//        int id = 0;
+//        Random rnd = new Random();
+//        int i = 1;
+//        boolean flag = true;
+//        while (flag) {
+//
+//            id = 1 + rnd.nextInt((int) animalIdMax.getAnimalId());
+//            System.out.println("-------id------" + id);
+//            Animal animal = animalDao.read((long) id);
+//
+//            if (animal == null) {
+//
+//                System.out.println(i + " попытка найти существующий идишник");
+//                i++;
+//
+//            } else {
+//
+//                System.out.println("all good " + "id = " + id);
+//                flag = false;
+//                String image = new String(animal.getAnimalPicture());
+//                String sound = new String(animal.getAnimalSound());
+//                System.out.println(animal.getAnimalName());
+//
+//                model.addAttribute("id", animal.getAnimalId());
+//                model.addAttribute("name", animal.getAnimalName());
+//                model.addAttribute("category", animal.getIdCategory());
+//                model.addAttribute("image", image);
+//                model.addAttribute("sound", sound);
+//
+//            }
+//        }
 
 
 //        System.out.println(animal.getAnimalId());
@@ -202,26 +195,14 @@ public class AnimalController {
 
 
 
-    @ResponseBody
-    @RequestMapping(value = "/delete", method = RequestMethod.POST)         //fixme
-    public String delete(@RequestParam("id") int animalId) {
+
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    public String deletePost(@RequestParam("id") int animalId) {
         Animal animal = new Animal();
         animal.setAnimalId(animalId);
-        animalDao.delete(animal);
+        animalService.delete(animal);
 
-        //   Animal delete = animalDao.delete(animalId);
-        //  System.out.println(read.getAnimalId());
-        //  System.out.println(read.getAnimalName());
-
-        //  System.out.println(read.getIdCategory());
-        //System.out.println(read.getAnimalPicture());
-//        String image = new String(read.getAnimalPicture());
-//        String sound = new String(read.getAnimalSound());
-        //  System.out.println(image);
-
-//        model.addAttribute("image", image);
-//        model.addAttribute("sound", sound);
-        return "delete";
+        return "loginAdmin";
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
@@ -238,21 +219,11 @@ public class AnimalController {
     }
 
 
-    //@RequestMapping(value = "/getAll", method = RequestMethod.GET)
+
     @RequestMapping("/getAll")
     public String getAllGet(ModelMap model) {
 
-        List<Animal> getAll = (animalDao.getAll());
-
-        for (Animal list2 : getAll) {
-            System.out.println("id: "
-                    + list2.getAnimalId()
-                    + ", name: "
-                    + list2.getAnimalName()
-                    + ", category: "
-                    + list2.getIdCategory());
-        }
-
+        animalService.getAll(model);
 
         return "getAll";
     }

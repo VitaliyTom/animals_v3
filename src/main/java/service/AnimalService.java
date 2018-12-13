@@ -1,14 +1,15 @@
 package service;
 
-import dto.AnimalDto;
 import entity.Animal;
-
-import java.util.List;
+import org.springframework.ui.ModelMap;
 
 public interface AnimalService {
 
 
     void create( Animal animal );
+    void getIdMax(ModelMap model);
+    void delete(Animal animal);
+    void getAll(ModelMap model);
 //
 //    Post getPostById(Long postId);
 //

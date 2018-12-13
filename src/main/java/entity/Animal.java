@@ -32,6 +32,8 @@ public class Animal implements Serializable {
 
 
 
+
+
     public Animal() {
     }
 
@@ -84,13 +86,11 @@ public class Animal implements Serializable {
 
     @Override
     public String toString() {
-        return "Animal{" +
-                "animalId=" + animalId +
-                ", animalName='" + animalName + '\'' +
-                ", idCategory=" + idCategory +
-                ", animalPicture=" + Arrays.toString(animalPicture) +
-                ", animalSound=" + Arrays.toString(animalSound) +
-                '}';
+        return "[" +
+                "id = " + animalId +
+                " | name = " + animalName +
+                " | idCategory = " + idCategory +
+                ']';
     }
 
 }
