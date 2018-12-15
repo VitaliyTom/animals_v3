@@ -77,4 +77,9 @@
                 <property name="maxUploadSize" value="10000384"/>
         </bean>
 
+        <bean id="modelMapper" class="org.springframework.context.annotation.Bean"
+              abstract="true">
+
+        </bean>
+
 </beans>
