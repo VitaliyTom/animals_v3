@@ -5,52 +5,52 @@ import org.springframework.web.multipart.MultipartFile;
 public class AnimalDto {
 
 
-    private long animalIdDto;
-    private String animalNameDto;
-    private int idCategoryDto;
-    private MultipartFile animalPictureDto;
-    private MultipartFile animalSoundDto;
+    private long animalId;
+    private String animalName;
+    private int idCategory;
+    private byte[] animalPicture;
+    private byte [] animalSound;
 
     public AnimalDto() {
     }
 
-    public long getAnimalIdDto() {
-        return animalIdDto;
+    public long getAnimalId() {
+        return animalId;
     }
 
-    public void setAnimalIdDto(long animalIdDto) {
-        this.animalIdDto = animalIdDto;
+    public void setAnimalId(long animalId) {
+        this.animalId = animalId;
     }
 
-    public String getAnimalNameDto() {
-        return animalNameDto;
+    public String getAnimalName() {
+        return animalName;
     }
 
-    public void setAnimalNameDto(String animalNameDto) {
-        this.animalNameDto = animalNameDto;
+    public void setAnimalName(String animalName) {
+        this.animalName = animalName;
     }
 
-    public int getIdCategoryDto() {
-        return idCategoryDto;
+    public int getIdCategory() {
+        return idCategory;
     }
 
-    public void setIdCategoryDto(int idCategoryDto) {
-        this.idCategoryDto = idCategoryDto;
+    public void setIdCategory(int idCategory) {
+        this.idCategory = idCategory;
     }
 
-    public MultipartFile getAnimalPictureDto() {
-        return animalPictureDto;
+    public byte[] getAnimalPicture() {
+        return animalPicture;
     }
 
-    public void setAnimalPictureDto(MultipartFile animalPictureDto) {
-        this.animalPictureDto = animalPictureDto;
+    public void setAnimalPicture(byte[] animalPicture) {
+        this.animalPicture = animalPicture;
     }
 
-    public MultipartFile getAnimalSoundDto() {
-        return animalSoundDto;
+    public byte[] getAnimalSound() {
+        return animalSound;
     }
 
-    public void setAnimalSoundDto(MultipartFile animalSoundDto) {
-        this.animalSoundDto = animalSoundDto;
+    public void setAnimalSound(byte[] animalSound) {
+        this.animalSound = animalSound;
     }
 }

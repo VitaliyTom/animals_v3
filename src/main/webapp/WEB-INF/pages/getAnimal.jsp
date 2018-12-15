@@ -26,7 +26,7 @@ ${category}
 
 
 
-<p><img src="data:image/png;base64, ${image}" /> </p>
+<p><img src="data:image/png;base64, ${image}" width="700px" height="500px"/> </p>
 
 
 <p><audio controls="controls" autobuffer="autobuffer" >

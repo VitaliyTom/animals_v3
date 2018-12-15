@@ -1,5 +1,6 @@
 package controllers;
 
+import dto.AnimalDto;
 import entity.Animal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,34 +26,44 @@ public class AnimalController {
 
 
 
+
     @RequestMapping(value = "/create", method = RequestMethod.POST)
     public String uploadFilePost(@RequestParam("photo") MultipartFile filePhoto,
                                  @RequestParam("audio") MultipartFile fileAudio,
                                  @RequestParam String name,
                                  @RequestParam int category) {
 
-//        AnimalDto animalDto = new AnimalDto();
-//
-//        animalDto.setAnimalNameDto(name);
-//        animalDto.setIdCategoryDto(category);
-//        animalDto.setAnimalPictureDto(filePhoto);
-//        animalDto.setAnimalSoundDto(fileAudio);
-        Animal animal = new Animal();
-        animal.setAnimalName(name);
-        animal.setIdCategory(category);
+        AnimalDto animalDto = new AnimalDto();
 
+        animalDto.setAnimalName(name);
+        animalDto.setIdCategory(category);
         try {
-            if (!filePhoto.isEmpty() && !fileAudio.isEmpty()) {
-                animal.setAnimalPicture(Base64.getEncoder().encode(filePhoto.getBytes()));
-                animal.setAnimalSound(Base64.getEncoder().encode(fileAudio.getBytes()));
-//              animalDao.create(animal);
+            if (!filePhoto.isEmpty() && !fileAudio.isEmpty() ) {
+
+                animalDto.setAnimalPicture(Base64.getEncoder().encode(filePhoto.getBytes()));
+                animalDto.setAnimalSound(Base64.getEncoder().encode(fileAudio.getBytes()));
             }
         } catch (Exception ex) {
-
             System.out.println("error_field_upload");
         }
 
-        animalService.create(animal);
+        animalService.create(animalDto);
+//        Animal animal = new Animal();
+//        animal.setAnimalName(name);
+//        animal.setIdCategory(category);
+
+//        try {
+//            if (!filePhoto.isEmpty() && !fileAudio.isEmpty()) {
+//                animal.setAnimalPicture(Base64.getEncoder().encode(filePhoto.getBytes()));
+//                animal.setAnimalSound(Base64.getEncoder().encode(fileAudio.getBytes()));
+////              animalDao.create(animal);
+//            }
+//        } catch (Exception ex) {
+//
+//            System.out.println("error_field_upload");
+//        }
+//
+//        animalService.create(animal);
 
         return "loginAdmin";
 
