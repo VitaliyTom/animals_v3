@@ -9,6 +9,7 @@
 </head>
 <body>
 
+<center>
 <%--<form action="/animal/up" enctype="multipart/form-data" method="post">
 
     <p>Загрузите  фотографию на сервер</p>
@@ -22,6 +23,8 @@
 
 
 <p><a href="/animal/loginAdmin">loginAdmin</a></p>
+
+</center>
 
 </body>
 

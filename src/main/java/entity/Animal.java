@@ -1,11 +1,8 @@
 package entity;
 
-
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Arrays;
-import java.util.List;
 
 
 @Entity
@@ -31,6 +28,8 @@ public class Animal implements Serializable {
 
     @Column(name = "ANIMAL_SOUND")
     private byte[] animalSound;
+
+
 
 
 
@@ -86,14 +85,13 @@ public class Animal implements Serializable {
 
     @Override
     public String toString() {
-        return "Animal{" +
-                "animalId=" + animalId +
-                ", animalName='" + animalName + '\'' +
-                ", idCategory=" + idCategory +
-                ", animalPicture=" + Arrays.toString(animalPicture) +
-                ", animalSound=" + Arrays.toString(animalSound) +
-                '}';
+        return "[" +
+                "id = " + animalId +
+                " | name = " + animalName +
+                " | idCategory = " + idCategory +
+                ']';
     }
 
 }
+
 

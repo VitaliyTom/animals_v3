@@ -1,8 +1,8 @@
+
 package dao;
 
 import entity.Animal;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public interface AnimalDao {
@@ -11,6 +11,6 @@ public interface AnimalDao {
     void delete(Animal animal);
     Animal read(long animalId);
     List<Animal> readIdMax();
-    Animal getAnimal(String animalName);
+    Animal getIdMax();
     List<Animal> getAll ();
 }
