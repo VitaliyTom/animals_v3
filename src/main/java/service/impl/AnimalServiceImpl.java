@@ -50,7 +50,7 @@ public class AnimalServiceImpl implements AnimalService {
 
             if (animal == null) {
 
-                System.out.println(i + " попытка найти существующий идишник");
+                System.out.println( i + " попытка найти существующий идишник");
                 i++;
 
             } else {
@@ -63,11 +63,6 @@ public class AnimalServiceImpl implements AnimalService {
 
                 Converter cnvrt = new Converter();
                 AnimalDto animalDto = cnvrt.animalToAnimalDto(animal);
-
-
-
-
-
 
                 model.addAttribute("id", animalDto.getAnimalId());
                 model.addAttribute("name", animalDto.getAnimalName());

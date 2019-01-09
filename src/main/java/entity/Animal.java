@@ -10,8 +10,6 @@ import java.util.Arrays;
 public class Animal implements Serializable {
 
 
-
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ANIMAL_ID")
@@ -20,8 +18,13 @@ public class Animal implements Serializable {
     @Column(name = "ANIMAL_NAME")
     private String animalName;
 
-    @Column(name = "ID_CATEGORY")
-    private int idCategory;
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "ID_CATEGORY")
+    private Category category;
+//    @JoinColumn(name = "ID_CATEGORY",  insertable=false, updatable=false)
+
+
+    private long idCategory;
 
     @Column(name = "ANIMAL_PICTURE")
     private byte[] animalPicture;
@@ -30,18 +33,10 @@ public class Animal implements Serializable {
     private byte[] animalSound;
 
 
-
-
-
     public Animal() {
     }
 
-    public Animal(String animalName, int idCategory, byte[] animalPicture, byte[] animalSound) {
-        this.animalName = animalName;
-        this.idCategory = idCategory;
-        this.animalPicture = animalPicture;
-        this.animalSound = animalSound;
-    }
+
 
     public long getAnimalId() {
         return animalId;
@@ -59,11 +54,11 @@ public class Animal implements Serializable {
         this.animalName = animalName;
     }
 
-    public int getIdCategory() {
+    public long getIdCategory() {
         return idCategory;
     }
 
-    public void setIdCategory(int idCategory) {
+    public void setIdCategory(long idCategory) {
         this.idCategory = idCategory;
     }
 
@@ -95,3 +90,7 @@ public class Animal implements Serializable {
 }
 
 
+
+/*@ManyToOne ( fetch = FetchType.LAZY, cascade=CascadeType.ALL)
+    @JoinColumn(name = "ID_CATEGORY")
+    private int idCategory;*/
