@@ -13,4 +13,6 @@ public interface AnimalDao {
     List<Animal> readIdMax();
     Animal getIdMax();
     List<Animal> getAll ();
+
+
 }

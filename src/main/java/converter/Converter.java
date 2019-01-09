@@ -9,7 +9,7 @@ public class Converter {
         Animal animal = new Animal();
         animal.setAnimalId(animalDto.getAnimalId());
         animal.setAnimalName(animalDto.getAnimalName());
-        animal.setIdCategory(animalDto.getIdCategory());
+       // animal.setCategory(animalDto.getIdCategory());
         animal.setAnimalPicture(animalDto.getAnimalPicture());
         animal.setAnimalSound(animalDto.getAnimalSound());
 
@@ -31,7 +31,8 @@ public class Converter {
 
         animalDto.setAnimalId(animal.getAnimalId());
         animalDto.setAnimalName(animal.getAnimalName());
-        animalDto.setIdCategory((int) animal.getIdCategory());
+        animalDto.setCategory(animal.getCategory());
+//        animalDto.setIdCategory((int) animal.getIdCategory());
 //                animalDto.setAnimalPicture(animal.getAnimalPicture());
 //                animalDto.setAnimalSound(animal.getAnimalSound());
 

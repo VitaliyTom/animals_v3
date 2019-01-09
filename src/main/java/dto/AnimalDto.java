@@ -1,6 +1,7 @@
 
 package dto;
 
+import entity.Category;
 import org.springframework.web.multipart.MultipartFile;
 
 public class AnimalDto {
@@ -9,8 +10,10 @@ public class AnimalDto {
     private long animalId;
     private String animalName;
     private int idCategory;
+    private Category category;
     private byte[] animalPicture;
-    private byte [] animalSound;
+    private byte[] animalSound;
+
 
     public AnimalDto() {
     }
@@ -54,4 +57,14 @@ public class AnimalDto {
     public void setAnimalSound(byte[] animalSound) {
         this.animalSound = animalSound;
     }
+
+    public Category getCategory() {
+        return category;
+    }
+
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
+
 }

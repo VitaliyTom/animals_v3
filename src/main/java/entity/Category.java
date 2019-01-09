@@ -42,5 +42,16 @@ public class Category implements Serializable {
         this.category = category;
     }
 
+    public List<Animal> getAnimalCategory() {
+        return animalCategory;
+    }
 
+    public void setAnimalCategory(List<Animal> animalCategory) {
+        this.animalCategory = animalCategory;
+    }
+
+        @Override
+    public String toString() {
+        return category;
+    }
 }

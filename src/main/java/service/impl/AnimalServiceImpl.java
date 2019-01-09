@@ -4,6 +4,7 @@ import converter.Converter;
 import dao.AnimalDao;
 import dto.AnimalDto;
 import entity.Animal;
+import entity.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
@@ -34,6 +35,8 @@ public class AnimalServiceImpl implements AnimalService {
     public void getIdMax(ModelMap model) {
 
 
+
+
         Animal animalIdMax = animalDao.getIdMax();
 
         System.out.println("max id: " + animalIdMax.getAnimalId());
@@ -61,12 +64,17 @@ public class AnimalServiceImpl implements AnimalService {
                 String sound = new String(animal.getAnimalSound());
                 System.out.println(animal.getAnimalName());
 
+
+
+
+
                 Converter cnvrt = new Converter();
                 AnimalDto animalDto = cnvrt.animalToAnimalDto(animal);
 
                 model.addAttribute("id", animalDto.getAnimalId());
                 model.addAttribute("name", animalDto.getAnimalName());
-                model.addAttribute("category", animalDto.getIdCategory());
+              //  model.addAttribute("category", animalDto.getIdCategory());
+                model.addAttribute("category", animalDto.getCategory());
                 model.addAttribute("image", image);
                 model.addAttribute("sound", sound);
 
@@ -84,7 +92,12 @@ public class AnimalServiceImpl implements AnimalService {
     public void getAll(ModelMap model) {
 
         List<Animal> getAll = (animalDao.getAll());
-
+//Category cate = new Category();
+//        List<Category> cate2 = getAnimalCategory();
+//        for (Category list2 : getAll) {
+//
+//
+//        }
         // byte[] bytes = new byte[1];
         for (Animal list2 : getAll) {
 
@@ -92,9 +105,9 @@ public class AnimalServiceImpl implements AnimalService {
             System.out.println("id: "
                     + list2.getAnimalId()
                     + ", name: "
-                    + list2.getAnimalName()
-                    + ", category: "
-                    + list2.getIdCategory());
+                    + list2.getAnimalName());
+//                    + ", category: "
+//                    + list2.getIdCategory());
            // list2.setAnimalSound( bytes);
            // list2.setAnimalPicture( bytes);
 

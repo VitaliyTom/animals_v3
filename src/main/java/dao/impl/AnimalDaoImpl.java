@@ -78,11 +78,10 @@ public class AnimalDaoImpl implements AnimalDao {
     @Override                       //fixme
     public Animal getIdMax() {
 
-        String animalHQL = "FROM Animal WHERE  animalId=(SELECT MAX(animalId) FROM Animal)";
+        String animalHQL = "FROM Animal WHERE  animalId = (SELECT MAX(animalId) FROM Animal)";
         Query query = sessionFactory.getCurrentSession().createQuery(animalHQL);
         return (Animal) query.uniqueResult();
     }
-
 
     @Override
     public List<Animal> getAll() {

@@ -2,7 +2,6 @@ package entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Arrays;
 
 
 @Entity
@@ -21,10 +20,10 @@ public class Animal implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_CATEGORY")
     private Category category;
-//    @JoinColumn(name = "ID_CATEGORY",  insertable=false, updatable=false)
 
 
-    private long idCategory;
+//    @Column(name = "ID_CATEGORY", insertable=false, updatable=false)
+//    private long idCategory;
 
     @Column(name = "ANIMAL_PICTURE")
     private byte[] animalPicture;
@@ -33,9 +32,10 @@ public class Animal implements Serializable {
     private byte[] animalSound;
 
 
+
+
     public Animal() {
     }
-
 
 
     public long getAnimalId() {
@@ -54,13 +54,21 @@ public class Animal implements Serializable {
         this.animalName = animalName;
     }
 
-    public long getIdCategory() {
-        return idCategory;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setIdCategory(long idCategory) {
-        this.idCategory = idCategory;
+    public void setCategory(Category category) {
+        this.category = category;
     }
+
+//        public long getIdCategory() {
+//        return idCategory;
+//    }
+//
+//    public void setIdCategory(long idCategory) {
+//        this.idCategory = idCategory;
+//    }
 
     public byte[] getAnimalPicture() {
         return animalPicture;
@@ -81,16 +89,10 @@ public class Animal implements Serializable {
     @Override
     public String toString() {
         return "[" +
-                "id = " + animalId +
-                " | name = " + animalName +
-                " | idCategory = " + idCategory +
+                "Id = " + animalId +
+                ", animal = " + animalName  +
+                ", category = " + category +
                 ']';
     }
 
 }
-
-
-
-/*@ManyToOne ( fetch = FetchType.LAZY, cascade=CascadeType.ALL)
-    @JoinColumn(name = "ID_CATEGORY")
-    private int idCategory;*/

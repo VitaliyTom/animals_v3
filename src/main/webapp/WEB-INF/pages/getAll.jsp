@@ -15,7 +15,7 @@
 <body>
 <center>
 <c:forEach var = "ani" items="${getAllList}">
- <c:out value = "${ani}"/><p>
+ <c:out value = "${ani}"/>  <p>
     </c:forEach>
 
 <%--<c:forEach items="${getAllList}" var="ani">

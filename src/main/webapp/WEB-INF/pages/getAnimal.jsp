@@ -17,9 +17,7 @@
 
 <center>
 
-${id}
-${name}
-${category}
+        [ id = ${id} | animal = ${name} | category = ${category} ]
 
 
 
