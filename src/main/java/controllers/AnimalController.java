@@ -2,7 +2,9 @@
 package controllers;
 
 import dto.AnimalDto;
+import dto.CategoryDto;
 import entity.Animal;
+import entity.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -32,12 +34,17 @@ public class AnimalController {
     public String uploadFilePost(@RequestParam("photo") MultipartFile filePhoto,
                                  @RequestParam("audio") MultipartFile fileAudio,
                                  @RequestParam String name,
-                                 @RequestParam int category) {
+                                 @RequestParam int idCategory,
+                                 @RequestParam String category) {
 
         AnimalDto animalDto = new AnimalDto();
+        CategoryDto categoryDto = new CategoryDto();
+
 
         animalDto.setAnimalName(name);
-        animalDto.setIdCategory(category);
+        categoryDto.setCategoryIdDto(idCategory);
+        categoryDto.setCategoryDto(category);
+
         try {
             if (!filePhoto.isEmpty() && !fileAudio.isEmpty() ) {
 
@@ -48,7 +55,7 @@ public class AnimalController {
             System.out.println("error_field_upload");
         }
 
-        animalService.create(animalDto);
+        animalService.create(animalDto,categoryDto);
 //        Animal animal = new Animal();
 //        animal.setAnimalName(name);
 //        animal.setIdCategory(category);

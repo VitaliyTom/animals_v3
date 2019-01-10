@@ -27,7 +27,12 @@
         </tr>
 
         <tr>
-            <td>Введите категорию</td>
+            <td>Введите id категорий</td>
+            <td><input type="text" name="idCategory"/></td>
+        </tr>
+
+        <tr>
+            <td>Введите название категорий</td>
             <td><input type="text" name="category"/></td>
         </tr>
 

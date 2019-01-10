@@ -9,8 +9,7 @@ public class AnimalDto {
 
     private long animalId;
     private String animalName;
-    private int idCategory;
-    private Category category;
+    private Category categoryAnimal;
     private byte[] animalPicture;
     private byte[] animalSound;
 
@@ -34,14 +33,6 @@ public class AnimalDto {
         this.animalName = animalName;
     }
 
-    public int getIdCategory() {
-        return idCategory;
-    }
-
-    public void setIdCategory(int idCategory) {
-        this.idCategory = idCategory;
-    }
-
     public byte[] getAnimalPicture() {
         return animalPicture;
     }
@@ -58,13 +49,11 @@ public class AnimalDto {
         this.animalSound = animalSound;
     }
 
-    public Category getCategory() {
-        return category;
+    public Category getCategoryAnimal() {
+        return categoryAnimal;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategoryAnimal(Category categoryAnimal) {
+        this.categoryAnimal = categoryAnimal;
     }
-
-
 }

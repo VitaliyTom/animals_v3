@@ -19,11 +19,7 @@ public class Animal implements Serializable {
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_CATEGORY")
-    private Category category;
-
-
-//    @Column(name = "ID_CATEGORY", insertable=false, updatable=false)
-//    private long idCategory;
+    private Category categoryAnimal;
 
     @Column(name = "ANIMAL_PICTURE")
     private byte[] animalPicture;
@@ -54,21 +50,13 @@ public class Animal implements Serializable {
         this.animalName = animalName;
     }
 
-    public Category getCategory() {
-        return category;
+    public Category getCategoryAnimal() {
+        return categoryAnimal;
     }
 
-    public void setCategory(Category category) {
-        this.category = category;
+    public void setCategoryAnimal(Category categoryAnimal) {
+        this.categoryAnimal = categoryAnimal;
     }
-
-//        public long getIdCategory() {
-//        return idCategory;
-//    }
-//
-//    public void setIdCategory(long idCategory) {
-//        this.idCategory = idCategory;
-//    }
 
     public byte[] getAnimalPicture() {
         return animalPicture;
@@ -91,7 +79,7 @@ public class Animal implements Serializable {
         return "[" +
                 "Id = " + animalId +
                 ", animal = " + animalName  +
-                ", category = " + category +
+                ", category = " + categoryAnimal +
                 ']';
     }
 

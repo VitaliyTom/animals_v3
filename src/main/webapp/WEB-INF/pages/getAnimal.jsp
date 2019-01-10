@@ -17,7 +17,7 @@
 
 <center>
 
-        [ id = ${id} | animal = ${name} | category = ${category} ]
+        [ animal = ${name} | category = ${category} ]
 
 
 

@@ -3,6 +3,7 @@ package service.impl;
 import converter.Converter;
 import dao.AnimalDao;
 import dto.AnimalDto;
+import dto.CategoryDto;
 import entity.Animal;
 import entity.Category;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,10 +25,10 @@ public class AnimalServiceImpl implements AnimalService {
 
     @Override
     //  @Transactional                    //fixme разобраться!
-    public void create(AnimalDto animalDto) {
+    public void create(AnimalDto animalDto, CategoryDto categoryDto) {
 
         Converter cnvrt = new Converter();
-        animalDao.create(cnvrt.animalDtoToAnimal(animalDto));
+        animalDao.create(cnvrt.animalDtoToAnimal(animalDto, categoryDto));
 
     }
 
@@ -74,7 +75,7 @@ public class AnimalServiceImpl implements AnimalService {
                 model.addAttribute("id", animalDto.getAnimalId());
                 model.addAttribute("name", animalDto.getAnimalName());
               //  model.addAttribute("category", animalDto.getIdCategory());
-                model.addAttribute("category", animalDto.getCategory());
+                model.addAttribute("category", animalDto.getCategoryAnimal());
                 model.addAttribute("image", image);
                 model.addAttribute("sound", sound);
 

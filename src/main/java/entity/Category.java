@@ -19,7 +19,7 @@ public class Category implements Serializable {
     @Column(name = "CATEGORY")
     private String category;
 
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "categoryAnimal")
     private List<Animal> animalCategory;
 
 

@@ -1,15 +1,23 @@
 package converter;
 
 import dto.AnimalDto;
+import dto.CategoryDto;
 import entity.Animal;
+import entity.Category;
 
 public class Converter {
 
-    public Animal animalDtoToAnimal(AnimalDto animalDto){
+    public Animal animalDtoToAnimal(AnimalDto animalDto, CategoryDto categoryDto){
+
+        Category category = new Category();
+        category.setCategoryid(categoryDto.getCategoryIdDto());
+        category.setCategory(categoryDto.getCategoryDto());
+
+
         Animal animal = new Animal();
         animal.setAnimalId(animalDto.getAnimalId());
         animal.setAnimalName(animalDto.getAnimalName());
-       // animal.setCategory(animalDto.getIdCategory());
+        animal.setCategoryAnimal(category);
         animal.setAnimalPicture(animalDto.getAnimalPicture());
         animal.setAnimalSound(animalDto.getAnimalSound());
 
@@ -31,7 +39,7 @@ public class Converter {
 
         animalDto.setAnimalId(animal.getAnimalId());
         animalDto.setAnimalName(animal.getAnimalName());
-        animalDto.setCategory(animal.getCategory());
+        animalDto.setCategoryAnimal(animal.getCategoryAnimal());
 //        animalDto.setIdCategory((int) animal.getIdCategory());
 //                animalDto.setAnimalPicture(animal.getAnimalPicture());
 //                animalDto.setAnimalSound(animal.getAnimalSound());
