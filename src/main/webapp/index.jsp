@@ -1,6 +1,6 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 
 
 <head>
@@ -8,21 +8,20 @@
     <title>Animals</title>
 </head>
 <body>
+<span style="float: right">
+    <a href="?lang=en">en</a>
+    |
+    <a href="?lang=ru">ru</a>
+    |
+    <a href="?lang=pl">pl</a>
+</span>
 
 <center>
-<%--<form action="/animal/up" enctype="multipart/form-data" method="post">
-
-    <p>Загрузите  фотографию на сервер</p>
-    <p> <input type="file" name="photo" multiple accept="image/*,image/jpeg,image/png">
-        <input type="file" name="audio" multiple accept="audio/*">
-     <input type="submit" value="Отправить">  </p>
-</form>--%>
-
-<p><a href="/animal/readAnimalId">Старт</a></p>
 
 
 
-<p><a href="/animal/loginAdmin">loginAdmin</a></p>
+<p><a href="/animal/readAnimalId"><spring:message code="label.start"/></a></p>
+<p><a href="/animal/loginAdmin"><spring:message code="label.login"/></a></p>
 
 </center>
 
