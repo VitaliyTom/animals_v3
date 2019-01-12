@@ -6,18 +6,26 @@
   Time: 1:00
   To change this template use File | Settings | File Templates.
 --%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title><spring:message code="label.title"/></title>
 </head>
 <body>
-
+<span style="float: right">
+    <a href="?lang=en">en</a>
+    |
+    <a href="?lang=ru">ru</a>
+    |
+    <a href="?lang=pl">pl</a>
+</span>
 
 
 <center>
 
-        [ animal = ${name} | category = ${category} ]
+        [ <spring:message code="getAnimal.animal"/> = ${name} | <spring:message code="getAnimal.category"/> = ${category} ]
 
 
 
@@ -39,7 +47,7 @@
         <input type="hidden" />
 
 
-        <input type="submit" value="дальше">
+        <input type="submit" value="<spring:message code="getAnimal.next"/>">
 
     </form>  </p>
 
