@@ -4,7 +4,7 @@ package controllers;
 import dto.AnimalDto;
 import dto.CategoryDto;
 import entity.Animal;
-import entity.Category;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -14,19 +14,28 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import service.AnimalService;
+import service.impl.AnimalServiceImpl;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Base64;
 
-
+@RequestMapping("/")
 @Controller
-@RequestMapping("/animal")
 public class AnimalController {
 
+    private static final Logger LOGGER = Logger.getLogger(AnimalServiceImpl.class);
 
 
     @Autowired
     private AnimalService animalService;
 
+
+    @RequestMapping("/")
+    public String index(HttpServletRequest request)
+    {
+
+        return "index";
+    }
 
 
 
@@ -53,6 +62,7 @@ public class AnimalController {
             }
         } catch (Exception ex) {
             System.out.println("error_field_upload");
+            LOGGER.error("error_field_upload_Base64");
         }
 
         animalService.create(animalDto,categoryDto);
@@ -210,9 +220,6 @@ public class AnimalController {
 
         return "getAnimal";
     }
-
-
-
 
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)

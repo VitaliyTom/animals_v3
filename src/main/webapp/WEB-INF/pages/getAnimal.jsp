@@ -42,7 +42,7 @@
 </audio>
 </p>
 
-   <p> <form action="/animal/readAnimalId"  method="post">
+   <p> <form action="/readAnimalId"  method="post">
 
         <input type="hidden" />
 

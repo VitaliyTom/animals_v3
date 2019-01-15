@@ -5,7 +5,7 @@ import dao.AnimalDao;
 import dto.AnimalDto;
 import dto.CategoryDto;
 import entity.Animal;
-import entity.Category;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.ModelMap;
@@ -17,6 +17,8 @@ import java.util.Random;
 
 @Service("animalService")
 public class AnimalServiceImpl implements AnimalService {
+
+    private static final Logger LOGGER = Logger.getLogger(AnimalServiceImpl.class);
 
     @Autowired
     AnimalDao animalDao;
@@ -36,8 +38,6 @@ public class AnimalServiceImpl implements AnimalService {
     public void getIdMax(ModelMap model) {
 
 
-
-
         Animal animalIdMax = animalDao.getIdMax();
 
         System.out.println("max id: " + animalIdMax.getAnimalId());
@@ -55,6 +55,8 @@ public class AnimalServiceImpl implements AnimalService {
             if (animal == null) {
 
                 System.out.println( i + " попытка найти существующий идишник");
+                LOGGER.info("попытка найти существующий идишник = "+ i);
+
                 i++;
 
             } else {
