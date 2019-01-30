@@ -75,7 +75,7 @@ public class AnimalDaoImpl implements AnimalDao {
         return null;
     }
 
-    @Override                       //fixme
+    @Override                       //fixme не пометил и забыл зачем тут фиксим :(
     public Animal getIdMax() {
 
         String animalHQL = "FROM Animal WHERE  animalId = (SELECT MAX(animalId) FROM Animal)";
@@ -92,7 +92,6 @@ public class AnimalDaoImpl implements AnimalDao {
 
 //        List<Object[]> animalList= query.getResultList();
 //        List<Animal> list = new ArrayList<Animal>();
-//
 //        Iterator it = animalList.iterator();                                        //рабочий вариант
 //        while(it.hasNext()){
 //            Object[] line = (Object[]) it.next();
@@ -102,7 +101,6 @@ public class AnimalDaoImpl implements AnimalDao {
 //            eq.setIdCategory((Integer) line[2]);
 //            //And set all the Equip fields here
 //            //And last thing add it to the list
-//
 //            list.add(eq);
 //        }
 //
