@@ -15,7 +15,7 @@
         <mvc:annotation-driven>
         </mvc:annotation-driven>
 
-        <context:component-scan base-package="entity,controllers,dao,dto,service,converter,controllers">
+        <context:component-scan base-package="entity,controllers,dao,dto,service,converter,controllers,tags">
         </context:component-scan>
 
         <bean id="viewResolver"

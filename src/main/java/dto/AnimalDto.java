@@ -9,9 +9,10 @@ public class AnimalDto {
 
     private long animalId;
     private String animalName;
-    private Category categoryAnimal;
-    private byte[] animalPicture;
-    private byte[] animalSound;
+    private int idCategory;
+    private String categoryAnimal;
+    private MultipartFile animalPicture;
+    private MultipartFile animalSound;
 
 
     public AnimalDto() {
@@ -29,31 +30,39 @@ public class AnimalDto {
         return animalName;
     }
 
+    public int getIdCategory() {
+        return idCategory;
+    }
+
+    public void setIdCategory(int idCategory) {
+        this.idCategory = idCategory;
+    }
+
     public void setAnimalName(String animalName) {
         this.animalName = animalName;
     }
 
-    public byte[] getAnimalPicture() {
+    public MultipartFile getAnimalPicture() {
         return animalPicture;
     }
 
-    public void setAnimalPicture(byte[] animalPicture) {
+    public void setAnimalPicture(MultipartFile animalPicture) {
         this.animalPicture = animalPicture;
     }
 
-    public byte[] getAnimalSound() {
+    public MultipartFile getAnimalSound() {
         return animalSound;
     }
 
-    public void setAnimalSound(byte[] animalSound) {
+    public void setAnimalSound(MultipartFile animalSound) {
         this.animalSound = animalSound;
     }
 
-    public Category getCategoryAnimal() {
+    public String getCategoryAnimal() {
         return categoryAnimal;
     }
 
-    public void setCategoryAnimal(Category categoryAnimal) {
+    public void setCategoryAnimal(String categoryAnimal) {
         this.categoryAnimal = categoryAnimal;
     }
 }

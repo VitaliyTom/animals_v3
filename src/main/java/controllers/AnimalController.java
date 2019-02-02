@@ -7,16 +7,16 @@ import entity.Animal;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import service.AnimalService;
 import service.impl.AnimalServiceImpl;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.Base64;
 
 @RequestMapping("/")
@@ -40,32 +40,48 @@ public class AnimalController {
 
 
     @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String uploadFilePost(@RequestParam("photo") MultipartFile filePhoto,
-                                 @RequestParam("audio") MultipartFile fileAudio,
-                                 @RequestParam String name,
-                                 @RequestParam int idCategory,
-                                 @RequestParam String category) {
+    public String uploadFilePost(@Valid @ModelAttribute("newAnimal") AnimalDto animalDto,
+                                 BindingResult result) {
 
-        AnimalDto animalDto = new AnimalDto();
-        CategoryDto categoryDto = new CategoryDto();
+        if(!result.hasErrors())
+        {
 
-
-        animalDto.setAnimalName(name);
-        categoryDto.setCategoryIdDto(idCategory);
-        categoryDto.setCategoryDto(category);
-
-        try {
-            if (!filePhoto.isEmpty() && !fileAudio.isEmpty() ) {
-
-                animalDto.setAnimalPicture(Base64.getEncoder().encode(filePhoto.getBytes()));
-                animalDto.setAnimalSound(Base64.getEncoder().encode(fileAudio.getBytes()));
-            }
-        } catch (Exception ex) {
-            System.out.println("error_field_upload");
-            LOGGER.error("error_field_upload_Base64");
+            animalService.create(animalDto);
         }
+//
+//                                 @RequestParam("photo") MultipartFile filePhoto,
+//                                 @RequestParam("audio") MultipartFile fileAudio,
+//                                 @RequestParam String name,
+//                                 @RequestParam int idCategory,
+//                                 @RequestParam String category)
 
-        animalService.create(animalDto,categoryDto);
+
+
+
+
+//------------------------------------------------------------------------------------------
+//     /* //  AnimalDto animalDto = new AnimalDto();
+//        CategoryDto categoryDto = new CategoryDto();
+//      //  animalDto.setAnimalName(name);
+//        categoryDto.setCategoryIdDto(animalDto.);
+//        categoryDto.setCategoryDto(animalDto.getCategoryAnimal());
+//
+//        try {
+//            if (!filePhoto.isEmpty() && !fileAudio.isEmpty() ) {
+//
+//                animalDto.setAnimalPicture(Base64.getEncoder().encode(filePhoto.getBytes()));
+//                animalDto.setAnimalSound(Base64.getEncoder().encode(fileAudio.getBytes()));
+//            }
+//        } catch (Exception ex) {
+//            System.out.println("error_field_upload");
+//            LOGGER.error("error_field_upload_Base64");
+//        }*/
+
+      //  animalService.create(animalDto,categoryDto);
+ //-----------------------------------------------------------------------------------------
+
+
+
 //        Animal animal = new Animal();
 //        animal.setAnimalName(name);
 //        animal.setIdCategory(category);
@@ -83,6 +99,7 @@ public class AnimalController {
 //
 //        animalService.create(animal);
 
+
         return "loginAdmin";
 
 
@@ -90,7 +107,11 @@ public class AnimalController {
 
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public String uploadFileGet() {
+    public String uploadFileGet(HttpServletRequest request, Model model) {
+
+        AnimalDto animalDto = new AnimalDto();
+
+        model.addAttribute("newAnimal", animalDto);
 
         return "upload";
     }
@@ -121,6 +142,14 @@ public class AnimalController {
 //        } catch (Exception ex) {
 //            System.out.println("error");
 //        }
+
+
+
+
+
+
+
+
         return "controllers.redirect:uploadSuccess_2";
 
     }

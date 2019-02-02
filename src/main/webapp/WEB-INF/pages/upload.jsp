@@ -6,6 +6,8 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="springform" uri="http://www.springframework.org/tags/form" %>
+
 <html>
 
 
@@ -19,6 +21,29 @@
 
 
 <center>
+
+    <springform:form method="post" action="/create" enctype="multipart/form-data" modelAttribute="newAnimal">
+        Введите животное <springform:input type="text" path="animalName"/>
+        <springform:errors path="animalName"/>
+        <br>
+        Введите id категорий <springform:input type="text" path="idCategory"/>
+        <springform:errors path="idCategory"/>
+        <br>
+        Введите название категорий <springform:input type="text" path="categoryAnimal"/>
+        <springform:errors path="categoryAnimal"/>
+        <br>
+        Загрузите фотографию на сервер <springform:input type="file" path="animalPicture"/>
+        <springform:errors path="animalPicture"/>
+        <br>
+        Загрузите звук на сервер <springform:input type="file" path="animalSound" />
+        <springform:errors path="animalSound"/>
+        <br>
+        <input type="submit" value="save animal"/>
+    </springform:form>
+
+
+
+<%--
 <form action="/animal/create" enctype="multipart/form-data" method="post">
     <table>
         <tr>
@@ -51,6 +76,8 @@
         </tr>
     </table>
 </form>
+
+  --%>
 
 </center>
 

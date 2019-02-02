@@ -27,10 +27,10 @@ public class AnimalServiceImpl implements AnimalService {
 
     @Override
     //  @Transactional                    //fixme разобраться!
-    public void create(AnimalDto animalDto, CategoryDto categoryDto) {
+    public void create(AnimalDto animalDto) {
 
         Converter cnvrt = new Converter();
-        animalDao.create(cnvrt.animalDtoToAnimal(animalDto, categoryDto));
+        animalDao.create(cnvrt.animalDtoToAnimal(animalDto));
 
     }
 
@@ -63,8 +63,8 @@ public class AnimalServiceImpl implements AnimalService {
 
                 System.out.println("all good " + "id = " + id);
                 flag = false;
-                String image = new String(animal.getAnimalPicture());   //fixme работает? почему?
-                String sound = new String(animal.getAnimalSound());
+            //    String image = new String(String.valueOf(animal.getAnimalPicture()));   //fixme работает? почему?
+             //   String sound = new String(String.valueOf(animal.getAnimalSound()));
                 System.out.println(animal.getAnimalName());
 
 
@@ -78,8 +78,8 @@ public class AnimalServiceImpl implements AnimalService {
                 model.addAttribute("name", animalDto.getAnimalName());
               //  model.addAttribute("category", animalDto.getIdCategory());
                 model.addAttribute("category", animalDto.getCategoryAnimal());
-                model.addAttribute("image", image);
-                model.addAttribute("sound", sound);
+                model.addAttribute("images", animalDto.getAnimalPicture());
+                model.addAttribute("sound", animalDto.getAnimalSound());
 
             }
         }

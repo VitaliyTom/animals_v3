@@ -7,7 +7,9 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-
+<%@ taglib uri="/WEB-INF/taglib/imageTag.tld" prefix="imag" %>
+<%@ taglib uri="/WEB-INF/taglib/audioTag.tld" prefix="adi" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -31,13 +33,16 @@
 
 
 
+    <img src="<imag:imageTg imageByteTag="${images}"/>"  height="500px" width="700px" >
+<p>
+    <%--<img src="data:image/png;base64, ${image}" width="700px" height="500px"/> --%></p>
 
 
-<p><img src="data:image/png;base64, ${image}" width="700px" height="500px"/> </p>
+<p>
+    <audio controls="controls" autobuffer="autobuffer" >
 
-
-<p><audio controls="controls" autobuffer="autobuffer" >
-    <source src="data:audio/mp3; base64,${sound}"/>
+        <source src="<adi:audioTg soundByteTag="${sound}"/>" >
+    <%--<source src="data:audio/mp3;base64,${sound}"/>--%>
 
 </audio>
 </p>

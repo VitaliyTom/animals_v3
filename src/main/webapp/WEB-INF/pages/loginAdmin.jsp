@@ -15,10 +15,10 @@
 
 <center>
 
-<p><a href="/animal/create">create</a></p>
-<p><a href="/animal/update">update</a></p>
-<p><a href="/animal/delete">delete</a></p>
-<p><a href="/animal/getAll">get all</a></p>
+<p><a href="/create">create</a></p>
+<p><a href="/update">update</a></p>
+<p><a href="/delete">delete</a></p>
+<p><a href="/getAll">get all</a></p>
 
 </center>
 
