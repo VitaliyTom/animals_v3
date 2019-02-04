@@ -29,7 +29,7 @@ public class AnimalServiceImpl implements AnimalService {
     public void create(AnimalDto animalDto) {
 
         Converter cnvrt = new Converter();
-        animalDao.create(cnvrt.animalDtoToAnimal(animalDto));
+        animalDao.saveOrUpdate(cnvrt.animalDtoToAnimal(animalDto));
 
     }
 
@@ -70,6 +70,13 @@ public class AnimalServiceImpl implements AnimalService {
         Animal animal = new Animal();
         animal.setAnimalId(animalDto.getIdAnimal());
         animalDao.delete(animal);
+    }
+
+    @Override                       //fixme добавить апдейт на конкретные поля
+    public void update(AnimalDto animalDto) {
+
+        Converter cnvrt = new Converter();
+        animalDao.saveOrUpdate(cnvrt.animalDtoToAnimal(animalDto));
     }
 
     @Override

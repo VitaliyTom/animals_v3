@@ -12,6 +12,8 @@ public interface AnimalDao {
 
     void delete(Animal animal);
 
+    void saveOrUpdate(Animal animal);
+
     Animal read(long animalId);
 
     Animal getIdMax();

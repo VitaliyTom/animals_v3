@@ -16,11 +16,11 @@ import service.impl.AnimalServiceImpl;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
-                                                    //fixme добавить скрипт sql
+//fixme добавить скрипт sql
 @RequestMapping("/")
 @Controller
 public class AnimalController {
-                                                            //fixme добавить логеры которые убрал
+    //fixme добавить логеры которые убрал
     private static final Logger LOGGER = Logger.getLogger(AnimalServiceImpl.class);
 
     @Autowired
@@ -71,20 +71,22 @@ public class AnimalController {
         return "getAnimal";
     }
 
-    @ResponseBody                                        //fixme не работает, переделать на updateOr...
+    //fixme не работает, переделать на saveOrUpdate
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String updatePost(@RequestParam("id") int animalId,
-                             @RequestParam("name") String animalName,
-                             @RequestParam("category") int idCategory,
-                             @RequestParam("photo") MultipartFile filePhoto,
-                             @RequestParam("audio") MultipartFile fileAudio) {
+    public String updatePost(@Valid @ModelAttribute("newAnimal") AnimalDto animalDto,
+                             BindingResult result) {
 
-        return "controllers.redirect:uploadSuccess_2";
+        if (!result.hasErrors()) {
+            animalService.update(animalDto);
+        }
+        return "loginAdmin";
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.GET)
-    public String updateGet() {
+    public String updateGet(HttpServletRequest request, Model model) {
 
+        AnimalDto animalDto = new AnimalDto();
+        model.addAttribute("newAnimal", animalDto);
         return "update";
     }
 

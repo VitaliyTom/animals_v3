@@ -35,6 +35,13 @@ public class AnimalDaoImpl implements AnimalDao {
     }
 
     @Override
+    public void saveOrUpdate(Animal animal) {
+
+        sessionFactory.getCurrentSession().saveOrUpdate(animal);
+
+    }
+
+    @Override
     public Animal read(long animalId) {
         return sessionFactory.getCurrentSession().get(Animal.class, animalId);
     }

@@ -11,5 +11,7 @@ public interface AnimalService {
 
     void delete(AnimalDto animalDto);
 
+    void update(AnimalDto animalDto);
+
     void getAll(ModelMap model);
 }

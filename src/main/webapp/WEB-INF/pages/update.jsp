@@ -16,7 +16,10 @@
 <center>
 
 
-   <%-- <springform:form method="post" action="/update" enctype="multipart/form-data" modelAttribute="newAnimal">
+    <springform:form method="post" action="/update" enctype="multipart/form-data" modelAttribute="newAnimal">
+        Введите id животного для обновления <springform:input type="text" path="idAnimal"/>
+        <springform:errors path="idAnimal"/>
+        <br>
         Введите животное <springform:input type="text" path="nameAnimal"/>
         <springform:errors path="nameAnimal"/>
         <br>
@@ -33,7 +36,7 @@
         <springform:errors path="audioAnimal"/>
         <br>
         <input type="submit" value="save animal"/>
-    </springform:form>--%>
+    </springform:form>
 
 
 
