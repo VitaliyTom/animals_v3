@@ -5,6 +5,7 @@
   Time: 0:46
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="springform" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -12,22 +13,15 @@
 </head>
 <body>
 
-<center>
-    <form action="/animal/delete" enctype="multipart/form-data" method="post">
-        <table>
-            <tr>
-                <td> Введите id животного</td>
-                <td><input type="text" name="id"/></td>
-            </tr>
+<div align="center" class="delete-animal">
+    <springform:form method="post" action="/delete" modelAttribute="newAnimal">
+        Введите id животного которое хотите удалить <springform:input type="text" path="idAnimal"/>
+        <springform:errors path="idAnimal"/>
+        <input type="submit" value="delete animal"/>
+    </springform:form>
 
+    <p><a href="/">[ index ]</a></p>
 
-                <td><input type="submit" value="Удалить"></td>
-            </tr>
-        </table>
-    </form>
-
-</center>
-
-
+</div>
 </body>
 </html>

@@ -3,11 +3,11 @@ package service.impl;
 import converter.Converter;
 import dao.AnimalDao;
 import dto.AnimalDto;
-import dto.CategoryDto;
 import entity.Animal;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import service.AnimalService;
 
@@ -24,9 +24,8 @@ public class AnimalServiceImpl implements AnimalService {
     AnimalDao animalDao;
 
 
-
     @Override
-    //  @Transactional                    //fixme разобраться!
+    @Transactional                    //fixme разобраться!
     public void create(AnimalDto animalDto) {
 
         Converter cnvrt = new Converter();
@@ -35,92 +34,49 @@ public class AnimalServiceImpl implements AnimalService {
     }
 
     @Override
+    @Transactional
     public void getIdMax(ModelMap model) {
-
-
         Animal animalIdMax = animalDao.getIdMax();
 
-        System.out.println("max id: " + animalIdMax.getAnimalId());
-
-        int id = 0;
         Random rnd = new Random();
+        int id = 0;
         int i = 1;
         boolean flag = true;
-        while (flag) {
 
+        while (flag) {
+            //selection of an arbitrary id in the range of existing
             id = 1 + rnd.nextInt((int) animalIdMax.getAnimalId());
-            System.out.println("-------id------" + id);
             Animal animal = animalDao.read((long) id);
 
+            //we check there is an object under such id or not
             if (animal == null) {
-
-                System.out.println( i + " попытка найти существующий идишник");
-                LOGGER.info("попытка найти существующий идишник = "+ i);
-
                 i++;
 
             } else {
 
-                System.out.println("all good " + "id = " + id);
                 flag = false;
-            //    String image = new String(String.valueOf(animal.getAnimalPicture()));   //fixme работает? почему?
-             //   String sound = new String(String.valueOf(animal.getAnimalSound()));
-                System.out.println(animal.getAnimalName());
-
-
-
-
-
+                LOGGER.info("найден существующий идишник c " + i + " попытки.");
                 Converter cnvrt = new Converter();
                 AnimalDto animalDto = cnvrt.animalToAnimalDto(animal);
-
-                model.addAttribute("id", animalDto.getAnimalId());
-                model.addAttribute("name", animalDto.getAnimalName());
-              //  model.addAttribute("category", animalDto.getIdCategory());
-                model.addAttribute("category", animalDto.getCategoryAnimal());
-                model.addAttribute("images", animalDto.getAnimalPicture());
-                model.addAttribute("sound", animalDto.getAnimalSound());
-
+                model.addAttribute("animalDto", animalDto);
             }
         }
-
     }
 
     @Override
-    public void delete(Animal animal) {
+    @Transactional
+    public void delete(AnimalDto animalDto) {
+
+        Animal animal = new Animal();
+        animal.setAnimalId(animalDto.getIdAnimal());
         animalDao.delete(animal);
     }
 
     @Override
+    @Transactional
     public void getAll(ModelMap model) {
 
         List<Animal> getAll = (animalDao.getAll());
-//Category cate = new Category();
-//        List<Category> cate2 = getAnimalCategory();
-//        for (Category list2 : getAll) {
-//
-//
-//        }
-        // byte[] bytes = new byte[1];
-        for (Animal list2 : getAll) {
-
-
-            System.out.println("id: "
-                    + list2.getAnimalId()
-                    + ", name: "
-                    + list2.getAnimalName());
-//                    + ", category: "
-//                    + list2.getIdCategory());
-           // list2.setAnimalSound( bytes);
-           // list2.setAnimalPicture( bytes);
-
-        }
-
         model.addAttribute("getAllList", getAll);
-
     }
-
-
-
-
 }

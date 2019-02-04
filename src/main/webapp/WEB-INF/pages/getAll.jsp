@@ -1,4 +1,3 @@
-
 <%--
   Created by IntelliJ IDEA.
   User: tomas
@@ -13,17 +12,14 @@
     <title>Title</title>
 </head>
 <body>
-<center>
-<c:forEach var = "ani" items="${getAllList}">
- <c:out value = "${ani}"/>  <p>
+<div align="center" class="delete-animal">
+
+    <c:forEach var="ani" items="${getAllList}">
+    <c:out value="${ani}"/>  <p>
     </c:forEach>
 
-<%--<c:forEach items="${getAllList}" var="ani">
-    ${getAllList}
-</c:forEach>--%>
-
-
-</center>
+    <p><a href="/">[ index ]</a></p>
+</div>
 </body>
 </html>
 

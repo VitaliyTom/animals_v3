@@ -12,112 +12,104 @@
        http://www.springframework.org/schema/context/spring-context.xsd
        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-        <mvc:annotation-driven>
-        </mvc:annotation-driven>
+    <mvc:annotation-driven>
+    </mvc:annotation-driven>
 
-        <context:component-scan base-package="entity,controllers,dao,dto,service,converter,controllers,tags">
-        </context:component-scan>
+    <context:component-scan base-package="entity,controllers,dao,dto,service,converter,controllers,tags">
+    </context:component-scan>
 
-        <bean id="viewResolver"
-              class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-                <property name="viewClass"
-                          value="org.springframework.web.servlet.view.JstlView"/>
-                <property name="prefix" value="/WEB-INF/pages/"/>
-                <property name="suffix" value=".jsp"/>
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass"
+                  value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/WEB-INF/pages/"/>
+        <property name="suffix" value=".jsp"/>
 
+    </bean>
+
+    <!--start i18n block-->
+    <bean id="messageSource"
+          class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+
+        <property name="basename" value="classpath:label"/>
+        <property name="defaultEncoding" value="UTF-8"/>
+    </bean>
+
+    <bean id="localeChangeInterceptor"
+          class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+        <property name="paramName" value="lang"/>
+    </bean>
+
+    <bean id="localeResolver"
+          class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
+        <property name="defaultLocale" value="ru"/>
+    </bean>
+
+    <bean id="handlerMapping"
+          class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
+        <property name="interceptors" ref="localeChangeInterceptor"/>
+    </bean>
+
+    <mvc:interceptors>
+        <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
+            <property name="paramName" value="lang"/>
         </bean>
-<!--        <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-&lt;!&ndash;
-                <property name="viewClass"
-                          value="org.springframework.web.servlet.view.JstlView"/>&ndash;&gt;
-                <property name="prefix" value="/WEB-INF/pages/"/>
-                <property name="suffix" value=".jsp"/>
-        </bean>-->
+    </mvc:interceptors>
+    <!--end i18n block-->
 
 
-        <!--start i18n block-->
-        <bean id="messageSource"
-              class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+    <!--Нужен для получения свойств из файла jdbc.properties-->
+    <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location" value="classpath:jdbc.properties"/>
+    </bean>
 
-                <property name="basename" value="classpath:label" />
-                <property name="defaultEncoding" value="UTF-8"/>
-        </bean>
+    <!-- <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor">
+     </bean>-->
 
-        <bean id="localeChangeInterceptor"
-              class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
-                <property name="paramName" value="lang" />
-        </bean>
+    <!-- Определение источника данных - мост между СУБД и Hibernate.-->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/animalbase?serverTimezone=UTC"/>
+        <property name="username" value="root"/>
+        <property name="password" value="root"/>
 
-        <bean id="localeResolver"
-              class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
-                <property name="defaultLocale" value="ru"/>
-        </bean>
-
-        <bean id="handlerMapping"
-              class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping">
-                <property name="interceptors" ref="localeChangeInterceptor"/>
-        </bean>
-
-        <mvc:interceptors>
-                <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor">
-                        <property name="paramName" value="lang" />
-                </bean>
-        </mvc:interceptors>
-        <!--end i18n block-->
+    </bean>
 
 
-        <!--Нужен для получения свойств из файла jdbc.properties-->
-        <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-                <property name="location" value="classpath:jdbc.properties"/>
-        </bean>
+    <!-- Фабрика, которая будет строить Hibernate-сессии -->
+    <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <!-- бины снизу как бы ссылаются на конфигурационный файл hibernate-cfg, настройки которого описаны в dataSource
+        поэтому у нас hibernate.cfg.xml не используется   -->
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan" value="entity"/>
 
-       <!-- <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor">
-        </bean>-->
-
-        <!-- Определение источника данных - мост между СУБД и Hibernate.-->
-        <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-                <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://localhost:3306/animalbase?serverTimezone=UTC"/>
-                <property name="username" value="root"/>
-                <property name="password" value="root"/>
-
-        </bean>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+                <prop key="hibernate.enable_lazy_load_no_trans">true</prop>
+            </props>
+        </property>
+    </bean>
 
 
-        <!-- Фабрика, которая будет строить Hibernate-сессии -->
-        <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
-                <!-- бины снизу как бы ссылаются на конфигурационный файл hibernate-cfg, настройки которого описаны в dataSource
-                поэтому у нас hibernate.cfg.xml не используется   -->
-                <property name="dataSource" ref="dataSource"/>
-                <property name="packagesToScan" value="entity"/>
+    <!-- СЛЕДУЮЩАЯ секция для того, чтобы работал механизм транзакций с использованием @Transactional  -->
+    <!--  tx:annotation-driven включает механизм управления транзакциями через аннотации -->
+    <tx:annotation-driven transaction-manager="txManager" proxy-target-class="true"/>
+    <!-- Менеджер транзакций-->
+    <bean id="txManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
 
-                <property name="hibernateProperties">
-                        <props>
-                            <prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-                                <prop key="hibernate.enable_lazy_load_no_trans">true</prop>
-                        </props>
-                </property>
-        </bean>
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!--  одно из доступных свойств; максимальный размер файла в байтах -->
+        <property name="maxUploadSize" value="10000384"/>
+    </bean>
 
+    <bean id="modelMapper" class="org.springframework.context.annotation.Bean"
+          abstract="true">
 
-        <!-- СЛЕДУЮЩАЯ секция для того, чтобы работал механизм транзакций с использованием @Transactional  -->
-        <!--  tx:annotation-driven включает механизм управления транзакциями через аннотации -->
-        <tx:annotation-driven transaction-manager="txManager" proxy-target-class="true"/>
-        <!-- Менеджер транзакций-->
-        <bean id="txManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
-                <property name="sessionFactory" ref="sessionFactory"/>
-        </bean>
-
-        <bean id="multipartResolver"
-              class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-                <!--  одно из доступных свойств; максимальный размер файла в байтах -->
-                <property name="maxUploadSize" value="10000384"/>
-        </bean>
-
-        <bean id="modelMapper" class="org.springframework.context.annotation.Bean"
-              abstract="true">
-
-        </bean>
+    </bean>
 
 </beans>
 

@@ -7,23 +7,17 @@ import java.io.IOException;
 
 public class ImageToBase64 extends TagSupport {
 
-    private byte[] imageByteTag;
+    private byte[] imageByte;
 
-
-    public byte[] getImageByteTag() {
-        return imageByteTag;
+    public void setImageByte(byte[] imageByte) {
+        this.imageByte = imageByte;
     }
-
-    public void setImageByteTag(byte[] imageByteTag) {
-        this.imageByteTag = imageByteTag;
-    }
-
 
     @Override
     public int doStartTag() {
 
-        if (imageByteTag != null && imageByteTag.length > 0) {
-            String base64Encoded = Base64.encodeBase64String(imageByteTag);
+        if (imageByte != null && imageByte.length > 0) {
+            String base64Encoded = Base64.encodeBase64String(imageByte);
 
             try {
                 pageContext.getOut().print("data:image/png;base64," + base64Encoded);
@@ -33,5 +27,4 @@ public class ImageToBase64 extends TagSupport {
         }
         return EVAL_BODY_INCLUDE;
     }
-
 }

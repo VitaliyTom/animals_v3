@@ -1,11 +1,10 @@
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 
 
-
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <title><spring:message code="animals"/></title>
 </head>
 <body>
@@ -17,12 +16,18 @@
     <a href="?lang=pl">pl</a>
 </span>
 
-<center>
+<div align="center" class="index-1">
 
-<p><a href="/readAnimalId"><spring:message code="label.start"/></a></p>
-<p><a href="/loginAdmin"><spring:message code="label.login"/></a></p>
+    <p><a href="/read"><spring:message code="label.start"/></a></p>
 
-</center>
+</div>
+
+<div align="center" class="index-2">
+
+    <p><a href="/loginAdmin"><spring:message code="label.login"/></a></p>
+
+</div>
+
 
 </body>
 

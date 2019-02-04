@@ -19,7 +19,6 @@ public class AnimalDaoImpl implements AnimalDao {
     @Autowired
     private SessionFactory sessionFactory;
 
-
     @Override
     public void create(Animal animal) {
         sessionFactory.getCurrentSession().save(animal);
@@ -28,25 +27,6 @@ public class AnimalDaoImpl implements AnimalDao {
     @Override                        //fixme
     public void update(Animal animal) {
 
-//        String hql = "update Contact "
-//                + "SET firstName = :name "
-//                +   ", lastName  = :lastName "
-//                +   ", date      = :dateParam "
-//                +  " where id = :idParam"
-//
-//
-//
-//
-//
-//        Query query = sessionFactory.getCurrentSession().createQuery(getAllHql);
-//        query.setParameter("idParam"  , 48);
-//        query.setParameter("name"     , "Киса");
-//        query.setParameter("lastName" , "Воробьянинов");
-//        query.setParameter("dateParam", new Date());
-//        int result = query.executeUpdate();
-//
-
-        //    sessionFactory.getCurrentSession().update(animal);
     }
 
     @Override
@@ -57,26 +37,10 @@ public class AnimalDaoImpl implements AnimalDao {
     @Override
     public Animal read(long animalId) {
         return sessionFactory.getCurrentSession().get(Animal.class, animalId);
-
     }
 
-    @Override
-    public List<Animal> readIdMax() {
-
-//        String animalhqlIdMax = "FROM Animal WHERE  animalId=(SELECT MAX(animalId) FROM Animal)";
-//        Query query = sessionFactory.getCurrentSession().createQuery(animalhqlIdMax);
-//        List<Animal> listIdMax = query.list();
-//
-////              этот метод больше не используется,
-////              вместо этого использовать
-////              getIdMax
-
-//        return listIdMax;
-        return null;
-    }
-
-    @Override                       //fixme не пометил и забыл зачем тут фиксим :(
-    public Animal getIdMax() {
+    @Override                                                            //fixme не пометил и забыл зачем тут фиксим :(
+    public Animal getIdMax() {              //selection search max id
 
         String animalHQL = "FROM Animal WHERE  animalId = (SELECT MAX(animalId) FROM Animal)";
         Query query = sessionFactory.getCurrentSession().createQuery(animalHQL);
@@ -85,29 +49,9 @@ public class AnimalDaoImpl implements AnimalDao {
 
     @Override
     public List<Animal> getAll() {
-
         String getAllHql = "From Animal";
         Query query = sessionFactory.getCurrentSession().createQuery(getAllHql);
         List<Animal> list = query.list();
-
-//        List<Object[]> animalList= query.getResultList();
-//        List<Animal> list = new ArrayList<Animal>();
-//        Iterator it = animalList.iterator();                                        //рабочий вариант
-//        while(it.hasNext()){
-//            Object[] line = (Object[]) it.next();
-//            Animal eq = new Animal();
-//            eq.setAnimalId((Long) line[0]);
-//            eq.setAnimalName((String) line[1]);
-//            eq.setIdCategory((Integer) line[2]);
-//            //And set all the Equip fields here
-//            //And last thing add it to the list
-//            list.add(eq);
-//        }
-//
-//
-//        System.out.println(list);
         return list;
     }
-
-
 }

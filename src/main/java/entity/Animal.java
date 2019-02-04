@@ -3,11 +3,9 @@ package entity;
 import javax.persistence.*;
 import java.io.Serializable;
 
-
 @Entity
 @Table(name = "animals")
 public class Animal implements Serializable {
-
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,17 +20,14 @@ public class Animal implements Serializable {
     private Category categoryAnimal;
 
     @Column(name = "ANIMAL_PICTURE")
-    private byte[] animalPicture;
+    private byte[] animalImage;
 
     @Column(name = "ANIMAL_SOUND")
-    private byte[] animalSound;
-
-
+    private byte[] animalAudio;
 
 
     public Animal() {
     }
-
 
     public long getAnimalId() {
         return animalId;
@@ -58,27 +53,27 @@ public class Animal implements Serializable {
         this.categoryAnimal = categoryAnimal;
     }
 
-    public byte[] getAnimalPicture() {
-        return animalPicture;
+    public byte[] getAnimalImage() {
+        return animalImage;
     }
 
-    public void setAnimalPicture(byte[] animalPicture) {
-        this.animalPicture = animalPicture;
+    public void setAnimalImage(byte[] animalImage) {
+        this.animalImage = animalImage;
     }
 
-    public byte[] getAnimalSound() {
-        return animalSound;
+    public byte[] getAnimalAudio() {
+        return animalAudio;
     }
 
-    public void setAnimalSound(byte[] animalSound) {
-        this.animalSound = animalSound;
+    public void setAnimalAudio(byte[] animalAudio) {
+        this.animalAudio = animalAudio;
     }
 
     @Override
     public String toString() {
         return "[" +
                 "Id = " + animalId +
-                ", animal = " + animalName  +
+                ", animal = " + animalName +
                 ", category = " + categoryAnimal +
                 ']';
     }

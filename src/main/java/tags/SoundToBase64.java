@@ -7,21 +7,17 @@ import java.io.IOException;
 
 public class SoundToBase64 extends TagSupport {
 
-    private byte[] soundByteTag;
+    private byte[] soundByte;
 
-    public byte[] getSoundByteTag() {
-        return soundByteTag;
-    }
-
-    public void setSoundByteTag(byte[] soundByteTag) {
-        this.soundByteTag = soundByteTag;
+    public void setSoundByte(byte[] soundByte) {
+        this.soundByte = soundByte;
     }
 
     @Override
     public int doStartTag() {
 
-        if (soundByteTag != null && soundByteTag.length > 0) {
-            String base64Encoded = Base64.encodeBase64String(soundByteTag);
+        if (soundByte != null && soundByte.length > 0) {
+            String base64Encoded = Base64.encodeBase64String(soundByte);
 
             try {
                 pageContext.getOut().print("data:audio/mp3;base64," + base64Encoded);
@@ -31,7 +27,4 @@ public class SoundToBase64 extends TagSupport {
         }
         return EVAL_BODY_INCLUDE;
     }
-
-
-
 }

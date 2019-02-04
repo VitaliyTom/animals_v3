@@ -1,68 +1,64 @@
-
 package dto;
 
-import entity.Category;
 import org.springframework.web.multipart.MultipartFile;
 
 public class AnimalDto {
 
-
-    private long animalId;
-    private String animalName;
-    private int idCategory;
-    private String categoryAnimal;
-    private MultipartFile animalPicture;
-    private MultipartFile animalSound;
-
+    private long idAnimal;
+    private String nameAnimal;
+    private int categoryId;
+    private String animalCategory;
+    private MultipartFile ImageAnimal;
+    private MultipartFile audioAnimal;
 
     public AnimalDto() {
     }
 
-    public long getAnimalId() {
-        return animalId;
+    public long getIdAnimal() {
+        return idAnimal;
     }
 
-    public void setAnimalId(long animalId) {
-        this.animalId = animalId;
+    public void setIdAnimal(long idAnimal) {
+        this.idAnimal = idAnimal;
     }
 
-    public String getAnimalName() {
-        return animalName;
+    public String getNameAnimal() {
+        return nameAnimal;
     }
 
-    public int getIdCategory() {
-        return idCategory;
+    public int getCategoryId() {
+        return categoryId;
     }
 
-    public void setIdCategory(int idCategory) {
-        this.idCategory = idCategory;
+    public void setCategoryId(int categoryId) {
+        this.categoryId = categoryId;
     }
 
-    public void setAnimalName(String animalName) {
-        this.animalName = animalName;
+    public void setNameAnimal(String nameAnimal) {
+        this.nameAnimal = nameAnimal;
     }
 
-    public MultipartFile getAnimalPicture() {
-        return animalPicture;
+    public MultipartFile getImageAnimal() {
+        return ImageAnimal;
     }
 
-    public void setAnimalPicture(MultipartFile animalPicture) {
-        this.animalPicture = animalPicture;
+    public void setImageAnimal(MultipartFile imageAnimal) {
+        this.ImageAnimal = imageAnimal;
     }
 
-    public MultipartFile getAnimalSound() {
-        return animalSound;
+    public MultipartFile getAudioAnimal() {
+        return audioAnimal;
     }
 
-    public void setAnimalSound(MultipartFile animalSound) {
-        this.animalSound = animalSound;
+    public void setAudioAnimal(MultipartFile audioAnimal) {
+        this.audioAnimal = audioAnimal;
     }
 
-    public String getCategoryAnimal() {
-        return categoryAnimal;
+    public String getAnimalCategory() {
+        return animalCategory;
     }
 
-    public void setCategoryAnimal(String categoryAnimal) {
-        this.categoryAnimal = categoryAnimal;
+    public void setAnimalCategory(String animalCategory) {
+        this.animalCategory = animalCategory;
     }
 }

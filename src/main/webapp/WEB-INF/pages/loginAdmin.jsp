@@ -1,4 +1,3 @@
-
 <%--
   Created by IntelliJ IDEA.
   User: tomas
@@ -13,14 +12,37 @@
 </head>
 <body>
 
-<center>
+<div align="center" class="CRUD-animal">
 
-<p><a href="/create">create</a></p>
-<p><a href="/update">update</a></p>
-<p><a href="/delete">delete</a></p>
-<p><a href="/getAll">get all</a></p>
-
-</center>
+    <p>
+    <form action="/create" method="get">
+        <input type="submit" value="[ create ]"/>
+    </form>
+    </p>
+    <p>
+    <form action="/update" method="get">
+        <input type="submit" value="[ update ]"/>
+    </form>
+    </p>
+    <p>
+    <form action="/delete" method="get">
+        <input type="submit" value="[ delete ]"/>
+    </form>
+    </p>
+    <p>
+    <form action="/getAll" method="get">
+        <input type="submit" value="[ get all ]"/>
+    </form>
+    </p>
+    <p><a href="/">[ index ]</a></p>
+</div>
 
 </body>
 </html>
+
+
+<%--
+    <p><a href="/create">[ create ]</a></p>
+    <p><a href="/update">[ update ]</a></p>
+    <p><a href="/delete">[ delete ]</a></p>
+    <p><a href="/getAll">[ get all ]</a></p>--%>

@@ -1,4 +1,3 @@
-
 <%--
   Created by IntelliJ IDEA.
   User: tomas
@@ -6,11 +5,14 @@
   Time: 1:00
   To change this template use File | Settings | File Templates.
 --%>
-<%@taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@ taglib uri="/WEB-INF/taglib/imageTag.tld" prefix="imag" %>
-<%@ taglib uri="/WEB-INF/taglib/audioTag.tld" prefix="adi" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="springform" %>
+<%@ taglib uri="/WEB-INF/taglib/imageTag.tld" prefix="image" %>
+<%@ taglib uri="/WEB-INF/taglib/audioTag.tld" prefix="adi" %>
+
 <html>
 <head>
     <title><spring:message code="label.title"/></title>
@@ -25,42 +27,37 @@
 </span>
 
 
-<center>
+<div align="center" class="get-animal-text">
 
-        [ <spring:message code="getAnimal.animal"/> = ${name} | <spring:message code="getAnimal.category"/> = ${category} ]
+    [ <spring:message code="getAnimal.animal"/> - ${animalDto.nameAnimal} |
+    <spring:message code="getAnimal.category"/> - ${animalDto.animalCategory} ]
 
+</div>
 
+<div align="center" class="get-animal">
 
+    <%--fixme .bytes--%>
+    <img src="<image:imageTg imageByte="${animalDto.imageAnimal.bytes}"/>" height="500px" width="700px">
 
-
-    <img src="<imag:imageTg imageByteTag="${images}"/>"  height="500px" width="700px" >
-<p>
-    <%--<img src="data:image/png;base64, ${image}" width="700px" height="500px"/> --%></p>
-
-
-<p>
-    <audio controls="controls" autobuffer="autobuffer" >
-
-        <source src="<adi:audioTg soundByteTag="${sound}"/>" >
-    <%--<source src="data:audio/mp3;base64,${sound}"/>--%>
-
-</audio>
-</p>
-
-   <p> <form action="/readAnimalId"  method="post">
-
-        <input type="hidden" />
+    <p>
+        <audio controls="controls" autobuffer="autobuffer">
+            <source src="<adi:audioTg soundByte="${animalDto.audioAnimal.bytes}"/>">
+        </audio>
+    </p>
 
 
+    <p>
+    <form action="/read" method="get">
         <input type="submit" value="<spring:message code="getAnimal.next"/>">
-
-    </form>  </p>
-
-</center>
+    </form>
+    </p>
+    <p><a href="/">[ index ]</a></p>
+</div>
 </body>
 </html>
 
 
 <%--
 autoplay="autoplay"--%>
+
 
