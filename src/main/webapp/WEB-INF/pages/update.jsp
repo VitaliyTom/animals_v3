@@ -13,8 +13,7 @@
 </head>
 <body>
 
-<center>
-
+<div align="center" class="update-animal">
 
     <springform:form method="post" action="/update" enctype="multipart/form-data" modelAttribute="newAnimal">
         Введите id животного для обновления <springform:input type="text" path="idAnimal"/>
@@ -39,41 +38,8 @@
     </springform:form>
 
 
-
-    <%--<form action="/update" enctype="multipart/form-data" method="post">
-        <table>
-            <tr>
-                <td> Введите id животного  </td>
-                <td><input type="text" name="id"/></td>
-            </tr>
-
-            <tr>
-                <td> Введите новое имя </td>
-                <td><input type="text" name="name"/></td>
-            </tr>
-
-            <tr>
-                <td>Введите новую категорию</td>
-                <td><input type="text" name="category"/></td>
-            </tr>
-
-            <tr>
-                <td>Загрузите новую фотографию на сервер</td>
-                <td><input type="file" name="photo" multiple accept="image/*,image/jpeg,image/png"></td>
-            </tr>
-
-            <tr>
-                <td>Загрузите новый звук на сервер</td>
-                <td><input type="file" name="audio" multiple accept="audio/*"><td>
-            </tr>
-
-            <tr>
-                <td><input type="submit" value="Отправить"></td>
-            </tr>
-        </table>
-    </form>--%>
        <p><a href="/">[ index ]</a></p>
-</center>
+</div>
 
 </body>
 </html>
