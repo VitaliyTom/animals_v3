@@ -2,13 +2,22 @@ package dto;
 
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
 public class AnimalDto {
 
     private long idAnimal;
+//    @Size(min=3, max=15)
+//    @NotNull
     private String nameAnimal;
+
     private int categoryId;
+
     private String animalCategory;
+//    @NotNull
     private MultipartFile ImageAnimal;
+//    @NotNull
     private MultipartFile audioAnimal;
 
     public AnimalDto() {

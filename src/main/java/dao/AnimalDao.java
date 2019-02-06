@@ -6,6 +6,7 @@ import entity.Animal;
 import java.util.List;
 
 public interface AnimalDao {
+    @Deprecated
     void create(Animal animal);
 
     void update(Animal animal);

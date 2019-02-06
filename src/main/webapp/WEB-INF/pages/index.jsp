@@ -18,14 +18,22 @@
 
 <div align="center" class="index-1">
 
-    <p><a href="/read"><spring:message code="label.start"/></a></p>
+    <form action="/read" method="get">
+        <input type="submit" value="<spring:message code="label.start"/>">
+    </form>
 
 </div>
 
 <div align="center" class="index-2">
+    <form action="/loginAdmin" method="get">
+        <input type="submit" value="<spring:message code="label.login"/>">
+    </form>
+</div>
 
-    <p><a href="/loginAdmin"><spring:message code="label.login"/></a></p>
-
+<div align="center" class="cat">
+    <form action="/getCategory" method="get">
+        <input type="submit" value="категории">
+    </form>
 </div>
 
 

@@ -18,7 +18,7 @@ public class AnimalDaoImpl implements AnimalDao {
 
     @Autowired
     private SessionFactory sessionFactory;
-
+    @Deprecated
     @Override
     public void create(Animal animal) {
         sessionFactory.getCurrentSession().save(animal);

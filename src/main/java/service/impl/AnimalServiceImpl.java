@@ -8,6 +8,7 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import service.AnimalService;
 
@@ -84,6 +85,15 @@ public class AnimalServiceImpl implements AnimalService {
     public void getAll(ModelMap model) {
 
         List<Animal> getAll = (animalDao.getAll());
+        AnimalDto animalDto = new AnimalDto();
         model.addAttribute("getAllList", getAll);
+        model.addAttribute("newAnimal",animalDto);
+    }
+
+    @Override
+    public void getId(Model model) {
+
+
+       // animalDao.read()
     }
 }

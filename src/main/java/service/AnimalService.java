@@ -1,6 +1,7 @@
 package service;
 
 import dto.AnimalDto;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 
 public interface AnimalService {
@@ -14,4 +15,6 @@ public interface AnimalService {
     void update(AnimalDto animalDto);
 
     void getAll(ModelMap model);
+
+    void getId(Model model);
 }

@@ -8,8 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import service.AnimalService;
 import service.impl.AnimalServiceImpl;
 
@@ -17,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 //fixme добавить скрипт sql
-@RequestMapping("/")
+
 @Controller
 public class AnimalController {
     //fixme добавить логеры которые убрал
@@ -43,6 +44,18 @@ public class AnimalController {
         animalService.getAll(model);
         return "getAll";
     }
+    @RequestMapping("/getId")
+    public String getId (@ModelAttribute("newAnimal") AnimalDto animalDto,ModelMap model) {
+        System.out.println("животное id = " + animalDto.getIdAnimal());
+        System.out.println("животное id = " );
+
+
+
+     //   animalService.getId(model);
+        return "getAll";
+    }
+
+
 
 //    -----------------block CRUD-----------------------------
 
