@@ -39,8 +39,6 @@
 
 </body>
 </html>
-
-
 <%--
     <p><a href="/create">[ create ]</a></p>
     <p><a href="/update">[ update ]</a></p>

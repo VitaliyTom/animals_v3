@@ -29,6 +29,11 @@
 </span>
 
 
+
+<div align="center" class="wrapper" style="display: flex">
+
+<div align="center" class="get-animal-text-left">
+
 <div align="center" class="get-animal-text">
 
     [ <spring:message code="getAnimal.animal"/> - ${animalDto.nameAnimal} |
@@ -54,12 +59,36 @@
     </p>
     <p><a href="/">[ index ]</a></p>
 </div>
+</div>
+  <%--  <div align="center" class="getAll-animal">
+
+
+        <p><a href="/">[ index ]</a></p>
+
+        <springform:form method="post" action="/getId"  modelAttribute="newAnimal">
+            <table>
+                <tr>
+
+                    <td>животные :</td>
+                    <td><springform:select path="idAnimal" >
+                        &lt;%&ndash;<c:forEach var="ani" items="${getAllList}">&ndash;%&gt;
+
+                        <springform:option value="1" label="--- Select ---" />
+                        <springform:options items="${getAllList}"  itemLabel="animalName" itemValue="animalId" />
+
+                        &lt;%&ndash;</c:forEach>&ndash;%&gt;
+                    </springform:select>
+                    </td>
+                <tr>
+                    <td colspan="3"><input type="submit" /></td>
+                </tr>
+            </table>
+        </springform:form>
+
+    </div>--%>
+</div>
 </body>
 </html>
-
-<%--<springform:form method="get"  action="/read">
-    <springform:button><spring:message code="getAnimal.next"/></springform:button>
-</springform:form>--%>
 
 <%--autoplay="autoplay"--%>
 

@@ -8,7 +8,6 @@ import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import service.AnimalService;
 
@@ -91,21 +90,12 @@ public class AnimalServiceImpl implements AnimalService {
     }
 
     @Override
-    public void getId(Model model) {
+    public void getId(AnimalDto animalDto, ModelMap model) {
 
-        //model.
-        //animalDao.read();
-    }
-
-    @Override
-    public void getId(AnimalDto animalDto) {
-
-//        Converter cnvrt = new Converter();
-//        animalDao.saveOrUpdate(cnvrt.animalDtoToAnimal(animalDto));
         Animal animal = new Animal();
         animal.setAnimalId(animalDto.getIdAnimal());
-        animalDao.read(animal.getAnimalId());
-
-
+        Converter cnvrt = new Converter();
+        animalDto = cnvrt.animalToAnimalDto(animalDao.read(animal.getAnimalId()));
+        model.addAttribute("animalDto", animalDto);
     }
 }

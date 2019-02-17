@@ -10,7 +10,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import service.AnimalService;
 import service.impl.AnimalServiceImpl;
 
@@ -44,22 +43,14 @@ public class AnimalController {
         animalService.getAll(model);
         return "getAll";
     }
-//    @RequestMapping(value = "/getId", method = RequestMethod.GET)
-//    public String getId (@ModelAttribute("newAnimal") AnimalDto animalDto,Model model) {
-//
-//           animalService.getId(model);
-//        return "getAnimal";
-//    }
-    @RequestMapping(value = "/getId", method = RequestMethod.POST)
-    public String getId (@ModelAttribute("newAnimal") AnimalDto animalDto, ModelMap model) {
-        System.out.println("животное id = " + animalDto.getIdAnimal());
-    //    System.out.println("животное id = " + id );
-    //,@RequestParam("id") long id
 
-        //   animalService.getId(model);
+    // выбор животного по ид
+    @RequestMapping(value = "/getId", method = RequestMethod.POST)
+    public String getId(@ModelAttribute("newAnimal") AnimalDto animalDto, ModelMap model) {
+
+        animalService.getId(animalDto, model);
         return "getAnimal";
     }
-
 
 
 //    -----------------block CRUD-----------------------------

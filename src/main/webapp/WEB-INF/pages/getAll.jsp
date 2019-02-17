@@ -16,64 +16,25 @@
 <div align="center" class="getAll-animal">
 
 
-    <p><a href="/">[ index ]</a></p>
+    <springform:form method="post" action="/getId" modelAttribute="newAnimal">
 
+        животные :
+        <springform:select path="idAnimal">
 
-    <springform:form method="post" action="/getId"  modelAttribute="newAnimal">
+            <springform:option value="1" label="--- Select ---"/>
+            <springform:options items="${getAllList}" itemLabel="animalName" itemValue="animalId"/>
 
+        </springform:select>
 
-        <p><select>
-            <option disabled> Выберите животное </option>
+        <p>
+            <input type="submit"/>
+        </p>
 
-            <c:forEach var="ani" items="${getAllList}">
-
-                <%--<springform:hidden     path="id" value="${ani.animalId}"/>--%>
-
-                <option name="newAnimal" value="<c:out value="${ani.animalId}"/>">
-                    <springform:hidden     path="idAnimal" value="${ani.animalId}"/>
-                    <c:out value="${ani.animalName}"/>
-                    <%--<springform:hidden     path="newAnimal" value="${ani.animalId}"/>--%>
-                </option>
-
-
-            </c:forEach>
-
-        </select></p>
-
-        <input type="submit" value="get animal"/>
     </springform:form>
 
 
-    <%-- <form action="/getId" method="post">
+    <p><a href="/">[ index ]</a></p>
 
-         <p><select size="3" >
-         <option disabled>Выберите животное</option>
-
-         <c:forEach var="ani" items="${getAllList}">
-
-             <option value="<c:out value="${ani.animalId}"/>"><c:out value="${ani.animalName}"/></option>
-         </c:forEach>
-
-         </select></p>
-         <p><input type="submit" value="Отправить"></p>
-     </form>--%>
-
-
-    <%--     <div align="center" class="getAll-animal">
-
-             <c:forEach var="ani" items="${getAllList}">
-
-
-             <a href=""
-
-             <c:out value="${ani}"/>  <p>
-
-
-
-
-             </c:forEach>
-
-             <p><a href="/">[ index ]</a></p>--%>
 </div>
 </body>
 </html>
@@ -82,17 +43,3 @@
     <c:out value="${ani}"/>  <p>
     </c:forEach>--%>
 
-<%-- Введите животное <springform:input type="text" path="nameAnimal"/>
-        <springform:errors path="nameAnimal"/>
-        <br>
-
-        <springform:errors path="categoryId"/>
-        <br>
-        Введите название категорий <springform:input type="text" path="animalCategory"/>
-        <springform:errors path="animalCategory"/>
-        <br>
-        Загрузите фотографию на сервер <springform:input type="file" path="imageAnimal" accept="image/*"/>
-        <springform:errors path="imageAnimal"/>
-        <br>
-        Загрузите звук на сервер <springform:input type="file" path="audioAnimal"/>
-        <springform:errors path="audioAnimal"/>--%>
