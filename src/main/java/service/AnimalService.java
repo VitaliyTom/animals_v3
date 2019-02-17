@@ -17,4 +17,6 @@ public interface AnimalService {
     void getAll(ModelMap model);
 
     void getId(Model model);
+
+    void getId(AnimalDto animalDto);
 }

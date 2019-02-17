@@ -16,20 +16,24 @@
 <div align="center" class="getAll-animal">
 
 
-
-
-
     <p><a href="/">[ index ]</a></p>
+
 
     <springform:form method="post" action="/getId"  modelAttribute="newAnimal">
 
 
         <p><select>
-            <option disabled>Выберите животное</option>
+            <option disabled> Выберите животное </option>
 
             <c:forEach var="ani" items="${getAllList}">
-                <springform:hidden     path="idAnimal" value="${ani.animalId}"/>
-                <option value="<c:out value="${ani.animalId}"/>"><c:out value="${ani.animalName}"/></option>
+
+                <%--<springform:hidden     path="id" value="${ani.animalId}"/>--%>
+
+                <option name="newAnimal" value="<c:out value="${ani.animalId}"/>">
+                    <springform:hidden     path="idAnimal" value="${ani.animalId}"/>
+                    <c:out value="${ani.animalName}"/>
+                    <%--<springform:hidden     path="newAnimal" value="${ani.animalId}"/>--%>
+                </option>
 
 
             </c:forEach>
@@ -40,40 +44,36 @@
     </springform:form>
 
 
-       <%-- <form action="/getId" method="post">
+    <%-- <form action="/getId" method="post">
 
-            <p><select size="3" >
-            <option disabled>Выберите животное</option>
+         <p><select size="3" >
+         <option disabled>Выберите животное</option>
 
-            <c:forEach var="ani" items="${getAllList}">
+         <c:forEach var="ani" items="${getAllList}">
 
-                <option value="<c:out value="${ani.animalId}"/>"><c:out value="${ani.animalName}"/></option>
-            </c:forEach>
+             <option value="<c:out value="${ani.animalId}"/>"><c:out value="${ani.animalName}"/></option>
+         </c:forEach>
 
-            </select></p>
-            <p><input type="submit" value="Отправить"></p>
-        </form>--%>
-
-
+         </select></p>
+         <p><input type="submit" value="Отправить"></p>
+     </form>--%>
 
 
+    <%--     <div align="center" class="getAll-animal">
+
+             <c:forEach var="ani" items="${getAllList}">
 
 
-   <%--     <div align="center" class="getAll-animal">
+             <a href=""
 
-            <c:forEach var="ani" items="${getAllList}">
-
-
-            <a href=""
-
-            <c:out value="${ani}"/>  <p>
+             <c:out value="${ani}"/>  <p>
 
 
 
 
-            </c:forEach>
+             </c:forEach>
 
-            <p><a href="/">[ index ]</a></p>--%>
+             <p><a href="/">[ index ]</a></p>--%>
 </div>
 </body>
 </html>

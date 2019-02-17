@@ -87,13 +87,25 @@ public class AnimalServiceImpl implements AnimalService {
         List<Animal> getAll = (animalDao.getAll());
         AnimalDto animalDto = new AnimalDto();
         model.addAttribute("getAllList", getAll);
-        model.addAttribute("newAnimal",animalDto);
+        model.addAttribute("newAnimal", animalDto);
     }
 
     @Override
     public void getId(Model model) {
 
+        //model.
+        //animalDao.read();
+    }
 
-       // animalDao.read()
+    @Override
+    public void getId(AnimalDto animalDto) {
+
+//        Converter cnvrt = new Converter();
+//        animalDao.saveOrUpdate(cnvrt.animalDtoToAnimal(animalDto));
+        Animal animal = new Animal();
+        animal.setAnimalId(animalDto.getIdAnimal());
+        animalDao.read(animal.getAnimalId());
+
+
     }
 }
