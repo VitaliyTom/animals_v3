@@ -20,17 +20,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
     <script type="text/javascript" src="<c:url value="/resources/js/index.js"/>">
     </script>
-
-
     <title><spring:message code="label.title"/></title>
-   <%-- <script>
-        function ajaxReuest(term) {
-
-        }
-    </script>--%>
-
-<%--../../resources/js/index.js--%>
-
 
 </head>
 <body>
