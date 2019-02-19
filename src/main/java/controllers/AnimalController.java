@@ -41,14 +41,17 @@ public class AnimalController {
     public String getAllGet(ModelMap model) {
 
         animalService.getAll(model);
-        return "getAll";
+        AnimalDto animalDto = new AnimalDto();
+//        this.getId(animalDto,model);
+        return "getAnimal";
     }
 
     // выбор животного по ид
-    @RequestMapping(value = "/getId", method = RequestMethod.POST)
-    public String getId(@ModelAttribute("newAnimal") AnimalDto animalDto, ModelMap model) {
+    @RequestMapping("/getId")
+    public String getId(AnimalDto animalDto, ModelMap model) {
 
         animalService.getId(animalDto, model);
+        animalService.getAll(model);
         return "getAnimal";
     }
 

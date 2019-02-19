@@ -21,7 +21,7 @@
         животные :
         <springform:select path="idAnimal">
 
-            <springform:option value="1" label="--- Select ---"/>
+            <springform:option value="0" label="--- Select ---"/>
             <springform:options items="${getAllList}" itemLabel="animalName" itemValue="animalId"/>
 
         </springform:select>

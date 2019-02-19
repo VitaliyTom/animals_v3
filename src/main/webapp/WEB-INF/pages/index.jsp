@@ -18,7 +18,7 @@
 
 <div align="center" class="index-1">
 
-    <form action="/read" method="get">
+    <form action="/getId" method="get">
         <input type="submit" value="<spring:message code="label.start"/>">
     </form>
 

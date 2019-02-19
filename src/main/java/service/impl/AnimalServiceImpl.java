@@ -92,10 +92,20 @@ public class AnimalServiceImpl implements AnimalService {
     @Override
     public void getId(AnimalDto animalDto, ModelMap model) {
 
+//        Animal animal = new Animal();
+//        animal.setAnimalId(animalDto.getIdAnimal());
+//        Converter cnvrt = new Converter();
+//        animalDto = cnvrt.animalToAnimalDto(animalDao.read(animal.getAnimalId()));
+//        model.addAttribute("animalDto", animalDto);
+    }
+
+    @Override
+    public AnimalDto getId(AnimalDto animalDto) {
         Animal animal = new Animal();
         animal.setAnimalId(animalDto.getIdAnimal());
         Converter cnvrt = new Converter();
         animalDto = cnvrt.animalToAnimalDto(animalDao.read(animal.getAnimalId()));
-        model.addAttribute("animalDto", animalDto);
+
+        return animalDto;
     }
 }
