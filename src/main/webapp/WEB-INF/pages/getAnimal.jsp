@@ -65,7 +65,7 @@
     </div>
     <div  align="center" class="getAll-animal">
 
-        <p>Выберите животное: <select onchange="getValId(this);">
+        <p>Выберите животное: <select id="select">
 
             <option disabled> Выберите животное </option>
 

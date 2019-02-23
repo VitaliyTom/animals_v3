@@ -3,18 +3,17 @@ package dto;
 import org.springframework.web.multipart.MultipartFile;
 
 public class AnimalDto {
-
     private long idAnimal;
-//    @Size(min=3, max=15)
+    //    @Size(min=3, max=15)
 //    @NotNull
     private String nameAnimal;
 
     private int categoryId;
 
     private String animalCategory;
-//    @NotNull
+    //    @NotNull
     private MultipartFile ImageAnimal;
-//    @NotNull
+    //    @NotNull
     private MultipartFile audioAnimal;
 
     public AnimalDto() {
