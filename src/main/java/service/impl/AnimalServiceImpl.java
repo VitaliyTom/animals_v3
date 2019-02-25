@@ -1,8 +1,10 @@
 package service.impl;
 
 import converter.Converter;
+import converter.ConverterAnimalDtoByteMediaToAnimal;
 import dao.AnimalDao;
 import dto.AnimalDto;
+import dto.AnimalDtoByteMedia;
 import entity.Animal;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -89,6 +91,8 @@ public class AnimalServiceImpl implements AnimalService {
         model.addAttribute("newAnimal", animalDto);
     }
 
+
+    //fixme пересмотреть методы и лишние удалить
     @Override
     public void getId(AnimalDto animalDto, ModelMap model) {
 
@@ -97,6 +101,18 @@ public class AnimalServiceImpl implements AnimalService {
 //        Converter cnvrt = new Converter();
 //        animalDto = cnvrt.animalToAnimalDto(animalDao.read(animal.getAnimalId()));
 //        model.addAttribute("animalDto", animalDto);
+    }
+
+    @Override
+    public AnimalDtoByteMedia getIdAjax(AnimalDtoByteMedia animalDtoByteMedia) {
+
+        Animal animal = new Animal();
+        animal.setAnimalId(animalDtoByteMedia.getIdAnimalDtoByteMedia());
+        ConverterAnimalDtoByteMediaToAnimal cnvrt = new ConverterAnimalDtoByteMediaToAnimal();
+        animalDtoByteMedia = cnvrt.converterAnimalToAnimalDtoByteMedia(animalDao.read(animal.getAnimalId()));
+
+        return animalDtoByteMedia;
+
     }
 
     @Override

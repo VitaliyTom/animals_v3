@@ -33,7 +33,7 @@
     </context-param>
 
 
-    <!-- fixme разобрался :)-->
+    <!-- fixme разобрался :) добавить фоны и т.д.-->
 
     <servlet-mapping>
         <servlet-name>default</servlet-name>
