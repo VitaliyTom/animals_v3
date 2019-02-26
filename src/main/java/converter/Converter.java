@@ -14,7 +14,7 @@ import java.io.IOException;
 public class Converter {
 
     private static final Logger LOGGER = Logger.getLogger(AnimalServiceImpl.class);
-    //ping
+
     //  animalDto to Animal
     public Animal animalDtoToAnimal(AnimalDto animalDto) {
         Category category = new Category();

@@ -7,7 +7,7 @@ import java.util.List;
 @Entity
 @Table(name = "categories")
 public class Category implements Serializable {
-    //ping
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "CATEGORY_ID")
