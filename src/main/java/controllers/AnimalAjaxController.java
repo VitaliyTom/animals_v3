@@ -1,6 +1,7 @@
 package controllers;
 
 import dto.AnimalDto;
+import dto.AnimalDtoByteMedia;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
@@ -26,6 +27,16 @@ public class AnimalAjaxController {
         return animalDto;
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/getAnimalInBaseAjax{PathVarId}", produces = MediaType.APPLICATION_JSON_VALUE)
+    public AnimalDtoByteMedia getAnimalInBaseAjax(@PathVariable("PathVarId") long animalId) {
+
+        AnimalDtoByteMedia animalDtoByteMedia = new AnimalDtoByteMedia();
+        animalDtoByteMedia.setIdAnimalDtoByteMedia(animalId);
+        animalDtoByteMedia = animalService.getIdAjax(animalDtoByteMedia);
+
+        return animalDtoByteMedia;
+    }
 
 }
 

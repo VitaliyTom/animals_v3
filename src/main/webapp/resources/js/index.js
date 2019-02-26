@@ -5,50 +5,27 @@ $(document).ready(function () {
 
         $.ajax({
             type: 'POST',
-            url: 'http://localhost:8080/getAllAjax' + idAnimal,
+            url: 'http://localhost:8080/getAnimalInBaseAjax' + idAnimal,
             data: {PathVarId: document.getElementById('select').value},
 
-            success: function (answer) {
-                alert("answer" + answer);
+            success: function (data) {
 
+                var id = JSON.stringify(data.idAnimalDtoByteMedia);
+                // var img = JSON.stringify(data.imageAnimalDtoByteMedia);
+
+                var $getAnimalMediaLeft = $('<div align="center" class="get-animal">' + id +
+                    '<img src="data:image/png;base64,' + data.imageAnimalDtoByteMedia + '" height="500px" width="700px">' +
+                    '<p>' +
+                    '<audio controls="controls" autobuffer="autobuffer">' +
+                    '<source src="data:audio/ogg;base64,' + data.audioAnimalDtoByteMedia + '"/>">' +
+                    '</audio>' +
+                    '</p>' +
+                    '</div>');
+
+                console.log(id);
+//              $('#ga').append($getAnimalMediaLeft);  //не обнуляет див
+                $('#ga').html($getAnimalMediaLeft);
             },
-
         });
     });
 });
-
-
-/* $.ajax({
-             url: 'https://api.themoviedb.org/3/search/multi?api_key=d272326e467344029e68e3c4ff0b4059&language=ru-RU',
-             data: {query: document.getElementById('myId').value},
-             success: function (answer) {
-
-                 answered = answer;
-                 console.log(answered);
-
-                 for (i = 0; i < answered.results.length; i++) {
-                     json[i] = answered.results[i].name;
-                     json[j] = answered.results[j].id;
-                     j++;
-                     console.log(json[i, j]);
-                 }
-
-                 //	do{
-                 //	json[i] = answered.results[i].original_name;
-                 //	i++;
-                 //	}while(i<=answered.results.length);
-
-
-             }
-
-
-         });
- */
-
-
-/*    data: {
-                 'animalId': idAnimal,
-                 'animalName': nameAnimal,
-                 'categoryAnimal': animalCategory,
-                 'animalImage': ImageAnimal,
-                 'animalAudio': audioAnimal*/

@@ -1,6 +1,7 @@
 package service;
 
 import dto.AnimalDto;
+import dto.AnimalDtoByteMedia;
 import org.springframework.ui.ModelMap;
 
 public interface AnimalService {
@@ -16,6 +17,8 @@ public interface AnimalService {
     void getAll(ModelMap model);
 
     void getId(AnimalDto animalDto, ModelMap model);
+
+    AnimalDtoByteMedia getIdAjax(AnimalDtoByteMedia animalDtoByteMedia);
 
     AnimalDto getId(AnimalDto animalDto);
 }

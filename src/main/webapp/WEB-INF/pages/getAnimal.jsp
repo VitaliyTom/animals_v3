@@ -8,7 +8,6 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
-
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="springform" %>
 <%@ taglib uri="/WEB-INF/taglib/imageTag.tld" prefix="image" %>
@@ -35,40 +34,22 @@
 
 <div align="center" class="wrapper" style="display: flex">
 
-    <div align="center" class="get-animal-text-left">
+    <div align="center" class="get-Animal-Text-Left">
 
         <div align="center" class="get-animal-text">
-
             [ <spring:message code="getAnimal.animal"/> - ${animalDto.nameAnimal} |
             <spring:message code="getAnimal.category"/> - ${animalDto.animalCategory} ]
-
         </div>
 
-        <div align="center" class="get-animal">
-
-            <%--fixme .bytes--%>
-            <img src="<image:imageTg imageByte="${animalDto.imageAnimal.bytes}"/>" height="500px" width="700px">
-
-            <p>
-                <audio controls="controls" autobuffer="autobuffer">
-                    <source src="<adi:audioTg soundByte="${animalDto.audioAnimal.bytes}"/>">
-                </audio>
-            </p>
-            <p>
-                <%--fixme on spring--%>
-                <%--<form action="/read" method="get">
-                    <input type="submit" value="<spring:message code="getAnimal.next"/>">
-                </form>--%>
-            </p>
-            <p><a href="/">[ index ]</a></p>
+        <div align="center" id="ga">
         </div>
+
     </div>
-    <div  align="center" class="getAll-animal">
 
+    <div align="right" class="getAll-animal">       <%--fixme желательно добавить рандомный выбор животного--%>
         <p>Выберите животное: <select id="select">
 
-            <option disabled> Выберите животное </option>
-
+            <option disabled> Выберите животное</option>    <%--FIXME 1 животное автоматичеки выбрано, тем самым первым его выбрать нельзя--%>
             <c:forEach var="ani" items="${getAllList}">
                 <option value="<c:out value="${ani.animalId}"/> ">
                     <c:out value="${ani.animalName}"/>
@@ -77,8 +58,6 @@
 
 
         </select></p>
-
-
     </div>
 </div>
 
