@@ -3,6 +3,7 @@ package dto;
 import org.springframework.web.multipart.MultipartFile;
 
 public class AnimalDto {
+
     private long idAnimal;
     //    @Size(min=3, max=15)
 //    @NotNull

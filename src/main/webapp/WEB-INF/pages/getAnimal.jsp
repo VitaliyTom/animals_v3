@@ -75,3 +75,5 @@
             alert( this.value );
         });
     </script>--%>
+
+<%--ping--%>

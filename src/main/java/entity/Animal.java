@@ -6,7 +6,7 @@ import java.io.Serializable;
 @Entity
 @Table(name = "animals")
 public class Animal implements Serializable {
-// ping
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ANIMAL_ID")

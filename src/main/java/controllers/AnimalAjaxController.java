@@ -12,7 +12,7 @@ import service.AnimalService;
 
 @Controller
 public class AnimalAjaxController {
-
+//ping
     @Autowired
     private AnimalService animalService;
 

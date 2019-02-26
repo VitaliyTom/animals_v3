@@ -20,6 +20,7 @@ import javax.validation.Valid;
 
 @Controller
 public class AnimalController {
+    //ping
     //fixme добавить логеры которые убрал
     private static final Logger LOGGER = Logger.getLogger(AnimalServiceImpl.class);
 

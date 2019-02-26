@@ -42,4 +42,4 @@
 <%--<c:forEach var="ani" items="${getAllList}">
     <c:out value="${ani}"/>  <p>
     </c:forEach>--%>
-
+<%--ping--%>

@@ -19,7 +19,7 @@ import java.util.Random;
 
 @Service("animalService")
 public class AnimalServiceImpl implements AnimalService {
-
+    //ping
     private static final Logger LOGGER = Logger.getLogger(AnimalServiceImpl.class);
 
     @Autowired

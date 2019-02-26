@@ -44,3 +44,5 @@
     <p><a href="/update">[ update ]</a></p>
     <p><a href="/delete">[ delete ]</a></p>
     <p><a href="/getAll">[ get all ]</a></p>--%>
+
+<%--ping--%>

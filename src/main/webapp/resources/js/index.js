@@ -23,7 +23,7 @@ $(document).ready(function () {
                     '</div>');
 
                 console.log(id);
-//              $('#ga').append($getAnimalMediaLeft);  //не обнуляет див
+// //ping             $('#ga').append($getAnimalMediaLeft);  //не обнуляет див
                 $('#ga').html($getAnimalMediaLeft);
             },
         });

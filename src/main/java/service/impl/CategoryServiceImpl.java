@@ -11,7 +11,7 @@ import service.CategoryService;
 import java.util.List;
 @Service("CategoryService")
 public class CategoryServiceImpl implements CategoryService {
-
+    //ping
     @Autowired
     CategoryDao categoryDao;
 
