@@ -30,11 +30,7 @@
     </form>
 </div>
 
-<div align="center" class="cat">
-    <form action="/getCategory" method="get">
-        <input type="submit" value="категории">
-    </form>
-</div>
+
 
 
 </body>

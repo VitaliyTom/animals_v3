@@ -6,12 +6,14 @@ import dao.AnimalDao;
 import dto.AnimalDto;
 import dto.AnimalDtoByteMedia;
 import entity.Animal;
+import entity.Category;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import service.AnimalService;
+import service.CategoryService;
 
 import java.util.List;
 import java.util.Random;
@@ -25,6 +27,8 @@ public class AnimalServiceImpl implements AnimalService {
     @Autowired
     AnimalDao animalDao;
 
+    @Autowired
+    CategoryService categoryService;
 
     @Override
     @Transactional                    //fixme разобраться!
@@ -89,6 +93,8 @@ public class AnimalServiceImpl implements AnimalService {
         AnimalDto animalDto = new AnimalDto();
         model.addAttribute("getAllList", getAll);
         model.addAttribute("newAnimal", animalDto);
+        categoryService.getCategory(model);
+//        List<Category> getAllCategory =
     }
 
 

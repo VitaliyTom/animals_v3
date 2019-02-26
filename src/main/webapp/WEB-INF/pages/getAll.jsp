@@ -7,38 +7,64 @@
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="springform" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="image" uri="/WEB-INF/taglib/imageTag.tld" %>
+<%@ taglib prefix="adi" uri="http://mycompany.com" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
+    <link href="<c:url value="/resources/css/style.css"/>" type="text/css" rel="stylesheet">
     <title>Title</title>
+
 </head>
 <body>
-<div align="center" class="getAll-animal">
-
-
-    <springform:form method="post" action="/getId" modelAttribute="newAnimal">
-
-        животные :
-        <springform:select path="idAnimal">
-
-            <springform:option value="0" label="--- Select ---"/>
-            <springform:options items="${getAllList}" itemLabel="animalName" itemValue="animalId"/>
-
-        </springform:select>
-
-        <p>
-            <input type="submit"/>
-        </p>
-
-    </springform:form>
-
-
-    <p><a href="/">[ index ]</a></p>
-
+<div class="wrapper" style="display: flex" >
+    <div align="right">
+        <table align="center" id=animal>
+            <tr>
+                <td>id</td>
+                <td>name</td>
+                <td>category</td>
+                <td>img</td>
+                <td>audio</td>
+            </tr>
+            <c:forEach var="ani" items="${getAllList}">
+                <tr>
+                    <td><c:out value="${ani.animalId}"/></td>
+                    <td><c:out value="${ani.animalName}"/></td>
+                    <td><c:out value="${ani.categoryAnimal}"/></td>
+                    <td><img src="<image:imageTg imageByte="${ani.animalImage}"/>" height="50px" width="70px"></td>
+                    <td>
+                        <audio controls="controls" autobuffer="autobuffer">
+                            <source src="<adi:audioTg soundByte="${ani.animalAudio}"/>">
+                        </audio>
+                    </td>
+                </tr>
+            </c:forEach>
+        </table>
+    </div>
+    <div class="block">
+        <div align="left">
+            <table align="center" class="category">
+                <tr>
+                    <td>id</td>
+                    <td>category</td>
+                </tr>
+                <c:forEach var="cat" items="${getAllCategory}">
+                    <tr>
+                        <td>
+                            <c:out value="${cat.categoryid}"/>
+                        </td>
+                        <td>
+                            <c:out value="${cat.category}"/>
+                        </td>
+                    </tr>
+                </c:forEach>
+            </table>
+        </div>
+        <div align="center" class="index">
+            <a href="/">[ index ]</a>
+        </div>
+    </div>
 </div>
 </body>
 </html>
-
-<%--<c:forEach var="ani" items="${getAllList}">
-    <c:out value="${ani}"/>  <p>
-    </c:forEach>--%>

@@ -17,9 +17,10 @@
 <html>
 <head>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
-    <script type="text/javascript" src="<c:url value="/resources/js/index.js"/>">
-    </script>
+    <script type="text/javascript" src="<c:url value="/resources/js/index.js"/>"></script>
+    <link href="<c:url value="/resources/css/style.css"/>" type="text/css" rel="stylesheet">
     <title><spring:message code="label.title"/></title>
+
 
 </head>
 <body>
@@ -35,13 +36,14 @@
 <div align="center" class="wrapper" style="display: flex">
 
     <div align="center" class="get-Animal-Text-Left">
-
-        <div align="center" class="get-animal-text">
+        <div align="center"  id="ga1"  >
+        </div>
+        <%--<div align="center" class="animalText">
             [ <spring:message code="getAnimal.animal"/> - ${animalDto.nameAnimal} |
             <spring:message code="getAnimal.category"/> - ${animalDto.animalCategory} ]
-        </div>
+        </div>--%>
 
-        <div align="center" id="ga">
+        <div align="left" id="ga">
         </div>
 
     </div>
@@ -49,7 +51,8 @@
     <div align="right" class="getAll-animal">       <%--fixme желательно добавить рандомный выбор животного--%>
         <p>Выберите животное: <select id="select">
 
-            <option disabled> Выберите животное</option>    <%--FIXME 1 животное автоматичеки выбрано, тем самым первым его выбрать нельзя--%>
+            <option disabled> Выберите животное</option>
+            <%--FIXME 1 животное автоматичеки выбрано, тем самым первым его выбрать нельзя--%>
             <c:forEach var="ani" items="${getAllList}">
                 <option value="<c:out value="${ani.animalId}"/> ">
                     <c:out value="${ani.animalName}"/>

@@ -10,8 +10,12 @@ $(document).ready(function () {
 
             success: function (data) {
 
-                var id = JSON.stringify(data.idAnimalDtoByteMedia);
+                 var id = JSON.stringify(data.idAnimalDtoByteMedia);
                 // var img = JSON.stringify(data.imageAnimalDtoByteMedia);
+//fixme разобраться с переводом !!!
+                var $getAnimalInfo = $('<div align="center" class="info">' +
+                    '[ <spring:message code="getAnimal.animal"/>'+ '${' + data.nameAnimalDtoByteMedia + '} |' +
+                    '</div>');
 
                 var $getAnimalMediaLeft = $('<div align="center" class="get-animal">' + id +
                     '<img src="data:image/png;base64,' + data.imageAnimalDtoByteMedia + '" height="500px" width="700px">' +
@@ -22,8 +26,10 @@ $(document).ready(function () {
                     '</p>' +
                     '</div>');
 
-                console.log(id);
-//              $('#ga').append($getAnimalMediaLeft);  //не обнуляет див
+                //               console.log(id);
+//              $('#ga').append($getAnimalMediaLeft);  //не обнуляет див - добавляет к предыдущему!
+
+                $('#ga1').html($getAnimalInfo);
                 $('#ga').html($getAnimalMediaLeft);
             },
         });

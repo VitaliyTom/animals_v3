@@ -44,7 +44,7 @@ public class AnimalController {
         animalService.getAll(model);
         AnimalDto animalDto = new AnimalDto();
 //        this.getId(animalDto,model);
-        return "getAnimal";
+        return "getAll";
     }
 
     // выбор животного по ид

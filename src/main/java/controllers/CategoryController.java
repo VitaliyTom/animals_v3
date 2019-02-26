@@ -22,6 +22,4 @@ public class CategoryController {
        return "/getCategory";
     }
 
-
-
 }
