@@ -12,10 +12,11 @@ import service.AnimalService;
 
 @Controller
 public class AnimalAjaxController {
-//ping
+
     @Autowired
     private AnimalService animalService;
 
+    @Deprecated
     @ResponseBody
     @RequestMapping(value = "/getAllAjax{PathVarId}", produces = MediaType.APPLICATION_JSON_VALUE)
     public AnimalDto getAllAjax(@PathVariable("PathVarId") long animalId) {

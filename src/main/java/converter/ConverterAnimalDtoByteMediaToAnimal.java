@@ -5,7 +5,7 @@ import dto.AnimalDtoByteMedia;
 import entity.Animal;
 
 public class ConverterAnimalDtoByteMediaToAnimal {
-    //ping
+
     public Animal converterAnimalDtoByteMediaToAnimal(){
 
             return null;

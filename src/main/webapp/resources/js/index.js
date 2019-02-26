@@ -23,9 +23,11 @@ $(document).ready(function () {
                     '</div>');
 
                 console.log(id);
-// //ping             $('#ga').append($getAnimalMediaLeft);  //не обнуляет див
+//              $('#ga').append($getAnimalMediaLeft);  //не обнуляет див
                 $('#ga').html($getAnimalMediaLeft);
             },
         });
     });
 });
+
+

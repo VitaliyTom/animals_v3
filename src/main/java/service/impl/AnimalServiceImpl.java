@@ -91,6 +91,8 @@ public class AnimalServiceImpl implements AnimalService {
         model.addAttribute("newAnimal", animalDto);
     }
 
+
+    //fixme пересмотреть методы и лишние удалить
     @Override
     public void getId(AnimalDto animalDto, ModelMap model) {
 

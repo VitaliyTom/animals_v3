@@ -1,7 +1,6 @@
 package dto;
 
 public class AnimalDtoByteMedia {
-    //ping
     private long idAnimalDtoByteMedia;
 
     private String nameAnimalDtoByteMedia;
