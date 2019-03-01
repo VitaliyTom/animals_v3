@@ -10,15 +10,17 @@ $(document).ready(function () {
 
             success: function (data) {
 
-                 var id = JSON.stringify(data.idAnimalDtoByteMedia);
+                var id = JSON.stringify(data.idAnimalDtoByteMedia);
                 // var img = JSON.stringify(data.imageAnimalDtoByteMedia);
+                var lang = JSON.stringify(data.nameAnimalDtoByteMedia);
 //fixme разобраться с переводом !!!
                 var $getAnimalInfo = $('<div align="center" class="info">' +
-                    '[ <spring:message code="getAnimal.animal"/>'+ '${' + data.nameAnimalDtoByteMedia + '} |' +
-                    '</div>');
+                    ' <h3 style="color: bisque">' + data.nameAnimalDtoByteMedia + '</h3> </div>');
 
-                var $getAnimalMediaLeft = $('<div align="center" class="get-animal">' + id +
-                    '<img src="data:image/png;base64,' + data.imageAnimalDtoByteMedia + '" height="500px" width="700px">' +
+                var $getAnimalMediaLeft = $('<div align="center" class="info">' +
+                    ' <spring:message code="getAnimal.animal"/> </div>' +
+                    '<div align="center" class="get-animal">' + id +
+                    '<img class="img" src="data:image/png;base64,' + data.imageAnimalDtoByteMedia + '" height="500px" width="700px">' +
                     '<p>' +
                     '<audio controls="controls" autobuffer="autobuffer">' +
                     '<source src="data:audio/ogg;base64,' + data.audioAnimalDtoByteMedia + '"/>">' +
@@ -29,7 +31,7 @@ $(document).ready(function () {
                 //               console.log(id);
 //              $('#ga').append($getAnimalMediaLeft);  //не обнуляет див - добавляет к предыдущему!
 
-                $('#ga1').html($getAnimalInfo);
+                $('#ga2').html($getAnimalInfo);
                 $('#ga').html($getAnimalMediaLeft);
             },
         });

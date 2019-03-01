@@ -6,11 +6,14 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
+    <link href="<c:url value="/resources/css/style.css"/>" type="text/css" rel="stylesheet">
+
     <title>CRUD</title>
 </head>
-<body>
+<body class="admin">
 
 <div align="center" class="CRUD-animal">
 

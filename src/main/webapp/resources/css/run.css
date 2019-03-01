@@ -1,0 +1,6 @@
+.bodyIndex {
+    background: url(/resources/background/ani.jpg);
+    /*background: url(/resources/background/ani.jpg) no-repeat top center;*/
+    /*background-attachment: fixed;*/
+    /*background-size: 100%  ;*/
+}

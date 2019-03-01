@@ -17,9 +17,9 @@
 
 </head>
 <body>
-<div class="wrapper" style="display: flex" >
+<div class="wrapper"  >
     <div align="right">
-        <table align="center" id=animal>
+        <table align="center" class="animal">
             <tr>
                 <td>id</td>
                 <td>name</td>
@@ -61,7 +61,7 @@
                 </c:forEach>
             </table>
         </div>
-        <div align="center" class="index">
+        <div align="center" class="href__index">
             <a href="/">[ index ]</a>
         </div>
     </div>

@@ -23,43 +23,43 @@
 
 
 </head>
-<body>
-<span style="float: right">
-    <a href="?lang=en">en</a>
+<body class="getAnimal">
+
+<span class="lang">
+    <a class="href" href="?lang=en">en</a>
     |
-    <a href="?lang=ru">ru</a>
+    <a class="href" href="?lang=ru">ru</a>
     |
-    <a href="?lang=pl">pl</a>
+    <a class="href" href="?lang=pl">pl</a>
 </span>
+<%-- style="display: flex"--%>
+
+<div align="center" class="wrapper">
 
 
-<div align="center" class="wrapper" style="display: flex">
-
+    <%--<div align="center" class="animalText">
+        [ <spring:message code="getAnimal.animal"/> - ${animalDto.nameAnimal} |
+        <spring:message code="getAnimal.category"/> - ${animalDto.animalCategory} ]
+    </div>--%>
     <div align="center" class="get-Animal-Text-Left">
-        <div align="center"  id="ga1"  >
+        <div align="center" id="ga1">
+            <h3 style="color: bisque"><spring:message code="getAnimal.animal"/></h3>
+            <div align="center" id="ga2">
+            </div>
+            <div align="left" id="ga">
+            </div>
         </div>
-        <%--<div align="center" class="animalText">
-            [ <spring:message code="getAnimal.animal"/> - ${animalDto.nameAnimal} |
-            <spring:message code="getAnimal.category"/> - ${animalDto.animalCategory} ]
-        </div>--%>
-
-        <div align="left" id="ga">
-        </div>
-
     </div>
-
     <div align="right" class="getAll-animal">       <%--fixme желательно добавить рандомный выбор животного--%>
-        <p>Выберите животное: <select id="select">
-
-            <option disabled> Выберите животное</option>
+        <h3 class="h3" >Выберите животное:</h3>
+        <select id="select">
+            <option disabled>Выберите животное</option>
             <%--FIXME 1 животное автоматичеки выбрано, тем самым первым его выбрать нельзя--%>
             <c:forEach var="ani" items="${getAllList}">
                 <option value="<c:out value="${ani.animalId}"/> ">
                     <c:out value="${ani.animalName}"/>
                 </option>
             </c:forEach>
-
-
         </select></p>
     </div>
 </div>

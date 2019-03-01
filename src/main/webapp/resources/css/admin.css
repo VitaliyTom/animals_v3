@@ -1,0 +1,8 @@
+.admin {
+    /*FIXME не правильно отображается в хроме,edge*/
+    background:   url(/resources/background/Geometric-Icons016.jpg);
+    background-size: contain  ;
+}
+.crud {
+    background:  darkcyan;
+}

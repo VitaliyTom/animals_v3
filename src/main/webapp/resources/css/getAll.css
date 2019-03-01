@@ -1,0 +1,23 @@
+.animal {
+    border: 3px solid brown;
+    background: bisque;
+    width: 500px;
+    margin: 10px;
+    font-family: "Arial";
+}
+
+.category {
+    border: 3px solid darkolivegreen;
+    background: aquamarine;
+    width: 100px;
+    margin: 10px;
+    font-family: "Arial";
+}
+
+.block {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+

@@ -1,44 +1,32 @@
+@import "run.css";
+@import "getAnimal.css";
+@import "getAll.css";
+@import "admin.css";
 
-#animal {
-    border: 3px solid brown;
-    background: bisque;
-    width: 500px;
-    margin: 10px;
-    font-family: "Arial";
-}
 
 td {
     border: 1px solid black;
     padding: 5px;
 }
 
-.category {
-
-    border: 3px solid darkolivegreen;
-    background: aquamarine;
-    width: 500px;
-    margin: 10px;
-    font-family: "Arial";
-}
-
 .wrapper {
+    display: flex;
     justify-content: space-around;
 }
 
-.block {
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-.category {
-    width: 100px;
-    min-height: 100px;
-}
-
-.index {
+.href__index {
     width: 100px;
     height: 100px;
 }
 
+.lang {
+    float: right;
+    color: bisque;
+}
 
+.href {
+    color: bisque;
+}
+.h3{
+    color: bisque
+}
