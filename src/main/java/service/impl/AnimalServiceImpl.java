@@ -15,6 +15,7 @@ import org.springframework.ui.ModelMap;
 import service.AnimalService;
 import service.CategoryService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -90,9 +91,12 @@ public class AnimalServiceImpl implements AnimalService {
     public void getAll(ModelMap model) {
 
         List<Animal> getAll = (animalDao.getAll());
-        AnimalDto animalDto = new AnimalDto();
-        model.addAttribute("getAllList", getAll);
-        model.addAttribute("newAnimal", animalDto);
+        Converter cnvrt = new Converter();
+        List<AnimalDto> getAllDto = new ArrayList<>();
+        getAllDto = cnvrt.animalToAnimalDto2(getAll);
+
+        model.addAttribute("getAllList", getAllDto);
+        //model.addAttribute("newAnimal", animalDto);
         categoryService.getCategory(model);
 //        List<Category> getAllCategory =
     }

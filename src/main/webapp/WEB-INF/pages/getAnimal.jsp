@@ -56,8 +56,8 @@
             <option disabled>Выберите животное</option>
             <%--FIXME 1 животное автоматичеки выбрано, тем самым первым его выбрать нельзя--%>
             <c:forEach var="ani" items="${getAllList}">
-                <option value="<c:out value="${ani.animalId}"/> ">
-                    <c:out value="${ani.animalName}"/>
+                <option value="<c:out value="${ani.idAnimal}"/> ">
+                    <c:out value="${ani.nameAnimal}"/>
                 </option>
             </c:forEach>
         </select></p>

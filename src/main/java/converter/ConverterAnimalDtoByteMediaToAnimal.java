@@ -16,7 +16,7 @@ public class ConverterAnimalDtoByteMediaToAnimal {
 
         AnimalDtoByteMedia animalDtoByteMedia = new AnimalDtoByteMedia();
         animalDtoByteMedia.setIdAnimalDtoByteMedia(animal.getAnimalId());
-        animalDtoByteMedia.setNameAnimalDtoByteMedia(animal.getAnimalName());
+     //   animalDtoByteMedia.setNameAnimalDtoByteMedia(animal.getAnimalName());
         animalDtoByteMedia.setAnimalCategoryDtoByteMedia(String.valueOf(animal.getCategoryAnimal()));
         animalDtoByteMedia.setImageAnimalDtoByteMedia(animal.getAnimalImage());
         animalDtoByteMedia.setAudioAnimalDtoByteMedia(animal.getAnimalAudio());

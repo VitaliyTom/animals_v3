@@ -2,6 +2,7 @@ package entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Entity
 @Table(name = "animals")
@@ -12,8 +13,8 @@ public class Animal implements Serializable {
     @Column(name = "ANIMAL_ID")
     private long animalId;
 
-    @Column(name = "ANIMAL_NAME")
-    private String animalName;
+    @OneToMany(mappedBy = "idAnimals")
+    private List<AnimalI18n> animalName;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "ID_CATEGORY")
@@ -37,11 +38,11 @@ public class Animal implements Serializable {
         this.animalId = animalId;
     }
 
-    public String getAnimalName() {
+    public List<AnimalI18n> getAnimalName() {
         return animalName;
     }
 
-    public void setAnimalName(String animalName) {
+    public void setAnimalName(List<AnimalI18n> animalName) {
         this.animalName = animalName;
     }
 
@@ -69,13 +70,14 @@ public class Animal implements Serializable {
         this.animalAudio = animalAudio;
     }
 
+
+
     @Override
     public String toString() {
-        return "[" +
-                "Id = " + animalId +
-                ", animal = " + animalName +
-                ", category = " + categoryAnimal +
-                ']';
+        return "Animal{" +
+                "animalId=" + animalId +
+                ", animalName=" + animalName +
+                ", categoryAnimal=" + categoryAnimal +
+                '}';
     }
-
 }

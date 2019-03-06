@@ -9,6 +9,8 @@ import org.springframework.web.multipart.MultipartFile;
 import service.impl.AnimalServiceImpl;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class Converter {
@@ -23,7 +25,7 @@ public class Converter {
 
         Animal animal = new Animal();
         animal.setAnimalId(animalDto.getIdAnimal());
-        animal.setAnimalName(animalDto.getNameAnimal());
+        //   animal.setAnimalName(animalDto.getNameAnimal());
         animal.setCategoryAnimal(category);
 
         try {                                                     // fixme добавить условие на налпоинтер
@@ -41,7 +43,7 @@ public class Converter {
 
         AnimalDto animalDto = new AnimalDto();
         animalDto.setIdAnimal(animal.getAnimalId());
-        animalDto.setNameAnimal(animal.getAnimalName());
+        //    animalDto.setNameAnimal(animal.getAnimalName());
         animalDto.setAnimalCategory(String.valueOf(animal.getCategoryAnimal()));
 
         if (animal.getAnimalImage() != null && animal.getAnimalAudio() != null) {
@@ -56,5 +58,38 @@ public class Converter {
         }
         return animalDto;
     }
+
+
+
+    public List<AnimalDto> animalToAnimalDto2(List<Animal> getAll) {
+
+        List<AnimalDto> animalI18nList = new ArrayList<>();
+
+        for (Animal i : getAll) {
+            AnimalDto animalDto =new AnimalDto();
+            animalDto.setNameAnimal(i.getAnimalName().get(0).getNameAnimalI18n());
+            animalDto.setIdAnimal(i.getAnimalId());
+            animalI18nList.add(animalDto);
+            }
+        return animalI18nList;
+        }
+/*for (int i = 0; i < array.length; i++) {
+                System.out.println(array[i]);*/
+
+         /*   for (AnimalDto j:animalI18n){
+                j.setNameAnimal(String.valueOf(i.getAnimalName()));
+
+            }*/
+        //animalI18n.set()
+        //  i.setAnimalName();
+
+
+        /*for (int i:array) {
+           System.out.println(i);
+           }*/
+
+
+
+
 
 }
