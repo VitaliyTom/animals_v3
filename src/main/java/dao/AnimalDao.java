@@ -1,4 +1,3 @@
-
 package dao;
 
 import entity.Animal;
@@ -9,6 +8,7 @@ public interface AnimalDao {
     @Deprecated
     void create(Animal animal);
 
+    @Deprecated
     void update(Animal animal);
 
     void delete(Animal animal);

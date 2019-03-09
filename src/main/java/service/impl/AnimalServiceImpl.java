@@ -1,12 +1,12 @@
 package service.impl;
 
 import converter.Converter;
-import converter.ConverterAnimalDtoByteMediaToAnimal;
 import dao.AnimalDao;
+import dao.AnimalI18nDao;
 import dto.AnimalDto;
-import dto.AnimalDtoByteMedia;
+import dto.AnimalDtoByte;
 import entity.Animal;
-import entity.Category;
+import entity.AnimalI18n;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +15,6 @@ import org.springframework.ui.ModelMap;
 import service.AnimalService;
 import service.CategoryService;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -31,6 +30,11 @@ public class AnimalServiceImpl implements AnimalService {
     @Autowired
     CategoryService categoryService;
 
+    @Autowired
+    AnimalI18nDao animalI18nDao;
+
+//-------------------------block CRUD------------------------------------
+
     @Override
     @Transactional                    //fixme разобраться!
     public void create(AnimalDto animalDto) {
@@ -39,7 +43,7 @@ public class AnimalServiceImpl implements AnimalService {
         animalDao.saveOrUpdate(cnvrt.animalDtoToAnimal(animalDto));
 
     }
-
+    @Deprecated
     @Override
     @Transactional
     public void getIdMax(ModelMap model) {
@@ -85,22 +89,19 @@ public class AnimalServiceImpl implements AnimalService {
         Converter cnvrt = new Converter();
         animalDao.saveOrUpdate(cnvrt.animalDtoToAnimal(animalDto));
     }
+//------------------------block CRUD end---------------------------------
 
     @Override
     @Transactional
-    public void getAll(ModelMap model) {
+    public void getAll(ModelMap model, String locale) {
+        List<AnimalI18n> getAllAnimalI18n = animalI18nDao.getAll(locale);
 
         List<Animal> getAll = (animalDao.getAll());
         Converter cnvrt = new Converter();
-        List<AnimalDto> getAllDto = new ArrayList<>();
-        getAllDto = cnvrt.animalToAnimalDto2(getAll);
-
+        List<AnimalDtoByte> getAllDto = cnvrt.animalToAnimalDtoByte(getAll, getAllAnimalI18n);
         model.addAttribute("getAllList", getAllDto);
-        //model.addAttribute("newAnimal", animalDto);
         categoryService.getCategory(model);
-//        List<Category> getAllCategory =
     }
-
 
     //fixme пересмотреть методы и лишние удалить
     @Override
@@ -113,18 +114,7 @@ public class AnimalServiceImpl implements AnimalService {
 //        model.addAttribute("animalDto", animalDto);
     }
 
-    @Override
-    public AnimalDtoByteMedia getIdAjax(AnimalDtoByteMedia animalDtoByteMedia) {
-
-        Animal animal = new Animal();
-        animal.setAnimalId(animalDtoByteMedia.getIdAnimalDtoByteMedia());
-        ConverterAnimalDtoByteMediaToAnimal cnvrt = new ConverterAnimalDtoByteMediaToAnimal();
-        animalDtoByteMedia = cnvrt.converterAnimalToAnimalDtoByteMedia(animalDao.read(animal.getAnimalId()));
-
-        return animalDtoByteMedia;
-
-    }
-
+    //fixme пересмотреть методы и лишние удалить
     @Override
     public AnimalDto getId(AnimalDto animalDto) {
         Animal animal = new Animal();

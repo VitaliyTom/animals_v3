@@ -9,6 +9,7 @@ import org.springframework.ui.ModelMap;
 import service.CategoryService;
 
 import java.util.List;
+
 @Service("CategoryService")
 public class CategoryServiceImpl implements CategoryService {
 
@@ -20,9 +21,6 @@ public class CategoryServiceImpl implements CategoryService {
     public void getCategory(ModelMap model) {
 
         List<Category> getAllCategory = (categoryDao.getAllCategory());
-
         model.addAttribute("getAllCategory", getAllCategory);
-
-
     }
 }

@@ -1,11 +1,13 @@
 package converter;
 
 import dto.AnimalDto;
+import dto.AnimalDtoByte;
+import dto.AnimalDtoByteMedia;
+import dto.AnimalI18nDto;
 import entity.Animal;
+import entity.AnimalI18n;
 import entity.Category;
 import org.apache.log4j.Logger;
-import org.springframework.mock.web.MockMultipartFile;
-import org.springframework.web.multipart.MultipartFile;
 import service.impl.AnimalServiceImpl;
 
 import java.io.IOException;
@@ -41,55 +43,57 @@ public class Converter {
     //    Animal to animalDto
     public AnimalDto animalToAnimalDto(Animal animal) {
 
-        AnimalDto animalDto = new AnimalDto();
-        animalDto.setIdAnimal(animal.getAnimalId());
-        //    animalDto.setNameAnimal(animal.getAnimalName());
-        animalDto.setAnimalCategory(String.valueOf(animal.getCategoryAnimal()));
-
-        if (animal.getAnimalImage() != null && animal.getAnimalAudio() != null) {
-
-            MultipartFile multipartFileImage = new MockMultipartFile(
-                    "image", "filename", "image/png", animal.getAnimalImage());
-            animalDto.setImageAnimal(multipartFileImage);
-
-            MultipartFile multipartFileAudio = new MockMultipartFile(
-                    "sound", "filename", "audio/mp3", animal.getAnimalAudio());
-            animalDto.setAudioAnimal(multipartFileAudio);
-        }
-        return animalDto;
+        return null;
     }
 
+    public List<AnimalDtoByte> animalToAnimalDtoByte(List<Animal> getAll, List<AnimalI18n> getAllAnimalI18n) {
 
-
-    public List<AnimalDto> animalToAnimalDto2(List<Animal> getAll) {
-
-        List<AnimalDto> animalI18nList = new ArrayList<>();
+        List<AnimalDtoByte> animalI18nList = new ArrayList<>();
 
         for (Animal i : getAll) {
-            AnimalDto animalDto =new AnimalDto();
-            animalDto.setNameAnimal(i.getAnimalName().get(0).getNameAnimalI18n());
-            animalDto.setIdAnimal(i.getAnimalId());
-            animalI18nList.add(animalDto);
+            AnimalDtoByte animalDtoByte = new AnimalDtoByte();
+            animalDtoByte.setIdAnimal(i.getAnimalId());
+            animalDtoByte.setAnimalCategory(String.valueOf(i.getCategoryAnimal()));
+            animalDtoByte.setImageAnimal(i.getAnimalImage());
+            animalDtoByte.setAudioAnimal(i.getAnimalAudio());
+
+            for (AnimalI18n j : getAllAnimalI18n) {
+                if (j.getIdAnimals().getAnimalId() == i.getAnimalId()) {
+                    animalDtoByte.setNameAnimal(j.getNameAnimalI18n());
+                }
             }
-        return animalI18nList;
+            animalI18nList.add(animalDtoByte);
         }
-/*for (int i = 0; i < array.length; i++) {
-                System.out.println(array[i]);*/
+        return animalI18nList;
+    }
 
-         /*   for (AnimalDto j:animalI18n){
-                j.setNameAnimal(String.valueOf(i.getAnimalName()));
+    public AnimalI18n converterAnimalI18nDtoToAnimalI18n(AnimalI18nDto animalI18nDto) {
+        AnimalI18n animalI18n = new AnimalI18n();
+        Animal animal = new Animal();
+        animal.setAnimalId(animalI18nDto.getIdAnimals());
+        animalI18n.setIdAnimals(animal);
+        animalI18n.setAnimalI18nLocale(animalI18nDto.getAnimalI18nLocaleDto());
+        return animalI18n;
+    }
 
-            }*/
-        //animalI18n.set()
-        //  i.setAnimalName();
+    public AnimalI18nDto convertAnimalI18nToAnimalI18nDto(AnimalI18n animalI18n) {
+//        AnimalI18nDto animalI18nDto = new AnimalI18nDto();
+//        animalI18nDto.set
+        return null;
+    }
 
+    public AnimalDtoByteMedia converterAnimalToAnimalDtoByteMedia(AnimalI18n animalI18n, Animal animal) {
+        Category category = new Category();
 
-        /*for (int i:array) {
-           System.out.println(i);
-           }*/
+        AnimalDtoByteMedia animalDtoByteMedia = new AnimalDtoByteMedia();
+        animalDtoByteMedia.setIdAnimalDtoByteMedia(animal.getAnimalId());
+        animalDtoByteMedia.setNameAnimalDtoByteMedia(animalI18n.getNameAnimalI18n());
+        animalDtoByteMedia.setAnimalCategoryDtoByteMedia(String.valueOf(animal.getCategoryAnimal()));
+        animalDtoByteMedia.setImageAnimalDtoByteMedia(animal.getAnimalImage());
+        animalDtoByteMedia.setAudioAnimalDtoByteMedia(animal.getAnimalAudio());
 
+        return animalDtoByteMedia;
 
-
-
-
+    }
 }
+

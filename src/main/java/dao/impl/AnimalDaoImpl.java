@@ -18,13 +18,15 @@ public class AnimalDaoImpl implements AnimalDao {
 
     @Autowired
     private SessionFactory sessionFactory;
+
     @Deprecated
     @Override
     public void create(Animal animal) {
         sessionFactory.getCurrentSession().save(animal);
     }
 
-    @Override                        //fixme
+    @Deprecated
+    @Override
     public void update(Animal animal) {
 
     }
@@ -43,10 +45,11 @@ public class AnimalDaoImpl implements AnimalDao {
 
     @Override
     public Animal read(long animalId) {
+        System.out.println(animalId);
         return sessionFactory.getCurrentSession().get(Animal.class, animalId);
     }
 
-    @Override                                                            //fixme не пометил и забыл зачем тут фиксим :(
+    @Override
     public Animal getIdMax() {              //selection search max id
 
         String animalHQL = "FROM Animal WHERE  animalId = (SELECT MAX(animalId) FROM Animal)";

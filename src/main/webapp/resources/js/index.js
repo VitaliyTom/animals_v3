@@ -15,7 +15,7 @@ $(document).ready(function () {
                 var lang = JSON.stringify(data.nameAnimalDtoByteMedia);
 //fixme разобраться с переводом !!!
                 var $getAnimalInfo = $('<div align="center" class="info">' +
-                    ' <h3 style="color: bisque">' + data.nameAnimalDtoByteMedia + '</h3> </div>');
+                    ' <h3 style="color: bisque">' + data.nameAnimalDtoByteMedia + ' - ' + data.animalCategoryDtoByteMedia+ '</h3> </div>');
 
                 var $getAnimalMediaLeft = $('<div align="center" class="info">' +
                     ' <spring:message code="getAnimal.animal"/> </div>' +

@@ -15,8 +15,9 @@ import service.impl.AnimalServiceImpl;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.Locale;
 
-//fixme добавить скрипт sql
+//fixme добавить скрипт/дамп sql
 
 @Controller
 public class AnimalController {
@@ -28,31 +29,27 @@ public class AnimalController {
     private AnimalService animalService;
 
     @RequestMapping("/")
-    public String index(HttpServletRequest request) {
+    public String index() {
         return "index";
     }
 
     @RequestMapping(value = "/loginAdmin")
     public String loginAdmin() {
-
         return "loginAdmin";
     }
 
     @RequestMapping("/getAll")
-    public String getAllGet(ModelMap model) {
-
-        animalService.getAll(model);
-        AnimalDto animalDto = new AnimalDto();
-//        this.getId(animalDto,model);
+    public String getAllGet(ModelMap model, Locale loc) {
+        String locale = loc.getLanguage();
+        animalService.getAll(model, locale);
         return "getAll";
     }
 
     // выбор животного по ид
     @RequestMapping("/getId")
-    public String getId(AnimalDto animalDto, ModelMap model) {
-
-        animalService.getId(animalDto, model);
-        animalService.getAll(model);
+    public String getId(ModelMap model, Locale loc) {
+        String locale = loc.getLanguage();
+        animalService.getAll(model, locale);
         return "getAnimal";
     }
 

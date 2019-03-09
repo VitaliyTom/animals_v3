@@ -16,9 +16,9 @@
     <mvc:annotation-driven>
     </mvc:annotation-driven>
    <!-- <mvc:resources mapping="/resources/**" location="/" />-->
-    <!--<mvc:resources mapping="/resources/**" location="/"/>-->
 
-    <context:component-scan base-package="entity,controllers,dao,dto,service,converter,controllers,tags">
+
+    <context:component-scan base-package="entity,controllers,dao,dto,service,converter,tags">
     </context:component-scan>
 
     <bean id="viewResolver"

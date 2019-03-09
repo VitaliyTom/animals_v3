@@ -5,6 +5,5 @@ import dto.AnimalI18nDto;
 
 public interface AnimalI18nService {
 
-    AnimalDtoByteMedia getIdAjaxI18n(long animalId, String locale);
-
+    AnimalDtoByteMedia getIdAjaxI18n(AnimalI18nDto animalI18nDto);
 }

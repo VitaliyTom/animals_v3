@@ -8,8 +8,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="springform" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="image" uri="/WEB-INF/taglib/imageTag.tld" %>
-<%@ taglib prefix="adi" uri="http://mycompany.com" %>
+<%@ taglib prefix="audio" uri="/WEB-INF/taglib/audioTg.tld" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%--<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false"%>--%>
 <html>
 <head>
     <link href="<c:url value="/resources/css/style.css"/>" type="text/css" rel="stylesheet">
@@ -29,13 +30,13 @@
             </tr>
             <c:forEach var="ani" items="${getAllList}">
                 <tr>
-                    <td><c:out value="${ani.animalId}"/></td>
-                    <td><c:out value="${ani.animalName}"/></td>
-                    <td><c:out value="${ani.categoryAnimal}"/></td>
-                    <td><img src="<image:imageTg imageByte="${ani.animalImage}"/>" height="50px" width="70px"></td>
+                    <td><c:out value="${ani.idAnimal}"/></td>
+                    <td><c:out value="${ani.nameAnimal}"/></td>
+                    <td><c:out value="${ani.animalCategory}"/></td>
+                    <td><img src="<image:imageTg imageByte="${ani.imageAnimal}"/>" height="50px" width="70px"></td>
                     <td>
                         <audio controls="controls" autobuffer="autobuffer">
-                            <source src="<adi:audioTg soundByte="${ani.animalAudio}"/>">
+                            <source src="<audio:audioTg soundByte="${ani.audioAnimal}"/>">
                         </audio>
                     </td>
                 </tr>
