@@ -7,14 +7,14 @@
 
     <tlib-version>1.0</tlib-version>
     <short-name>myshortname</short-name>
-    <uri>/WEB-INF/taglib/imageTag.tld</uri>
+    <uri>/WEB-INF/taglib/MediaTag.tld</uri>
 
     <tag>
-        <name>imageTg</name>
-        <tag-class>tags.ImageToBase64</tag-class>
+        <name>mediaByte</name>
+        <tag-class>tags.MediaToBase64</tag-class>
         <body-content>scriptless</body-content>
         <attribute>
-            <name>imageByte</name>
+            <name>mediaByte</name>
             <required>true</required>
             <description>Provide a value</description>
             <rtexprvalue>true</rtexprvalue>
