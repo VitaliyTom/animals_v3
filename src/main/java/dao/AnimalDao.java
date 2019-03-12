@@ -11,7 +11,8 @@ public interface AnimalDao {
     @Deprecated
     void update(Animal animal);
 
-    void delete(Animal animal);
+    void delete(long id);
+
 
     void saveOrUpdate(Animal animal);
 

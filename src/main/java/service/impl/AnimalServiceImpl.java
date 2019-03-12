@@ -76,11 +76,8 @@ public class AnimalServiceImpl implements AnimalService {
 
     @Override
     @Transactional
-    public void delete(AnimalDto animalDto) {
-
-        Animal animal = new Animal();
-        animal.setAnimalId(animalDto.getIdAnimal());
-        animalDao.delete(animal);
+    public void delete(long id) {
+        animalDao.delete(id);
     }
 
     @Override                       //fixme добавить апдейт на конкретные поля

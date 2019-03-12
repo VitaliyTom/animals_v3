@@ -13,7 +13,7 @@ $(document).ready(function () {
                 var id = JSON.stringify(data.idAnimalDtoByteMedia);
                 // var img = JSON.stringify(data.imageAnimalDtoByteMedia);
                 var lang = JSON.stringify(data.nameAnimalDtoByteMedia);
-//fixme разобраться с переводом !!!
+
                 var $getAnimalInfo = $('<div align="center" class="info">' +
                     ' <h3 style="color: bisque">' + data.nameAnimalDtoByteMedia + ' - ' + data.animalCategoryDtoByteMedia+ '</h3> </div>');
 

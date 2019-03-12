@@ -16,7 +16,7 @@ public class AnimalI18n  implements Serializable {
     @Column(name = "ANIMAL_I18N_LOCALE")
     private String animalI18nLocale;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name ="ID_ANIMALS" )
     private Animal idAnimals;
 

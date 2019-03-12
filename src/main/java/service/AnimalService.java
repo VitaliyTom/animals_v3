@@ -9,7 +9,7 @@ public interface AnimalService {
 
     void getIdMax(ModelMap model);
 
-    void delete(AnimalDto animalDto);
+    void delete(long id);
 
     void update(AnimalDto animalDto);
 

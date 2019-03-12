@@ -17,14 +17,21 @@
 <body class="crud">
 
 <div align="center" class="delete-animal">
-    <springform:form method="post" action="/delete" modelAttribute="newAnimal">
+
+    <form action="/delete" method="post">
+        <input type="number"  name="id">
+        <input type="submit" value="delete">
+    </form>
+
+    <%--<springform:form method="post" action="/delete" modelAttribute="newAnimal">
         Введите id животного которое хотите удалить <springform:input type="text" path="idAnimal"/>
         <springform:errors path="idAnimal"/>
         <input type="submit" value="delete animal"/>
-    </springform:form>
+    </springform:form>--%>
 
-    <p><a href="/">[ index ]</a></p>
 
+    <a href="/">[ index ]</a>
 </div>
+
 </body>
 </html>

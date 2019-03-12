@@ -6,6 +6,7 @@ import entity.Animal;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,8 +33,8 @@ public class AnimalDaoImpl implements AnimalDao {
     }
 
     @Override
-    public void delete(Animal animal) {
-        sessionFactory.getCurrentSession().delete(animal);
+    public void delete(long id) {
+        sessionFactory.getCurrentSession().delete(this.read(id));
     }
 
     @Override

@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import service.AnimalService;
 import service.impl.AnimalServiceImpl;
 
@@ -101,17 +102,16 @@ public class AnimalController {
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
-    public String deletePost(@Valid @ModelAttribute("newAnimal") AnimalDto animalDto, BindingResult result) {
+    public String deletePost(@RequestParam("id") long id) {
 
-        animalService.delete(animalDto);
+        animalService.delete(id);
         return "loginAdmin";
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
     public String deleteGet(HttpServletRequest request, Model model) {
 
-        AnimalDto animalDto = new AnimalDto();
-        model.addAttribute("newAnimal", animalDto);
+
         return "delete";
     }
 

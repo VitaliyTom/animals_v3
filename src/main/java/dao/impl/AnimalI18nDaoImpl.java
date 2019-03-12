@@ -18,7 +18,7 @@ public class AnimalI18nDaoImpl implements AnimalI18nDao {
     @Autowired
     private SessionFactory sessionFactory;
 
-    @Override           //fixme
+    @Override
     public AnimalI18n getId(AnimalI18n animalI18n) {
 
         String animalI18nHQL = "FROM AnimalI18n WHERE animalI18nLocale =:locale AND idAnimals =:animalId";
@@ -34,6 +34,7 @@ public class AnimalI18nDaoImpl implements AnimalI18nDao {
         Query query = sessionFactory.getCurrentSession().createQuery(animalI18nGetAllHQL);
         query.setParameter("locale", locale);
         List<AnimalI18n> animalI18nList = query.list();
+
         return animalI18nList;
     }
 }
