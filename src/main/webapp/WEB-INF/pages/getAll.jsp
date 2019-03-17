@@ -31,7 +31,7 @@
             <c:forEach var="ani" items="${getAllList}">
                 <tr>
                     <td><c:out value="${ani.idAnimal}"/></td>
-                    <td><c:out value="${ani.nameAnimalRus}"/></td>
+                    <td><c:out value="${ani.nameAnimal}"/></td>
                     <td><c:out value="${ani.animalCategory}"/></td>
                     <td><img src="data:image/png;base64,<media:mediaByte mediaByte="${ani.imageAnimal}"/>" height="50px" width="70px"></td>
                     <td>

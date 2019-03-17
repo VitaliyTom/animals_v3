@@ -18,7 +18,7 @@
    <!-- <mvc:resources mapping="/resources/**" location="/" />-->
 
 
-    <context:component-scan base-package="entity,controllers,dao,dto,service,converter,tags">
+    <context:component-scan base-package="controllers,converter,dao,dto,entity,service,tags">
     </context:component-scan>
 
     <bean id="viewResolver"

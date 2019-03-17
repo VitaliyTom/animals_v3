@@ -7,5 +7,7 @@ import java.util.List;
 public interface CategoryDao {
     List<Category> getAllCategory();
 
-    Category read(long categoryid);
+    Category read(long categoryId);
+
+
 }

@@ -29,7 +29,7 @@ public class Converter {
     public Animal animalDtoToAnimal(AnimalDto animalDto) {
 
         Animal animal = new Animal();
-
+    //    long id = animalDto.getCategoryId();
         Category category = categoryDao.read(animalDto.getCategoryId());
         animal.setCategoryAnimal(category);
         animal.setAnimalId(animalDto.getIdAnimal());

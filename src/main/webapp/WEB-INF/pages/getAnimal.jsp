@@ -10,8 +10,8 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="springform" %>
-<%@ taglib uri="/WEB-INF/taglib/imageTag.tld" prefix="image" %>
-<%@ taglib uri="/WEB-INF/taglib/audioTag.tld" prefix="adi" %>
+
+
 
 
 <html>
@@ -57,7 +57,7 @@
             <%--FIXME 1 животное автоматичеки выбрано, тем самым первым его выбрать нельзя--%>
             <c:forEach var="ani" items="${getAllList}">
                 <option value="<c:out value="${ani.idAnimal}"/> ">
-                    <c:out value="${ani.nameAnimalRus}"/>
+                    <c:out value="${ani.nameAnimal}"/>
                 </option>
             </c:forEach>
         </select></p>
