@@ -38,7 +38,7 @@
 
 
     <%--<div align="center" class="animalText">
-        [ <spring:message code="getAnimal.animal"/> - ${animalDto.nameAnimal} |
+        [ <spring:message code="getAnimal.animal"/> - ${animalDto.nameAnimalRus} |
         <spring:message code="getAnimal.category"/> - ${animalDto.animalCategory} ]
     </div>--%>
     <div align="center" class="get-Animal-Text-Left">
@@ -57,7 +57,7 @@
             <%--FIXME 1 животное автоматичеки выбрано, тем самым первым его выбрать нельзя--%>
             <c:forEach var="ani" items="${getAllList}">
                 <option value="<c:out value="${ani.idAnimal}"/> ">
-                    <c:out value="${ani.nameAnimal}"/>
+                    <c:out value="${ani.nameAnimalRus}"/>
                 </option>
             </c:forEach>
         </select></p>

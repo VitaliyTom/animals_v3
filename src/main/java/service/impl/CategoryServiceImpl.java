@@ -23,4 +23,5 @@ public class CategoryServiceImpl implements CategoryService {
         List<Category> getAllCategory = (categoryDao.getAllCategory());
         model.addAttribute("getAllCategory", getAllCategory);
     }
-}
+
+  }

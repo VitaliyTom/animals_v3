@@ -68,7 +68,7 @@ public class AnimalController {
     }
 
     @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public String createAnimal(HttpServletRequest request, Model model) {
+    public String createAnimal(Model model) {
 
         AnimalDto animalDto = new AnimalDto();
         model.addAttribute("newAnimal", animalDto);

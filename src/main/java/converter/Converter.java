@@ -1,5 +1,6 @@
 package converter;
 
+import dao.CategoryDao;
 import dto.AnimalDto;
 import dto.AnimalDtoByte;
 import dto.AnimalDtoByteMedia;
@@ -8,7 +9,7 @@ import entity.Animal;
 import entity.AnimalI18n;
 import entity.Category;
 import org.apache.log4j.Logger;
-import service.impl.AnimalServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,18 +18,22 @@ import java.util.List;
 
 public class Converter {
 
-    private static final Logger LOGGER = Logger.getLogger(AnimalServiceImpl.class);
+
+    private static final Logger LOGGER = Logger.getLogger(Converter.class);
+
+
+    @Autowired
+    CategoryDao categoryDao;
 
     //  animalDto to Animal
     public Animal animalDtoToAnimal(AnimalDto animalDto) {
-        Category category = new Category();
-        category.setCategoryid(animalDto.getCategoryId());
-        category.setCategory(animalDto.getAnimalCategory());
 
         Animal animal = new Animal();
-        animal.setAnimalId(animalDto.getIdAnimal());
-        //   animal.setAnimalName(animalDto.getNameAnimal());
+
+        Category category = categoryDao.read(animalDto.getCategoryId());
         animal.setCategoryAnimal(category);
+        animal.setAnimalId(animalDto.getIdAnimal());
+
 
         try {                                                     // fixme добавить условие на налпоинтер
             animal.setAnimalImage(animalDto.getImageAnimal().getBytes());
@@ -40,7 +45,6 @@ public class Converter {
         return animal;
     }
 
-    //    Animal to animalDto
     public AnimalDto animalToAnimalDto(Animal animal) {
 
         return null;
@@ -97,3 +101,17 @@ public class Converter {
     }
 }
 
+//        AnimalI18n animalI18nRu = new AnimalI18n();
+//        animalI18nRu.setAnimalI18nLocale(animalDto.getNameAnimalRus());
+//        animalI18nRu.setNameAnimalI18n(animalDto.getNameAnimalRus());
+//        animalI18nRu.setIdAnimals(animal);
+//
+//        AnimalI18n animalI18nEn = new AnimalI18n();
+//        animalI18nEn.setAnimalI18nLocale(animalDto.getNameAnimalEng());
+//        animalI18nEn.setNameAnimalI18n(animalDto.getNameAnimalEng());
+//        animalI18nEn.setIdAnimals(animal);
+//animal.setAnimalName(animalDto.getNameAnimalRus());
+//      long idCategory = animalDto.getCategoryId();
+//        animal.setCategoryAnimal(categoryDao.read(idCategory));
+
+//    Animal to animalDto

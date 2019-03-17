@@ -1,4 +1,3 @@
-
 package dao.impl;
 
 import dao.AnimalDao;
@@ -6,7 +5,6 @@ import entity.Animal;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.hibernate4.HibernateTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -46,7 +44,7 @@ public class AnimalDaoImpl implements AnimalDao {
 
     @Override
     public Animal read(long animalId) {
-        System.out.println(animalId);
+
         return sessionFactory.getCurrentSession().get(Animal.class, animalId);
     }
 

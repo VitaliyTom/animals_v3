@@ -22,8 +22,8 @@
         Введите id животного для обновления <springform:input type="text" path="idAnimal"/>
         <springform:errors path="idAnimal"/>
         <br>
-        Введите животное <springform:input type="text" path="nameAnimal"/>
-        <springform:errors path="nameAnimal"/>
+        Введите животное <springform:input type="text" path="nameAnimalRus"/>
+        <springform:errors path="nameAnimalRus"/>
         <br>
         Введите id категорий <springform:input type="text" path="categoryId"/>
         <springform:errors path="categoryId"/>

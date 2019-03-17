@@ -26,4 +26,18 @@ public class CategoryDaoImpl implements CategoryDao {
         List<Category> list = query.list();
         return list;
     }
+
+    @Override
+    public Category read(long categoryId) {
+        String categoryHQL = "FROM Category WHERE categoryId =:idCategory";
+        Query query = sessionFactory.getCurrentSession().createQuery(categoryHQL);
+        query.setParameter("idCategory", categoryId);
+
+        //Category category = sessionFactory.getCurrentSession().get(Category.class, categoryId);
+
+        return (Category) query.uniqueResult();
+
+    }
+
+
 }

@@ -20,14 +20,14 @@
 
 <div align="center" class="create-animal">
     <springform:form method="post" action="/create" enctype="multipart/form-data" modelAttribute="newAnimal">
-        Введите животное <springform:input type="text" path="nameAnimal"/>
-        <springform:errors path="nameAnimal"/>
+        Введите животное на русском<springform:input type="text" path="nameAnimalRus"/>
+        <springform:errors path="nameAnimalRus"/>
+        <br>
+        Введите животное на английском<springform:input type="text" path="nameAnimalEng"/>
+        <springform:errors path="nameAnimalEng"/>
         <br>
         Введите id категорий <springform:input type="text" path="categoryId"/>
         <springform:errors path="categoryId"/>
-        <br>
-        Введите название категорий <springform:input type="text" path="animalCategory"/>
-        <springform:errors path="animalCategory"/>
         <br>
         Загрузите фотографию на сервер <springform:input type="file" path="imageAnimal" accept="image/*"/>
         <springform:errors path="imageAnimal"/>
@@ -43,3 +43,6 @@
 </div>
 </body>
 </html>
+
+<%--Введите название категорий <springform:input type="text" path="animalCategory"/>--%>
+<%--<springform:errors path="animalCategory"/>--%>
