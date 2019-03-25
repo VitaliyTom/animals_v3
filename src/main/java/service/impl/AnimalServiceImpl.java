@@ -33,16 +33,19 @@ public class AnimalServiceImpl implements AnimalService {
     @Autowired
     AnimalI18nDao animalI18nDao;
 
+    @Autowired
+    Converter cnvrt;
+
 //-------------------------block CRUD------------------------------------
 
     @Override
     @Transactional                    //fixme разобраться!
     public void create(AnimalDto animalDto) {
+     animalDao.saveOrUpdate(cnvrt.animalDtoToAnimal(animalDto));
 
-        Converter cnvrt = new Converter();
-        animalDao.saveOrUpdate(cnvrt.animalDtoToAnimal(animalDto));
 
     }
+
     @Deprecated
     @Override
     @Transactional
@@ -67,7 +70,7 @@ public class AnimalServiceImpl implements AnimalService {
 
                 flag = false;
                 LOGGER.info("найден существующий идишник c " + i + " попытки.");
-                Converter cnvrt = new Converter();
+
                 AnimalDto animalDto = cnvrt.animalToAnimalDto(animal);
                 model.addAttribute("animalDto", animalDto);
             }
@@ -83,8 +86,7 @@ public class AnimalServiceImpl implements AnimalService {
     @Override                       //fixme добавить апдейт на конкретные поля
     public void update(AnimalDto animalDto) {
 
-        Converter cnvrt = new Converter();
-        animalDao.saveOrUpdate(cnvrt.animalDtoToAnimal(animalDto));
+     //   animalDao.saveOrUpdate(cnvrt.animalDtoToAnimal(animalDto));
     }
 //------------------------block CRUD end---------------------------------
 
@@ -94,7 +96,6 @@ public class AnimalServiceImpl implements AnimalService {
         List<AnimalI18n> getAllAnimalI18n = animalI18nDao.getAll(locale);
 
         List<Animal> getAll = (animalDao.getAll());
-        Converter cnvrt = new Converter();
         List<AnimalDtoByte> getAllDto = cnvrt.animalToAnimalDtoByte(getAll, getAllAnimalI18n);
         model.addAttribute("getAllList", getAllDto);
         categoryService.getCategory(model);
@@ -106,7 +107,7 @@ public class AnimalServiceImpl implements AnimalService {
 
 //        Animal animal = new Animal();
 //        animal.setAnimalId(animalDto.getIdAnimal());
-//        Converter cnvrt = new Converter();
+
 //        animalDto = cnvrt.animalToAnimalDto(animalDao.read(animal.getAnimalId()));
 //        model.addAttribute("animalDto", animalDto);
     }
@@ -116,7 +117,6 @@ public class AnimalServiceImpl implements AnimalService {
     public AnimalDto getId(AnimalDto animalDto) {
         Animal animal = new Animal();
         animal.setAnimalId(animalDto.getIdAnimal());
-        Converter cnvrt = new Converter();
         animalDto = cnvrt.animalToAnimalDto(animalDao.read(animal.getAnimalId()));
 
         return animalDto;

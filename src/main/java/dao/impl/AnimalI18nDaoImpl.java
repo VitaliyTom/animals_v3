@@ -37,4 +37,9 @@ public class AnimalI18nDaoImpl implements AnimalI18nDao {
 
         return animalI18nList;
     }
+
+ /*   @Override
+    public void saveOrUpdate(List<AnimalI18n> animalI18nList) {
+        sessionFactory.getCurrentSession().saveOrUpdate(animalI18nList);
+    }*/
 }

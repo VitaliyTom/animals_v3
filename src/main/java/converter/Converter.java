@@ -1,5 +1,7 @@
 package converter;
 
+import dao.AnimalDao;
+import dao.AnimalI18nDao;
 import dao.CategoryDao;
 import dto.AnimalDto;
 import dto.AnimalDtoByte;
@@ -10,12 +12,13 @@ import entity.AnimalI18n;
 import entity.Category;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Component
 public class Converter {
 
 
@@ -24,17 +27,36 @@ public class Converter {
 
     @Autowired
     CategoryDao categoryDao;
+    @Autowired
+    AnimalI18nDao animalI18nDao;
+    @Autowired
+    AnimalDao animalDao;
 
     //  animalDto to Animal
     public Animal animalDtoToAnimal(AnimalDto animalDto) {
-
+        String ru = "ru";
+        String en = "en";
+        List<AnimalI18n> animalI18nList = new ArrayList<>();
         Animal animal = new Animal();
-    //    long id = animalDto.getCategoryId();
+        //      animal.setAnimalId(animalDto.getIdAnimal());
+
         Category category = categoryDao.read(animalDto.getCategoryId());
         animal.setCategoryAnimal(category);
         animal.setAnimalId(animalDto.getIdAnimal());
 
+        AnimalI18n animalI18nRu = new AnimalI18n();
+        animalI18nRu.setAnimalI18nLocale(ru);
+        animalI18nRu.setNameAnimalI18n(animalDto.getNameAnimalRus());
+        animalI18nList.add(animalI18nRu);
 
+        AnimalI18n animalI18nEn = new AnimalI18n();
+        animalI18nEn.setAnimalI18nLocale(en);
+        animalI18nEn.setNameAnimalI18n(animalDto.getNameAnimalEng());
+        animalI18nList.add(animalI18nEn);
+
+        animal.setAnimalName(animalI18nList);
+
+        //try catch img mp3
         try {                                                     // fixme добавить условие на налпоинтер
             animal.setAnimalImage(animalDto.getImageAnimal().getBytes());
             animal.setAnimalAudio(animalDto.getAudioAnimal().getBytes());
@@ -42,8 +64,10 @@ public class Converter {
             LOGGER.error("error_field_upload_getBytes in animalDto to animal");
             e.printStackTrace();
         }
+
         return animal;
     }
+
 
     public AnimalDto animalToAnimalDto(Animal animal) {
 

@@ -2,7 +2,6 @@ package entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Arrays;
 import java.util.List;
 
 @Entity
@@ -14,10 +13,12 @@ public class Animal implements Serializable {
     @Column(name = "ANIMAL_ID")
     private long animalId;
 
-    @OneToMany(mappedBy = "idAnimals")
+
+    @OneToMany(mappedBy = "idAnimals", cascade = CascadeType.PERSIST)
     private List<AnimalI18n> animalName;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_CATEGORY")
     private Category categoryAnimal;
 
