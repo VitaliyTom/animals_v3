@@ -1,9 +1,9 @@
 package service;
 
-import dto.AnimalDtoByteMedia;
+import dto.AnimalDtoByte;
 import dto.AnimalI18nDto;
 
 public interface AnimalI18nService {
 
-    AnimalDtoByteMedia getIdAjaxI18n(AnimalI18nDto animalI18nDto);
+    AnimalDtoByte getIdAjaxI18n(AnimalI18nDto animalI18nDto);
 }

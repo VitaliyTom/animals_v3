@@ -3,7 +3,7 @@ package service.impl;
 import converter.Converter;
 import dao.AnimalDao;
 import dao.AnimalI18nDao;
-import dto.AnimalDtoByteMedia;
+import dto.AnimalDtoByte;
 import dto.AnimalI18nDto;
 import entity.Animal;
 import entity.AnimalI18n;
@@ -18,14 +18,16 @@ public class AnimalI18nServiceImpl implements AnimalI18nService {
     AnimalI18nDao animalI18nDao;
     @Autowired
     AnimalDao animalDao;
+    @Autowired
+    Converter cnvrt;
 
     @Override
-    public AnimalDtoByteMedia getIdAjaxI18n(AnimalI18nDto animalI18nDto) {
-        Converter cnvrt = new Converter();
+    public AnimalDtoByte getIdAjaxI18n(AnimalI18nDto animalI18nDto) {
+
         Animal animal = animalDao.read(animalI18nDto.getIdAnimals());
         AnimalI18n animalI18n = animalI18nDao.getId(cnvrt.converterAnimalI18nDtoToAnimalI18n(animalI18nDto));
-        AnimalDtoByteMedia animalDtoByteMedia = cnvrt.converterAnimalToAnimalDtoByteMedia(animalI18n, animal);
+        AnimalDtoByte animalDtoByte = cnvrt.converterAnimalToAnimalDtoByte(animalI18n, animal);
 
-        return animalDtoByteMedia;
+        return animalDtoByte;
     }
 }

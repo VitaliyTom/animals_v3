@@ -14,7 +14,7 @@ public class Animal implements Serializable {
     private long animalId;
 
 
-    @OneToMany(mappedBy = "idAnimals", cascade = CascadeType.PERSIST)
+    @OneToMany(mappedBy = "idAnimals", cascade = CascadeType.ALL)
     private List<AnimalI18n> animalName;
 
 //    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)

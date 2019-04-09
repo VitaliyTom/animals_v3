@@ -5,7 +5,6 @@ import dao.AnimalI18nDao;
 import dao.CategoryDao;
 import dto.AnimalDto;
 import dto.AnimalDtoByte;
-import dto.AnimalDtoByteMedia;
 import dto.AnimalI18nDto;
 import entity.Animal;
 import entity.AnimalI18n;
@@ -31,6 +30,8 @@ public class Converter {
     AnimalI18nDao animalI18nDao;
     @Autowired
     AnimalDao animalDao;
+
+
 
     //  animalDto to Animal
     public Animal animalDtoToAnimal(AnimalDto animalDto) {
@@ -68,7 +69,6 @@ public class Converter {
         return animal;
     }
 
-
     public AnimalDto animalToAnimalDto(Animal animal) {
 
         return null;
@@ -96,11 +96,10 @@ public class Converter {
     }
 
     public AnimalI18n converterAnimalI18nDtoToAnimalI18n(AnimalI18nDto animalI18nDto) {
+        Animal animal = animalDao.read(animalI18nDto.getIdAnimals());
         AnimalI18n animalI18n = new AnimalI18n();
-        Animal animal = new Animal();
-        animal.setAnimalId(animalI18nDto.getIdAnimals());
-        animalI18n.setIdAnimals(animal);
-        animalI18n.setAnimalI18nLocale(animalI18nDto.getAnimalI18nLocaleDto());
+                animalI18n.setIdAnimals(animal);
+                animalI18n.setAnimalI18nLocale(animalI18nDto.getAnimalI18nLocaleDto());
         return animalI18n;
     }
 
@@ -110,17 +109,16 @@ public class Converter {
         return null;
     }
 
-    public AnimalDtoByteMedia converterAnimalToAnimalDtoByteMedia(AnimalI18n animalI18n, Animal animal) {
-        Category category = new Category();
+    public AnimalDtoByte converterAnimalToAnimalDtoByte(AnimalI18n animalI18n, Animal animal) {
 
-        AnimalDtoByteMedia animalDtoByteMedia = new AnimalDtoByteMedia();
-        animalDtoByteMedia.setIdAnimalDtoByteMedia(animal.getAnimalId());
-        animalDtoByteMedia.setNameAnimalDtoByteMedia(animalI18n.getNameAnimalI18n());
-        animalDtoByteMedia.setAnimalCategoryDtoByteMedia(String.valueOf(animal.getCategoryAnimal()));
-        animalDtoByteMedia.setImageAnimalDtoByteMedia(animal.getAnimalImage());
-        animalDtoByteMedia.setAudioAnimalDtoByteMedia(animal.getAnimalAudio());
+        AnimalDtoByte animalDtoByte = new AnimalDtoByte();
+        animalDtoByte.setIdAnimal(animal.getAnimalId());
+        animalDtoByte.setNameAnimal(animalI18n.getNameAnimalI18n());
+        animalDtoByte.setAnimalCategory(String.valueOf(animal.getCategoryAnimal()));
+        animalDtoByte.setImageAnimal(animal.getAnimalImage());
+        animalDtoByte.setAudioAnimal(animal.getAnimalAudio());
 
-        return animalDtoByteMedia;
+        return animalDtoByte;
 
     }
 }

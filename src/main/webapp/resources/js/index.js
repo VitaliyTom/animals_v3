@@ -10,20 +10,20 @@ $(document).ready(function () {
 
             success: function (data) {
 
-                var id = JSON.stringify(data.idAnimalDtoByteMedia);
+                var id = JSON.stringify(data.idAnimal);
                 // var img = JSON.stringify(data.imageAnimalDtoByteMedia);
-                var lang = JSON.stringify(data.nameAnimalDtoByteMedia);
+                var lang = JSON.stringify(data.nameAnimal);
 
                 var $getAnimalInfo = $('<div align="center" class="info">' +
-                    ' <h3 style="color: bisque">' + data.nameAnimalDtoByteMedia + ' - ' + data.animalCategoryDtoByteMedia+ '</h3> </div>');
+                    ' <h3 style="color: bisque">' + data.nameAnimal + ' - ' + data.animalCategory+ '</h3> </div>');
 
                 var $getAnimalMediaLeft = $('<div align="center" class="info">' +
                     ' <spring:message code="getAnimal.animal"/> </div>' +
                     '<div align="center" class="get-animal">' + id +
-                    '<img class="img" src="data:image/png;base64,' + data.imageAnimalDtoByteMedia + '" height="500px" width="700px">' +
+                    '<img class="img" src="data:image/png;base64,' + data.imageAnimal + '" height="500px" width="700px">' +
                     '<p>' +
                     '<audio controls="controls" autobuffer="autobuffer">' +
-                    '<source src="data:audio/ogg;base64,' + data.audioAnimalDtoByteMedia + '"/>">' +
+                    '<source src="data:audio/ogg;base64,' + data.audioAnimal + '"/>">' +
                     '</audio>' +
                     '</p>' +
                     '</div>');

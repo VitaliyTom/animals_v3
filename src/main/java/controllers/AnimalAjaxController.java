@@ -1,6 +1,6 @@
 package controllers;
 
-import dto.AnimalDtoByteMedia;
+import dto.AnimalDtoByte;
 import dto.AnimalI18nDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -20,14 +20,14 @@ public class AnimalAjaxController {
 
     @ResponseBody
     @RequestMapping(value = "/getAnimalInBaseAjax{PathVarId}", produces = MediaType.APPLICATION_JSON_VALUE)
-    public AnimalDtoByteMedia getAnimalInBaseAjax(@PathVariable("PathVarId") long animalIdDto, Locale loc) {
+    public AnimalDtoByte getAnimalInBaseAjax(@PathVariable("PathVarId") long animalIdDto, Locale loc) {
         String locale = loc.getLanguage();
         AnimalI18nDto animalI18nDto = new AnimalI18nDto();
         animalI18nDto.setAnimalI18nLocaleDto(locale);
         animalI18nDto.setIdAnimals(animalIdDto);
-        AnimalDtoByteMedia animalDtoByteMedia = animalI18nService.getIdAjaxI18n(animalI18nDto);
+        AnimalDtoByte animalDtoByte = animalI18nService.getIdAjaxI18n(animalI18nDto);
 
-        return animalDtoByteMedia;
+        return animalDtoByte;
     }
 }
 

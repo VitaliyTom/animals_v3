@@ -1,6 +1,5 @@
 package dao;
 
-import entity.Animal;
 import entity.AnimalI18n;
 
 import java.util.List;
