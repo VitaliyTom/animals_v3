@@ -48,11 +48,13 @@ public class Converter {
         AnimalI18n animalI18nRu = new AnimalI18n();
         animalI18nRu.setAnimalI18nLocale(ru);
         animalI18nRu.setNameAnimalI18n(animalDto.getNameAnimalRus());
+        animalI18nRu.setIdAnimals(animal);
         animalI18nList.add(animalI18nRu);
 
         AnimalI18n animalI18nEn = new AnimalI18n();
         animalI18nEn.setAnimalI18nLocale(en);
         animalI18nEn.setNameAnimalI18n(animalDto.getNameAnimalEng());
+        animalI18nEn.setIdAnimals(animal);
         animalI18nList.add(animalI18nEn);
 
         animal.setAnimalName(animalI18nList);

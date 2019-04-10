@@ -63,6 +63,7 @@ public class AnimalController {
 
         if (!result.hasErrors()) {
             animalService.create(animalDto);
+            System.out.println(animalDto.getNameAnimalRus());
         }
         return "loginAdmin";
     }
