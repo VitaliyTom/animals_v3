@@ -53,19 +53,17 @@ public class AnimalServiceImpl implements AnimalService {
     @Override                       //fixme добавить апдейт на конкретные поля
     public void update(AnimalDto animalDto) {
 
-        //   animalDao.saveOrUpdate(cnvrt.animalDtoToAnimal(animalDto));
+           animalDao.saveOrUpdate(cnvrt.animalDtoToAnimal(animalDto));
     }
 //------------------------block CRUD end---------------------------------
 
     @Override
     @Transactional
-    public void getAll(ModelMap model, String locale) {
-        List<AnimalI18n> getAllAnimalI18n = animalI18nDao.getAll(locale);
+    public List<AnimalDtoByte> getAll(String locale) {
 
-        List<Animal> getAll = (animalDao.getAll());
-        List<AnimalDtoByte> getAllDto = cnvrt.animalToAnimalDtoByte(getAll, getAllAnimalI18n);
-        model.addAttribute("getAllList", getAllDto);
-        categoryService.getCategory(model);
+        List<AnimalI18n> getAllAnimalI18n = animalI18nDao.getAll(locale);
+        List<Animal> getAll = animalDao.getAll();
+        return cnvrt.animalToAnimalDtoByte(getAll, getAllAnimalI18n);
     }
 
     //fixme пересмотреть методы и лишние удалить
@@ -88,7 +86,7 @@ public class AnimalServiceImpl implements AnimalService {
 
         return animalDto;
     }
-    
+
     @Deprecated
     @Override
     @Transactional

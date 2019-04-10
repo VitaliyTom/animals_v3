@@ -1,10 +1,12 @@
 package service;
 
-import org.springframework.ui.ModelMap;
+import entity.Category;
+
+import java.util.List;
 
 public interface CategoryService {
 
-    void getCategory(ModelMap model);
+    List<Category> getCategory();
 
 
 }

@@ -18,10 +18,8 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     @Transactional
-    public void getCategory(ModelMap model) {
-
-        List<Category> getAllCategory = (categoryDao.getAllCategory());
-        model.addAttribute("getAllCategory", getAllCategory);
+    public List<Category> getCategory() {
+        return categoryDao.getAllCategory();
     }
-
-  }
+}
+//   model.addAttribute("getAllCategory", getAllCategory);

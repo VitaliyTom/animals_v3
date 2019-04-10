@@ -14,7 +14,8 @@ public class CategoryController {
 
     @RequestMapping("/getCategory")
     public String getCategory (ModelMap model){
-        categoryService.getCategory(model);
+
+        model.addAttribute("getAllCategory", categoryService.getCategory());
 
        return "/getCategory";
     }

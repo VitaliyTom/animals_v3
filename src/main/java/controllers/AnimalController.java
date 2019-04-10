@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import service.AnimalService;
+import service.CategoryService;
 import service.impl.AnimalServiceImpl;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,6 +29,8 @@ public class AnimalController {
 
     @Autowired
     private AnimalService animalService;
+    @Autowired
+    private CategoryService categoryService;
 
     @RequestMapping("/")
     public String index() {
@@ -42,7 +45,8 @@ public class AnimalController {
     @RequestMapping("/getAll")
     public String getAllGet(ModelMap model, Locale loc) {
         String locale = loc.getLanguage();
-        animalService.getAll(model, locale);
+        model.addAttribute("getAllList", animalService.getAll(locale));
+        model.addAttribute("getAllCategory", categoryService.getCategory());
         return "getAll";
     }
 
@@ -50,7 +54,7 @@ public class AnimalController {
     @RequestMapping("/getId")
     public String getId(ModelMap model, Locale loc) {
         String locale = loc.getLanguage();
-        animalService.getAll(model, locale);
+        model.addAttribute("getAllList", animalService.getAll(locale));
         return "getAnimal";
     }
 

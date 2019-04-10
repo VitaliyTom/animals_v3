@@ -1,7 +1,10 @@
 package service;
 
 import dto.AnimalDto;
+import dto.AnimalDtoByte;
 import org.springframework.ui.ModelMap;
+
+import java.util.List;
 
 public interface AnimalService {
 
@@ -13,7 +16,7 @@ public interface AnimalService {
 
     void update(AnimalDto animalDto);
 
-    void getAll(ModelMap model, String locale);
+    List<AnimalDtoByte> getAll(String locale);
 
     void getId(AnimalDto animalDto, ModelMap model);
 

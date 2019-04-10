@@ -22,7 +22,10 @@
         Введите id животного для обновления <springform:input type="text" path="idAnimal"/>
         <springform:errors path="idAnimal"/>
         <br>
-        Введите животное <springform:input type="text" path="nameAnimalRus"/>
+        Введите животное на русском <springform:input type="text" path="nameAnimalRus"/>
+        <springform:errors path="nameAnimalRus"/>
+        <br>
+        Введите животное на английском <springform:input type="text" path="nameAnimalEng"/>
         <springform:errors path="nameAnimalRus"/>
         <br>
         Введите id категорий <springform:input type="text" path="categoryId"/>
@@ -34,14 +37,14 @@
         Загрузите фотографию <springform:input type="file" path="imageAnimal" accept="image/*"/>
         <springform:errors path="imageAnimal"/>
         <br>
-        Загрузите звук  <springform:input type="file" path="audioAnimal" />
+        Загрузите звук <springform:input type="file" path="audioAnimal"/>
         <springform:errors path="audioAnimal"/>
         <br>
         <input type="submit" value="save animal"/>
     </springform:form>
 
 
-       <p><a href="/">[ index ]</a></p>
+    <p><a href="/">[ index ]</a></p>
 </div>
 
 </body>
