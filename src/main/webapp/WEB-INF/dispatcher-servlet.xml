@@ -60,7 +60,6 @@
     </mvc:interceptors>
     <!--end i18n block-->
 
-
     <!--Нужен для получения свойств из файла jdbc.properties-->
     <bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
         <property name="location" value="classpath:jdbc.properties"/>

@@ -25,9 +25,8 @@ public class AnimalAjaxController {
         AnimalI18nDto animalI18nDto = new AnimalI18nDto();
         animalI18nDto.setAnimalI18nLocaleDto(locale);
         animalI18nDto.setIdAnimals(animalIdDto);
-        AnimalDtoByte animalDtoByte = animalI18nService.getIdAjaxI18n(animalI18nDto);
 
-        return animalDtoByte;
+        return animalI18nService.getIdAjaxI18n(animalI18nDto);
     }
 }
 

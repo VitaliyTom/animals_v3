@@ -20,9 +20,7 @@ import java.util.List;
 @Component
 public class Converter {
 
-
     private static final Logger LOGGER = Logger.getLogger(Converter.class);
-
 
     @Autowired
     CategoryDao categoryDao;
@@ -31,15 +29,12 @@ public class Converter {
     @Autowired
     AnimalDao animalDao;
 
-
-
     //  animalDto to Animal
     public Animal animalDtoToAnimal(AnimalDto animalDto) {
         String ru = "ru";
         String en = "en";
         List<AnimalI18n> animalI18nList = new ArrayList<>();
         Animal animal = new Animal();
-        //      animal.setAnimalId(animalDto.getIdAnimal());
 
         Category category = categoryDao.read(animalDto.getCategoryId());
         animal.setCategoryAnimal(category);
@@ -124,18 +119,3 @@ public class Converter {
 
     }
 }
-
-//        AnimalI18n animalI18nRu = new AnimalI18n();
-//        animalI18nRu.setAnimalI18nLocale(animalDto.getNameAnimalRus());
-//        animalI18nRu.setNameAnimalI18n(animalDto.getNameAnimalRus());
-//        animalI18nRu.setIdAnimals(animal);
-//
-//        AnimalI18n animalI18nEn = new AnimalI18n();
-//        animalI18nEn.setAnimalI18nLocale(animalDto.getNameAnimalEng());
-//        animalI18nEn.setNameAnimalI18n(animalDto.getNameAnimalEng());
-//        animalI18nEn.setIdAnimals(animal);
-//animal.setAnimalName(animalDto.getNameAnimalRus());
-//      long idCategory = animalDto.getCategoryId();
-//        animal.setCategoryAnimal(categoryDao.read(idCategory));
-
-//    Animal to animalDto

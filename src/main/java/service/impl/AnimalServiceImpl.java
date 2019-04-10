@@ -41,40 +41,7 @@ public class AnimalServiceImpl implements AnimalService {
     @Override
     @Transactional                    //fixme разобраться!
     public void create(AnimalDto animalDto) {
-     animalDao.saveOrUpdate(cnvrt.animalDtoToAnimal(animalDto));
-
-
-    }
-
-    @Deprecated
-    @Override
-    @Transactional
-    public void getIdMax(ModelMap model) {
-        Animal animalIdMax = animalDao.getIdMax();
-
-        Random rnd = new Random();
-        int id = 0;
-        int i = 1;
-        boolean flag = true;
-
-        while (flag) {
-            //selection of an arbitrary id in the range of existing
-            id = 1 + rnd.nextInt((int) animalIdMax.getAnimalId());
-            Animal animal = animalDao.read((long) id);
-
-            //we check there is an object under such id or not
-            if (animal == null) {
-                i++;
-
-            } else {
-
-                flag = false;
-                LOGGER.info("найден существующий идишник c " + i + " попытки.");
-
-                AnimalDto animalDto = cnvrt.animalToAnimalDto(animal);
-                model.addAttribute("animalDto", animalDto);
-            }
-        }
+        animalDao.saveOrUpdate(cnvrt.animalDtoToAnimal(animalDto));
     }
 
     @Override
@@ -86,7 +53,7 @@ public class AnimalServiceImpl implements AnimalService {
     @Override                       //fixme добавить апдейт на конкретные поля
     public void update(AnimalDto animalDto) {
 
-     //   animalDao.saveOrUpdate(cnvrt.animalDtoToAnimal(animalDto));
+        //   animalDao.saveOrUpdate(cnvrt.animalDtoToAnimal(animalDto));
     }
 //------------------------block CRUD end---------------------------------
 
@@ -120,5 +87,36 @@ public class AnimalServiceImpl implements AnimalService {
         animalDto = cnvrt.animalToAnimalDto(animalDao.read(animal.getAnimalId()));
 
         return animalDto;
+    }
+    
+    @Deprecated
+    @Override
+    @Transactional
+    public void getIdMax(ModelMap model) {
+        Animal animalIdMax = animalDao.getIdMax();
+
+        Random rnd = new Random();
+        int id = 0;
+        int i = 1;
+        boolean flag = true;
+
+        while (flag) {
+            //selection of an arbitrary id in the range of existing
+            id = 1 + rnd.nextInt((int) animalIdMax.getAnimalId());
+            Animal animal = animalDao.read((long) id);
+
+            //we check there is an object under such id or not
+            if (animal == null) {
+                i++;
+
+            } else {
+
+                flag = false;
+                LOGGER.info("найден существующий идишник c " + i + " попытки.");
+
+                AnimalDto animalDto = cnvrt.animalToAnimalDto(animal);
+                model.addAttribute("animalDto", animalDto);
+            }
+        }
     }
 }

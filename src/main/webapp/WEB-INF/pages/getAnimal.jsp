@@ -36,11 +36,6 @@
 
 <div align="center" class="wrapper">
 
-
-    <%--<div align="center" class="animalText">
-        [ <spring:message code="getAnimal.animal"/> - ${animalDto.nameAnimalRus} |
-        <spring:message code="getAnimal.category"/> - ${animalDto.animalCategory} ]
-    </div>--%>
     <div align="center" class="get-Animal-Text-Left">
         <div align="center" id="ga1">
             <h3 style="color: bisque"><spring:message code="getAnimal.animal"/></h3>
@@ -69,13 +64,7 @@
 </html>
 
 <%--autoplay="autoplay"--%>
-<%--<springform:form method="post" action="/getId"  modelAttribute="newAnimal">--%>
-<%--<td colspan="3"><input type="submit" /></td>--%>
-<%--</springform:form>--%>
 
-<%--  <script>
-        $('select').on('change', function() {
-            alert( this.value );
-        });
-    </script>--%>
+
+
 
