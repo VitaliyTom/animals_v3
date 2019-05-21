@@ -1,6 +1,7 @@
 <%@taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html;charset=UTF-8" language="java" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <html>
 
 
@@ -17,20 +18,19 @@
     <a href="?lang=en">en</a>
     |
     <a href="?lang=ru">ru</a>
-    |
-    <a href="?lang=pl">pl</a>
+
 </span>
 
 <div align="center" class="index-1">
 
-    <form action="/getId" method="get">
+    <form action="${contextPath}/getId" method="get">
         <input type="submit" value="<spring:message code="label.start"/>">
     </form>
 
 </div>
 
 <div align="center" class="index-2">
-    <form action="/loginAdmin" method="get">
+    <form action="${contextPath}/loginAdmin" method="get">
         <input type="submit" value="<spring:message code="label.login"/>">
     </form>
 </div>

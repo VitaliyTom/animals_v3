@@ -2,30 +2,32 @@ package entity;
 
 
 import javax.persistence.*;
+import javax.print.attribute.standard.MediaSize;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "animali18n")
-public class AnimalI18n  implements Serializable {
+public class AnimalI18n implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "I18N_ANIMAL_ID")
     private long i18nAnimalId;
 
-    @Column(name = "ANIMAL_I18N_LOCALE")
-    private String animalI18nLocale;
-
-      @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL )
-//    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name ="ID_ANIMALS" )
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "ID_ANIMALS")
     private Animal idAnimals;
 
     @Column(name = "NAME_ANIMAL_I18N")
     private String nameAnimalI18n;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ID_LOCALE")
+    private Locale localeAnimalI18n;
+
     public AnimalI18n() {
     }
+
 
     public long getI18nAnimalId() {
         return i18nAnimalId;
@@ -33,14 +35,6 @@ public class AnimalI18n  implements Serializable {
 
     public void setI18nAnimalId(long i18nAnimalId) {
         this.i18nAnimalId = i18nAnimalId;
-    }
-
-    public String getAnimalI18nLocale() {
-        return animalI18nLocale;
-    }
-
-    public void setAnimalI18nLocale(String animalI18nLocale) {
-        this.animalI18nLocale = animalI18nLocale;
     }
 
     public Animal getIdAnimals() {
@@ -59,13 +53,21 @@ public class AnimalI18n  implements Serializable {
         this.nameAnimalI18n = nameAnimalI18n;
     }
 
+    public Locale getLocaleAnimalI18n() {
+        return localeAnimalI18n;
+    }
+
+    public void setLocaleAnimalI18n(Locale localeAnimalI18n) {
+        this.localeAnimalI18n = localeAnimalI18n;
+    }
+
     @Override
     public String toString() {
         return "AnimalI18n{" +
                 "i18nAnimalId=" + i18nAnimalId +
-                ", animalI18nLocale='" + animalI18nLocale + '\'' +
                 ", idAnimals=" + idAnimals +
                 ", nameAnimalI18n='" + nameAnimalI18n + '\'' +
+                ", localeAnimalI18n=" + localeAnimalI18n +
                 '}';
     }
 }

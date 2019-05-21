@@ -9,6 +9,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="springform" %>
 
 
@@ -29,8 +30,7 @@
     <a class="href" href="?lang=en">en</a>
     |
     <a class="href" href="?lang=ru">ru</a>
-    |
-    <a class="href" href="?lang=pl">pl</a>
+
 </span>
 <%-- style="display: flex"--%>
 
@@ -55,7 +55,7 @@
                     <c:out value="${ani.nameAnimal}"/>
                 </option>
             </c:forEach>
-        </select></p>
+        </select>
     </div>
 </div>
 

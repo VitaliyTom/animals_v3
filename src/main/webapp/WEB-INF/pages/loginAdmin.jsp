@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <html>
 <head>
     <link href="<c:url value="/resources/css/style.css"/>" type="text/css" rel="stylesheet">
@@ -18,26 +19,27 @@
 <div align="center" class="CRUD-animal">
 
     <p>
-    <form action="/create" method="get">
+    <form action="${contextPath}/create" method="get">
         <input type="submit" value="[ create ]"/>
     </form>
     </p>
     <p>
-    <form action="/update" method="get">
+    <form action="${contextPath}/update" method="get">
         <input type="submit" value="[ update ]"/>
     </form>
     </p>
     <p>
-    <form action="/delete" method="get">
+    <form action="${contextPath}/delete" method="get">
         <input type="submit" value="[ delete ]"/>
     </form>
     </p>
     <p>
-    <form action="/getAll" method="get">
+    <form action="${contextPath}/getAll" method="get">
         <input type="submit" value="[ get all ]"/>
     </form>
     </p>
-    <p><a href="/">[ index ]</a></p>
+    <p><a href="${contextPath}">[ index ]</a></p>
+
 </div>
 
 </body>

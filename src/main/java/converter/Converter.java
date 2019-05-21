@@ -3,12 +3,14 @@ package converter;
 import dao.AnimalDao;
 import dao.AnimalI18nDao;
 import dao.CategoryDao;
+import dao.LocaleDao;
 import dto.AnimalDto;
 import dto.AnimalDtoByte;
 import dto.AnimalI18nDto;
 import entity.Animal;
 import entity.AnimalI18n;
 import entity.Category;
+import entity.Locale;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -28,6 +30,8 @@ public class Converter {
     AnimalI18nDao animalI18nDao;
     @Autowired
     AnimalDao animalDao;
+    @Autowired
+    LocaleDao localeDao;
 
     //  animalDto to Animal
     public Animal animalDtoToAnimal(AnimalDto animalDto) {
@@ -41,13 +45,15 @@ public class Converter {
         animal.setAnimalId(animalDto.getIdAnimal());
 
         AnimalI18n animalI18nRu = new AnimalI18n();
-        animalI18nRu.setAnimalI18nLocale(ru);
+        animalI18nRu.setLocaleAnimalI18n(localeDao.read(ru));
+//        animalI18nRu.setAnimalI18nLocale(ru);
         animalI18nRu.setNameAnimalI18n(animalDto.getNameAnimalRus());
         animalI18nRu.setIdAnimals(animal);
         animalI18nList.add(animalI18nRu);
 
         AnimalI18n animalI18nEn = new AnimalI18n();
-        animalI18nEn.setAnimalI18nLocale(en);
+//        animalI18nEn.setAnimalI18nLocale(en);
+        animalI18nEn.setLocaleAnimalI18n(localeDao.read(en));
         animalI18nEn.setNameAnimalI18n(animalDto.getNameAnimalEng());
         animalI18nEn.setIdAnimals(animal);
         animalI18nList.add(animalI18nEn);
@@ -93,10 +99,11 @@ public class Converter {
     }
 
     public AnimalI18n converterAnimalI18nDtoToAnimalI18n(AnimalI18nDto animalI18nDto) {
-        Animal animal = animalDao.read(animalI18nDto.getIdAnimals());
         AnimalI18n animalI18n = new AnimalI18n();
-                animalI18n.setIdAnimals(animal);
-                animalI18n.setAnimalI18nLocale(animalI18nDto.getAnimalI18nLocaleDto());
+        animalI18n.setIdAnimals(animalDao.read(animalI18nDto.getIdAnimals()));
+        animalI18n.setLocaleAnimalI18n(localeDao.read(animalI18nDto.getAnimalI18nLocaleDto()));
+//        animalI18n.setAnimalI18nLocale(animalI18nDto.getAnimalI18nLocaleDto());
+
         return animalI18n;
     }
 

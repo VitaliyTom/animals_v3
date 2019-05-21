@@ -8,8 +8,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="springform" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="media" uri="/WEB-INF/taglib/MediaTag.tld" %>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <%--<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false"%>--%>
 <html>
 <head>
@@ -63,7 +63,7 @@
             </table>
         </div>
         <div align="center" class="href__index">
-            <a href="/">[ index ]</a>
+            <a href="${contextPath}">[ index ]</a>
         </div>
     </div>
 </div>

@@ -17,7 +17,6 @@
     </mvc:annotation-driven>
    <!-- <mvc:resources mapping="/resources/**" location="/" />-->
 
-
     <context:component-scan base-package="controllers,converter,dao,dto,entity,service,tags">
     </context:component-scan>
 
@@ -74,7 +73,7 @@
         <property name="url" value="jdbc:mysql://localhost:3306/animalbase?serverTimezone=UTC"/>
         <property name="username" value="root"/>
         <property name="password" value="root"/>
-
+            <!--A5642810b-->
     </bean>
 
 

@@ -1,6 +1,7 @@
 .getAnimal {
-       background: url(/resources/background/2.jpg) no-repeat top center;
+       background: url(/animal/resources/background/2.jpg) top center;
    }
 .img {
     border: 3px solid bisque;
 }
+/*no-repeat top center*/

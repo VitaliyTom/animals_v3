@@ -3,6 +3,7 @@ package service.impl;
 import converter.Converter;
 import dao.AnimalDao;
 import dao.AnimalI18nDao;
+import dao.LocaleDao;
 import dto.AnimalDto;
 import dto.AnimalDtoByte;
 import entity.Animal;
@@ -36,6 +37,9 @@ public class AnimalServiceImpl implements AnimalService {
     @Autowired
     Converter cnvrt;
 
+    @Autowired
+    LocaleDao localeDao;
+
 //-------------------------block CRUD------------------------------------
 
     @Override
@@ -61,7 +65,7 @@ public class AnimalServiceImpl implements AnimalService {
     @Transactional
     public List<AnimalDtoByte> getAll(String locale) {
 
-        List<AnimalI18n> getAllAnimalI18n = animalI18nDao.getAll(locale);
+        List<AnimalI18n> getAllAnimalI18n = animalI18nDao.getAll(localeDao.read(locale));
         List<Animal> getAll = animalDao.getAll();
         return cnvrt.animalToAnimalDtoByte(getAll, getAllAnimalI18n);
     }
