@@ -1,16 +1,11 @@
 package converter;
 
-import dao.AnimalDao;
-import dao.AnimalI18nDao;
-import dao.CategoryDao;
-import dao.LocaleDao;
+import dao.*;
 import dto.AnimalDto;
 import dto.AnimalDtoByte;
 import dto.AnimalI18nDto;
-import entity.Animal;
-import entity.AnimalI18n;
-import entity.Category;
-import entity.Locale;
+import dto.CategoryDto;
+import entity.*;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -32,6 +27,9 @@ public class Converter {
     AnimalDao animalDao;
     @Autowired
     LocaleDao localeDao;
+    @Autowired
+    CategoryI18nDao categoryI18nDao;
+
 
     //  animalDto to Animal
     public Animal animalDtoToAnimal(AnimalDto animalDto) {
@@ -77,40 +75,41 @@ public class Converter {
         return null;
     }
 
-    public List<AnimalDtoByte> animalToAnimalDtoByte(List<Animal> getAll, List<AnimalI18n> getAllAnimalI18n) {
+    public List<AnimalDtoByte> animalToAnimalDtoByte(List<Animal> getAll, List<AnimalI18n> getAllAnimalI18n, List<CategoryI18n> getAllCategoryI18n) {
 
         List<AnimalDtoByte> animalI18nList = new ArrayList<>();
 
         for (Animal i : getAll) {
             AnimalDtoByte animalDtoByte = new AnimalDtoByte();
             animalDtoByte.setIdAnimal(i.getAnimalId());
-            animalDtoByte.setAnimalCategory(String.valueOf(i.getCategoryAnimal()));
+//            animalDtoByte.setAnimalCategory(String.valueOf(i.getCategoryAnimal()));
             animalDtoByte.setImageAnimal(i.getAnimalImage());
             animalDtoByte.setAudioAnimal(i.getAnimalAudio());
 
-            for (AnimalI18n j : getAllAnimalI18n) {
-                if (j.getIdAnimals().getAnimalId() == i.getAnimalId()) {
-                    animalDtoByte.setNameAnimal(j.getNameAnimalI18n());
+            for (AnimalI18n nameAnimal : getAllAnimalI18n) {
+                if (nameAnimal.getIdAnimals().getAnimalId() == i.getAnimalId()) {
+                    animalDtoByte.setNameAnimal(nameAnimal.getNameAnimalI18n());
                 }
             }
+            for (CategoryI18n nameCategory : getAllCategoryI18n) {
+                if (nameCategory.getIdCategory() == i.getCategoryAnimal()) {
+                    animalDtoByte.setCategoryId(nameCategory.getI18nCategoryId());
+                    animalDtoByte.setNameCategory(nameCategory.getNameCategoryI18n());
+                }
+            }
+
             animalI18nList.add(animalDtoByte);
         }
         return animalI18nList;
     }
 
-    public AnimalI18n converterAnimalI18nDtoToAnimalI18n(AnimalI18nDto animalI18nDto) {
+    public AnimalI18n converterAnimalI18nDtoToAnimalI18n(AnimalI18nDto animalI18nDto, Animal animal) {
         AnimalI18n animalI18n = new AnimalI18n();
-        animalI18n.setIdAnimals(animalDao.read(animalI18nDto.getIdAnimals()));
+        animalI18n.setIdAnimals(animal);
         animalI18n.setLocaleAnimalI18n(localeDao.read(animalI18nDto.getAnimalI18nLocaleDto()));
 //        animalI18n.setAnimalI18nLocale(animalI18nDto.getAnimalI18nLocaleDto());
 
         return animalI18n;
-    }
-
-    public AnimalI18nDto convertAnimalI18nToAnimalI18nDto(AnimalI18n animalI18n) {
-//        AnimalI18nDto animalI18nDto = new AnimalI18nDto();
-//        animalI18nDto.set
-        return null;
     }
 
     public AnimalDtoByte converterAnimalToAnimalDtoByte(AnimalI18n animalI18n, Animal animal) {
@@ -118,11 +117,41 @@ public class Converter {
         AnimalDtoByte animalDtoByte = new AnimalDtoByte();
         animalDtoByte.setIdAnimal(animal.getAnimalId());
         animalDtoByte.setNameAnimal(animalI18n.getNameAnimalI18n());
-        animalDtoByte.setAnimalCategory(String.valueOf(animal.getCategoryAnimal()));
+        //      animalDtoByte.setAnimalCategory(String.valueOf(animal.getCategoryAnimal()));
         animalDtoByte.setImageAnimal(animal.getAnimalImage());
         animalDtoByte.setAudioAnimal(animal.getAnimalAudio());
-
+        CategoryI18n categoryI18n = new CategoryI18n();
+        categoryI18n.setIdCategory(animal.getCategoryAnimal());
+        categoryI18n.setLocaleCategoryI18n (animalI18n.getLocaleAnimalI18n());
+        animalDtoByte.setNameCategory(categoryI18nDao.getId(categoryI18n).getNameCategoryI18n());
         return animalDtoByte;
 
     }
+
+    public List<CategoryDto> categoryToCategoryDto(List<Category> categoryList, List<CategoryI18n> categoryI18nList) {
+
+        List<CategoryDto> categoryDtoList = new ArrayList<>();
+
+        for (Category category : categoryList) {
+            CategoryDto categoryDto = new CategoryDto();
+            categoryDto.setCategoryIdDto(category.getCategoryId());
+
+            for (CategoryI18n nameCategory : categoryI18nList) {
+                if (nameCategory.getIdCategory().getCategoryId() == category.getCategoryId()) {
+                    categoryDto.setCategoryDto(nameCategory.getNameCategoryI18n());
+                }
+            }
+
+            categoryDtoList.add(categoryDto);
+        }
+        return categoryDtoList;
+    }
+
+    public AnimalI18nDto convertAnimalI18nToAnimalI18nDto(AnimalI18n animalI18n) {
+//        AnimalI18nDto animalI18nDto = new AnimalI18nDto();
+//        animalI18nDto.set
+        return null;
+    }
 }
+
+

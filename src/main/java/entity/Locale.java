@@ -17,6 +17,9 @@ public class Locale implements Serializable {
     @OneToMany(mappedBy = "localeAnimalI18n")
     private List<AnimalI18n> animalI18nLocale;
 
+    @OneToMany(mappedBy = "localeCategoryI18n")
+    private List<CategoryI18n> categoryI18nLocale;
+
 
     public Locale() {
     }
@@ -43,5 +46,13 @@ public class Locale implements Serializable {
 
     public void setAnimalI18nLocale(List<AnimalI18n> animalI18nLocale) {
         this.animalI18nLocale = animalI18nLocale;
+    }
+
+    public List<CategoryI18n> getCategoryI18nLocale() {
+        return categoryI18nLocale;
+    }
+
+    public void setCategoryI18nLocale(List<CategoryI18n> categoryI18nLocale) {
+        this.categoryI18nLocale = categoryI18nLocale;
     }
 }

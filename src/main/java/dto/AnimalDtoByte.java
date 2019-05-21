@@ -5,9 +5,9 @@ public class AnimalDtoByte {
 
     private String nameAnimal;
 
-    private int categoryId;
+    private long categoryId;
 
-    private String animalCategory;
+    private String nameCategory;
 
     private byte[] imageAnimal;
 
@@ -32,20 +32,20 @@ public class AnimalDtoByte {
         this.nameAnimal = nameAnimal;
     }
 
-    public int getCategoryId() {
+    public long getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(int categoryId) {
+    public void setCategoryId(long categoryId) {
         this.categoryId = categoryId;
     }
 
-    public String getAnimalCategory() {
-        return animalCategory;
+    public String getNameCategory() {
+        return nameCategory;
     }
 
-    public void setAnimalCategory(String animalCategory) {
-        this.animalCategory = animalCategory;
+    public void setNameCategory(String nameCategory) {
+        this.nameCategory = nameCategory;
     }
 
     public byte[] getImageAnimal() {

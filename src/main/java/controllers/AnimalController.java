@@ -43,7 +43,7 @@ public class AnimalController {
     public String getAllGet(ModelMap model, Locale loc) {
         String locale = loc.getLanguage();
         model.addAttribute("getAllList", animalService.getAll(locale));
-        model.addAttribute("getAllCategory", categoryService.getCategory());
+        model.addAttribute("getAllCategory", categoryService.getCategory(locale));
         return "getAll";
     }
 

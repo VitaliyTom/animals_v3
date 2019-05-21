@@ -3,11 +3,13 @@ package service.impl;
 import converter.Converter;
 import dao.AnimalDao;
 import dao.AnimalI18nDao;
+import dao.CategoryI18nDao;
 import dao.LocaleDao;
 import dto.AnimalDto;
 import dto.AnimalDtoByte;
 import entity.Animal;
 import entity.AnimalI18n;
+import entity.CategoryI18n;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,19 +29,16 @@ public class AnimalServiceImpl implements AnimalService {
 
     @Autowired
     AnimalDao animalDao;
-
     @Autowired
     CategoryService categoryService;
-
     @Autowired
     AnimalI18nDao animalI18nDao;
-
     @Autowired
     Converter cnvrt;
-
     @Autowired
     LocaleDao localeDao;
-
+    @Autowired
+    CategoryI18nDao categoryI18nDao;
 //-------------------------block CRUD------------------------------------
 
     @Override
@@ -66,8 +65,9 @@ public class AnimalServiceImpl implements AnimalService {
     public List<AnimalDtoByte> getAll(String locale) {
 
         List<AnimalI18n> getAllAnimalI18n = animalI18nDao.getAll(localeDao.read(locale));
+        List<CategoryI18n> getAllCategoryI18n = categoryI18nDao.getAll(localeDao.read(locale));
         List<Animal> getAll = animalDao.getAll();
-        return cnvrt.animalToAnimalDtoByte(getAll, getAllAnimalI18n);
+        return cnvrt.animalToAnimalDtoByte(getAll, getAllAnimalI18n, getAllCategoryI18n);
     }
 
     //fixme пересмотреть методы и лишние удалить
@@ -86,9 +86,8 @@ public class AnimalServiceImpl implements AnimalService {
     public AnimalDto getId(AnimalDto animalDto) {
         Animal animal = new Animal();
         animal.setAnimalId(animalDto.getIdAnimal());
-        animalDto = cnvrt.animalToAnimalDto(animalDao.read(animal.getAnimalId()));
 
-        return animalDto;
+        return cnvrt.animalToAnimalDto(animalDao.read(animal.getAnimalId()));
     }
 
     @Deprecated

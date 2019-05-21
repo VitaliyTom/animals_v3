@@ -5,7 +5,7 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-@Table(name = "categories")
+@Table(name = "category")
 public class Category implements Serializable {
 
     @Id
@@ -13,13 +13,18 @@ public class Category implements Serializable {
     @Column(name = "CATEGORY_ID")
     private long categoryId;
 
+    @OneToMany(mappedBy = "idCategory", cascade = CascadeType.ALL)
+    private List<CategoryI18n> categoryName;
 
-    @Column(name = "CATEGORY")
-    private String category;
+    @Column(name = "LOGO")
+    private String LOGO;
 
     @OneToMany(mappedBy = "categoryAnimal")
     private List<Animal> animalCategory;
 
+
+/*@OneToMany(mappedBy = "idAnimals", cascade = CascadeType.ALL)
+    private List<AnimalI18n> animalName;*/
 
     public Category() {
     }
@@ -32,12 +37,12 @@ public class Category implements Serializable {
         this.categoryId = categoryId;
     }
 
-    public String getCategory() {
-        return category;
+    public String getLOGO() {
+        return LOGO;
     }
 
-    public void setCategory(String category) {
-        this.category = category;
+    public void setLOGO(String LOGO) {
+        this.LOGO = LOGO;
     }
 
     public List<Animal> getAnimalCategory() {
@@ -48,8 +53,20 @@ public class Category implements Serializable {
         this.animalCategory = animalCategory;
     }
 
+    public List<CategoryI18n> getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(List<CategoryI18n> categoryName) {
+        this.categoryName = categoryName;
+    }
+
     @Override
     public String toString() {
-        return category;
+        return "Category{" +
+                "LOGO='" + LOGO + '\'' +
+                '}';
     }
 }
+
+

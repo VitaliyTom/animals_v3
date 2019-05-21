@@ -2,8 +2,11 @@ package dto;
 
 public class CategoryDto {
 
-    private String categoryDto;
     private long categoryIdDto;
+    private String categoryDto;
+
+    public CategoryDto() {
+    }
 
     public String getCategoryDto() {
         return categoryDto;

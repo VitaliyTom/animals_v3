@@ -6,6 +6,7 @@ public class AnimalI18nDto {
     private String animalI18nLocaleDto;
     private long idAnimals;
     private String nameAnimalI18n;
+    private String nameCategory;
 
     public AnimalI18nDto() {
     }
@@ -40,5 +41,13 @@ public class AnimalI18nDto {
 
     public void setNameAnimalI18n(String nameAnimalI18n) {
         this.nameAnimalI18n = nameAnimalI18n;
+    }
+
+    public String getNameCategory() {
+        return nameCategory;
+    }
+
+    public void setNameCategory(String nameCategory) {
+        this.nameCategory = nameCategory;
     }
 }

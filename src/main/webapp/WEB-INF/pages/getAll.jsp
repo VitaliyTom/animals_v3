@@ -32,7 +32,7 @@
                 <tr>
                     <td><c:out value="${ani.idAnimal}"/></td>
                     <td><c:out value="${ani.nameAnimal}"/></td>
-                    <td><c:out value="${ani.animalCategory}"/></td>
+                    <td><c:out value="${ani.nameCategory}"/></td>
                     <td><img src="data:image/png;base64,<media:mediaByte mediaByte="${ani.imageAnimal}"/>" height="50px" width="70px"></td>
                     <td>
                         <audio controls="controls" autobuffer="autobuffer">
@@ -53,10 +53,10 @@
                 <c:forEach var="cat" items="${getAllCategory}">
                     <tr>
                         <td>
-                            <c:out value="${cat.categoryId}"/>
+                            <c:out value="${cat.categoryIdDto}"/>
                         </td>
                         <td>
-                            <c:out value="${cat.category}"/>
+                            <c:out value="${cat.categoryDto}"/>
                         </td>
                     </tr>
                 </c:forEach>

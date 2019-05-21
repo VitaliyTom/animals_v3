@@ -38,7 +38,7 @@
 
     <div align="center" class="get-Animal-Text-Left">
         <div align="center" id="ga1">
-            <h3 style="color: bisque"><spring:message code="getAnimal.animal"/></h3>
+            <h3 style="color: bisque"><spring:message code="getAnimal.animal"/> - <spring:message code="getAnimal.category"/></h3>
             <div align="center" id="ga2">
             </div>
             <div align="left" id="ga">

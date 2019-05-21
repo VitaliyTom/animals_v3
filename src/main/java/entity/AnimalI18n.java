@@ -1,8 +1,6 @@
 package entity;
 
-
 import javax.persistence.*;
-import javax.print.attribute.standard.MediaSize;
 import java.io.Serializable;
 
 @Entity
@@ -25,9 +23,7 @@ public class AnimalI18n implements Serializable {
     @JoinColumn(name = "ID_LOCALE")
     private Locale localeAnimalI18n;
 
-    public AnimalI18n() {
-    }
-
+    public AnimalI18n() {}
 
     public long getI18nAnimalId() {
         return i18nAnimalId;

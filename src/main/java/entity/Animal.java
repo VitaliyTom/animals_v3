@@ -13,11 +13,9 @@ public class Animal implements Serializable {
     @Column(name = "ANIMAL_ID")
     private long animalId;
 
-
     @OneToMany(mappedBy = "idAnimals", cascade = CascadeType.ALL)
     private List<AnimalI18n> animalName;
 
-//    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_CATEGORY")
     private Category categoryAnimal;
