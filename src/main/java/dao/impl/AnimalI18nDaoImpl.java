@@ -20,6 +20,7 @@ public class AnimalI18nDaoImpl implements AnimalI18nDao {
 
     @Override
     public AnimalI18n getId(AnimalI18n animalI18n) {
+
         String animalI18nHQL = "FROM AnimalI18n WHERE localeAnimalI18n =:locale AND idAnimals =:animalId";
         Query query = sessionFactory.getCurrentSession().createQuery(animalI18nHQL);
         query.setParameter("locale", animalI18n.getLocaleAnimalI18n());

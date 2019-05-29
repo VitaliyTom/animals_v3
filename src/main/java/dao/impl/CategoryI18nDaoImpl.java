@@ -21,12 +21,10 @@ public class CategoryI18nDaoImpl implements CategoryI18nDao {
     @Override
     public CategoryI18n getId(CategoryI18n categoryI18n) {
 
-        String categoryI18nHql = "FROM CategoryI18n WHERE localeCategoryI18n =:locale AND idCategory =:idCategory";
+        String categoryI18nHql = "FROM CategoryI18n WHERE localeCategoryI18n =:locale AND idCategory =:categoryId";
         Query query = sessionFactory.getCurrentSession().createQuery(categoryI18nHql);
-        query.setParameter("locale", categoryI18n.getLocaleCategoryI18n() );
-        query.setParameter("idCategory", categoryI18n.getIdCategory());
-
-
+        query.setParameter("locale", categoryI18n.getLocaleCategoryI18n());
+        query.setParameter("categoryId", categoryI18n.getIdCategory());
         return (CategoryI18n) query.uniqueResult();
     }
 

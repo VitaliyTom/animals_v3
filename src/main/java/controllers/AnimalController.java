@@ -1,6 +1,7 @@
 package controllers;
 
 import dto.AnimalDto;
+import dto.CategoryDto;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -58,24 +59,40 @@ public class AnimalController {
 
 //    -----------------block CRUD-----------------------------
 
-    @RequestMapping(value = "/create", method = RequestMethod.POST)
-    public String createAnimal(@Valid @ModelAttribute("newAnimal") AnimalDto animalDto,
-                               BindingResult result) {
-
-        if (!result.hasErrors()) {
-            animalService.create(animalDto);
-            System.out.println(animalDto.getNameAnimalRus());
-        }
-        return "loginAdmin";
-    }
-
     @RequestMapping(value = "/create", method = RequestMethod.GET)
     public String createAnimal(Model model) {
-
         AnimalDto animalDto = new AnimalDto();
         model.addAttribute("newAnimal", animalDto);
         return "create";
     }
+
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public String createAnimal(@Valid @ModelAttribute("newAnimal") AnimalDto animalDto,
+                               BindingResult result) {
+        if (!result.hasErrors()) {
+            animalService.create(animalDto);
+        }
+        return "loginAdmin";
+    }
+
+    @RequestMapping(value = "/createCategory", method = RequestMethod.GET)
+    public String createCategory(Model model) {
+        CategoryDto categoryDto = new CategoryDto();
+        model.addAttribute("newCategory", categoryDto);
+        return "createCategory";
+    }
+
+    @RequestMapping(value = "/createCategory", method = RequestMethod.POST)
+    public String createCategory(@Valid @ModelAttribute("newCategory") CategoryDto categoryDto,
+                                 BindingResult result) {
+
+        if (!result.hasErrors()) {
+            categoryService.create(categoryDto);
+
+        }
+        return "loginAdmin";
+    }
+
 
     @RequestMapping("/read")
     public String readAnimal(ModelMap model) {

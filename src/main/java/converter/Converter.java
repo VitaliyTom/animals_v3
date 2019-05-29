@@ -36,21 +36,47 @@ public class Converter {
         String ru = "ru";
         String en = "en";
         List<AnimalI18n> animalI18nList = new ArrayList<>();
+//        List<CategoryI18n> categoryI18nList = new ArrayList<>();
         Animal animal = new Animal();
 
         Category category = categoryDao.read(animalDto.getCategoryId());
+
+//        if (animalDto.getLogo() != null) {
+//            try {
+//                category.setLogo(animalDto.getLogo().getBytes());
+//            } catch (IOException e) {
+//                LOGGER.error("error_field_upload_getBytes in animalDto to animal-logo");
+//                e.printStackTrace();
+//            }
+//        }
+        category.setCategoryId(animalDto.getCategoryId());
+
+//        CategoryI18n categoryI18nRu = new CategoryI18n();
+//        categoryI18nRu.setLocaleCategoryI18n(localeDao.read(ru));
+//        categoryI18nRu.setIdCategory(category);
+//        categoryI18nRu.setNameCategoryI18n(animalDto.getNameAnimalRus());
+//        categoryI18nList.add(categoryI18nRu);
+//
+//        CategoryI18n categoryI18nEn = new CategoryI18n();
+//        categoryI18nEn.setLocaleCategoryI18n(localeDao.read(en));
+//        categoryI18nEn.setIdCategory(category);
+//        categoryI18nEn.setNameCategoryI18n(animalDto.getNameAnimalEng());
+//        categoryI18nList.add(categoryI18nEn);
+//
+//        category.setCategoryName(categoryI18nList);
+
         animal.setCategoryAnimal(category);
         animal.setAnimalId(animalDto.getIdAnimal());
 
         AnimalI18n animalI18nRu = new AnimalI18n();
         animalI18nRu.setLocaleAnimalI18n(localeDao.read(ru));
-//        animalI18nRu.setAnimalI18nLocale(ru);
+
         animalI18nRu.setNameAnimalI18n(animalDto.getNameAnimalRus());
         animalI18nRu.setIdAnimals(animal);
         animalI18nList.add(animalI18nRu);
 
         AnimalI18n animalI18nEn = new AnimalI18n();
-//        animalI18nEn.setAnimalI18nLocale(en);
+
         animalI18nEn.setLocaleAnimalI18n(localeDao.read(en));
         animalI18nEn.setNameAnimalI18n(animalDto.getNameAnimalEng());
         animalI18nEn.setIdAnimals(animal);
@@ -59,12 +85,14 @@ public class Converter {
         animal.setAnimalName(animalI18nList);
 
         //try catch img mp3
-        try {                                                     // fixme добавить условие на налпоинтер
-            animal.setAnimalImage(animalDto.getImageAnimal().getBytes());
-            animal.setAnimalAudio(animalDto.getAudioAnimal().getBytes());
-        } catch (IOException e) {
-            LOGGER.error("error_field_upload_getBytes in animalDto to animal");
-            e.printStackTrace();
+        if (animalDto.getImageAnimal() != null && animalDto.getAudioAnimal() != null) {
+            try {
+                animal.setAnimalImage(animalDto.getImageAnimal().getBytes());
+                animal.setAnimalAudio(animalDto.getAudioAnimal().getBytes());
+            } catch (IOException e) {
+                LOGGER.error("error_field_upload_getBytes in animalDto to animal-img and audio");
+                e.printStackTrace();
+            }
         }
 
         return animal;
@@ -79,22 +107,23 @@ public class Converter {
 
         List<AnimalDtoByte> animalI18nList = new ArrayList<>();
 
-        for (Animal i : getAll) {
+        for (Animal animals : getAll) {
             AnimalDtoByte animalDtoByte = new AnimalDtoByte();
-            animalDtoByte.setIdAnimal(i.getAnimalId());
+            animalDtoByte.setIdAnimal(animals.getAnimalId());
 //            animalDtoByte.setAnimalCategory(String.valueOf(i.getCategoryAnimal()));
-            animalDtoByte.setImageAnimal(i.getAnimalImage());
-            animalDtoByte.setAudioAnimal(i.getAnimalAudio());
+            animalDtoByte.setImageAnimal(animals.getAnimalImage());
+            animalDtoByte.setAudioAnimal(animals.getAnimalAudio());
 
             for (AnimalI18n nameAnimal : getAllAnimalI18n) {
-                if (nameAnimal.getIdAnimals().getAnimalId() == i.getAnimalId()) {
+                if (nameAnimal.getIdAnimals().getAnimalId() == animals.getAnimalId()) {
                     animalDtoByte.setNameAnimal(nameAnimal.getNameAnimalI18n());
                 }
             }
             for (CategoryI18n nameCategory : getAllCategoryI18n) {
-                if (nameCategory.getIdCategory() == i.getCategoryAnimal()) {
+                if (nameCategory.getIdCategory() == animals.getCategoryAnimal()) {
                     animalDtoByte.setCategoryId(nameCategory.getI18nCategoryId());
                     animalDtoByte.setNameCategory(nameCategory.getNameCategoryI18n());
+                    animalDtoByte.setLogoCategory(animals.getCategoryAnimal().getLogo());
                 }
             }
 
@@ -117,19 +146,31 @@ public class Converter {
         AnimalDtoByte animalDtoByte = new AnimalDtoByte();
         animalDtoByte.setIdAnimal(animal.getAnimalId());
         animalDtoByte.setNameAnimal(animalI18n.getNameAnimalI18n());
+        animalDtoByte.setLogoCategory(animal.getCategoryAnimal().getLogo());
         //      animalDtoByte.setAnimalCategory(String.valueOf(animal.getCategoryAnimal()));
         animalDtoByte.setImageAnimal(animal.getAnimalImage());
         animalDtoByte.setAudioAnimal(animal.getAnimalAudio());
+
         CategoryI18n categoryI18n = new CategoryI18n();
         categoryI18n.setIdCategory(animal.getCategoryAnimal());
-        categoryI18n.setLocaleCategoryI18n (animalI18n.getLocaleAnimalI18n());
-        animalDtoByte.setNameCategory(categoryI18nDao.getId(categoryI18n).getNameCategoryI18n());
+        categoryI18n.setLocaleCategoryI18n(animalI18n.getLocaleAnimalI18n());
+        CategoryI18n categoryI18nName = categoryI18nDao.getId(categoryI18n);
+
+        animalDtoByte.setNameCategory(categoryI18nName.getNameCategoryI18n());
+
+//FIXME
+//        Category category = categoryDao.read(animal.getCategoryAnimal().getCategoryId());
+//
+//        CategoryI18n categoryI18n = new CategoryI18n();
+//        categoryI18n.setIdCategory(category);
+// //       categoryI18n.setIdCategory(animal.getCategoryAnimal());
+//        categoryI18n.setLocaleCategoryI18n(animalI18n.getLocaleAnimalI18n());
+//        animalDtoByte.setNameCategory(categoryI18nDao.getId(categoryI18n).getNameCategoryI18n());
         return animalDtoByte;
 
     }
 
     public List<CategoryDto> categoryToCategoryDto(List<Category> categoryList, List<CategoryI18n> categoryI18nList) {
-
         List<CategoryDto> categoryDtoList = new ArrayList<>();
 
         for (Category category : categoryList) {
@@ -138,13 +179,46 @@ public class Converter {
 
             for (CategoryI18n nameCategory : categoryI18nList) {
                 if (nameCategory.getIdCategory().getCategoryId() == category.getCategoryId()) {
-                    categoryDto.setCategoryDto(nameCategory.getNameCategoryI18n());
+                    categoryDto.setNameCategoryRus(nameCategory.getNameCategoryI18n());
                 }
             }
-
             categoryDtoList.add(categoryDto);
         }
         return categoryDtoList;
+    }
+
+    public Category categoryDtoToCategory(CategoryDto categoryDto) {
+        String ru = "ru";
+        String en = "en";
+        List<CategoryI18n> categoryI18nList = new ArrayList<>();
+        Category category = new Category();
+        category.setCategoryId(categoryDto.getCategoryIdDto());
+
+        CategoryI18n categoryI18nRu = new CategoryI18n();
+        categoryI18nRu.setLocaleCategoryI18n(localeDao.read(ru));
+        categoryI18nRu.setIdCategory(category);
+        categoryI18nRu.setNameCategoryI18n(categoryDto.getNameCategoryRus());
+        categoryI18nList.add(categoryI18nRu);
+
+        CategoryI18n categoryI18nEn = new CategoryI18n();
+        categoryI18nEn.setLocaleCategoryI18n(localeDao.read(en));
+        categoryI18nEn.setIdCategory(category);
+        categoryI18nEn.setNameCategoryI18n(categoryDto.getNameCategoryEng());
+        categoryI18nList.add(categoryI18nEn);
+
+        category.setCategoryName(categoryI18nList);
+
+        if (categoryDto.getLogo() != null) {
+            try {
+                category.setLogo(categoryDto.getLogo().getBytes());
+            } catch (IOException e) {
+                LOGGER.error("error_field_upload_getBytes in categoryDto to category-logo");
+                e.printStackTrace();
+            }
+        }
+
+
+        return category;
     }
 
     public AnimalI18nDto convertAnimalI18nToAnimalI18nDto(AnimalI18n animalI18n) {

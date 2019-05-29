@@ -58,13 +58,5 @@ public class CategoryI18n implements Serializable {
         this.localeCategoryI18n = localeCategoryI18n;
     }
 
-    @Override
-    public String toString() {
-        return "CategoryI18n{" +
-                "i18nCategoryId=" + i18nCategoryId +
-                ", idCategory=" + idCategory +
-                ", nameCategoryI18n='" + nameCategoryI18n + '\'' +
-                ", localeCategoryI18n=" + localeCategoryI18n +
-                '}';
-    }
+
 }

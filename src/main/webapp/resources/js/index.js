@@ -17,10 +17,12 @@ $(document).ready(function () {
                                 // var img = JSON.stringify(data.imageAnimalDtoByteMedia);
               /*  var lang = JSON.stringify(data.nameAnimal);*/
                 var $getAnimalInfo = $('<div align="center" class="info">' +
-                    ' <h3 style="color: bisque">' + data.nameAnimal + ' - ' + data.nameCategory+ '</h3> </div>');
+                    ' <h3 style="color: bisque">' + data.nameAnimal + " " + data.nameCategory+ '</h3> </div>');
                 var $getAnimalMediaLeft = $('<div align="center" class="info">' +
                     ' <spring:message code="getAnimal.animal"/> </div>' +
                     '<div align="center" class="get-animal">' + id +
+                    '<img class="img2" src="data:image/png;base64,' + data.logoCategory + '" height="100px" width="100px">' +
+                    '<p>' +
                     '<img class="img" src="data:image/png;base64,' + data.imageAnimal + '" height="500px" width="700px">' +
                     '<p>' +
                     '<audio controls="controls" autobuffer="autobuffer">' +

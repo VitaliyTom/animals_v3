@@ -18,7 +18,7 @@
 
 </head>
 <body>
-<div class="wrapper"  >
+<div class="wrapper">
     <div align="right">
         <table align="center" class="animal">
             <tr>
@@ -26,6 +26,7 @@
                 <td>name</td>
                 <td>category</td>
                 <td>img</td>
+                <td>logo</td>
                 <td>audio</td>
             </tr>
             <c:forEach var="ani" items="${getAllList}">
@@ -33,7 +34,10 @@
                     <td><c:out value="${ani.idAnimal}"/></td>
                     <td><c:out value="${ani.nameAnimal}"/></td>
                     <td><c:out value="${ani.nameCategory}"/></td>
-                    <td><img src="data:image/png;base64,<media:mediaByte mediaByte="${ani.imageAnimal}"/>" height="50px" width="70px"></td>
+                    <td><img src="data:image/png;base64,<media:mediaByte mediaByte="${ani.imageAnimal}"/>" height="50px"
+                             width="70px"></td>
+                    <td><img src="data:image/png;base64,<media:mediaByte mediaByte="${ani.logoCategory}"/>"
+                             height="50px" width="70px"></td>
                     <td>
                         <audio controls="controls" autobuffer="autobuffer">
                             <source src="data:audio/mp3;base64,<media:mediaByte mediaByte="${ani.audioAnimal}"/>">
@@ -54,9 +58,11 @@
                     <tr>
                         <td>
                             <c:out value="${cat.categoryIdDto}"/>
+
                         </td>
                         <td>
-                            <c:out value="${cat.categoryDto}"/>
+                            <c:out value="${cat.nameCategoryRus}"/>
+                            <c:out value="${cat.nameCategoryEng}"/>
                         </td>
                     </tr>
                 </c:forEach>

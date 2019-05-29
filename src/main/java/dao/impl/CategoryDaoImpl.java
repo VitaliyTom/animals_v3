@@ -31,4 +31,9 @@ public class CategoryDaoImpl implements CategoryDao {
     public Category read(long categoryId) {
         return sessionFactory.getCurrentSession().get(Category.class, categoryId);
     }
+
+    @Override
+    public void saveOrUpdate(Category category) {
+        sessionFactory.getCurrentSession().saveOrUpdate(category);
+    }
 }

@@ -10,5 +10,6 @@ public interface CategoryDao {
 
     Category read(long categoryId);
 
+    void saveOrUpdate(Category  category);
 
 }

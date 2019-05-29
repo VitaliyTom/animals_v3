@@ -26,6 +26,11 @@ public class CategoryServiceImpl implements CategoryService {
     Converter cnvrt;
 
     @Override
+    public void create(CategoryDto categoryDto) {
+        categoryDao.saveOrUpdate(cnvrt.categoryDtoToCategory(categoryDto));
+    }
+
+    @Override
     public List<CategoryDto> getCategory(String locale) {
         List<Category> categoryList = categoryDao.getAllCategory();
         List<CategoryI18n> categoryI18nList = categoryI18nDao.getAll(localeDao.read(locale));
@@ -33,4 +38,3 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
 }
-//   model.addAttribute("getAllCategory", getAllCategory);

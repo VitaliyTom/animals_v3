@@ -57,13 +57,4 @@ public class AnimalI18n implements Serializable {
         this.localeAnimalI18n = localeAnimalI18n;
     }
 
-    @Override
-    public String toString() {
-        return "AnimalI18n{" +
-                "i18nAnimalId=" + i18nAnimalId +
-                ", idAnimals=" + idAnimals +
-                ", nameAnimalI18n='" + nameAnimalI18n + '\'' +
-                ", localeAnimalI18n=" + localeAnimalI18n +
-                '}';
-    }
-}
+   }

@@ -1,5 +1,9 @@
 package entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -7,6 +11,7 @@ import java.util.List;
 @Entity
 @Table(name = "animals")
 public class Animal implements Serializable {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,6 +21,9 @@ public class Animal implements Serializable {
     @OneToMany(mappedBy = "idAnimals", cascade = CascadeType.ALL)
     private List<AnimalI18n> animalName;
 
+    //    @JsonManagedReference
+    @JsonIgnore
+    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ID_CATEGORY")
     private Category categoryAnimal;
@@ -69,6 +77,5 @@ public class Animal implements Serializable {
     public void setAnimalAudio(byte[] animalAudio) {
         this.animalAudio = animalAudio;
     }
-
 
 }

@@ -20,7 +20,12 @@
 
     <p>
     <form action="${contextPath}/create" method="get">
-        <input type="submit" value="[ create ]"/>
+        <input type="submit" value="[ create animal ]"/>
+    </form>
+    </p>
+    <p>
+    <form action="${contextPath}/createCategory" method="get">
+        <input type="submit" value="[ create category ]"/>
     </form>
     </p>
     <p>

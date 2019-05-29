@@ -1,5 +1,9 @@
 package entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -16,15 +20,14 @@ public class Category implements Serializable {
     @OneToMany(mappedBy = "idCategory", cascade = CascadeType.ALL)
     private List<CategoryI18n> categoryName;
 
-    @Column(name = "LOGO")
-    private String LOGO;
+    @Column(name = "logo")
+    private byte[] logo;
 
+    //    @JsonIgnore
+//    @JsonBackReference
+    @JsonManagedReference
     @OneToMany(mappedBy = "categoryAnimal")
     private List<Animal> animalCategory;
-
-
-/*@OneToMany(mappedBy = "idAnimals", cascade = CascadeType.ALL)
-    private List<AnimalI18n> animalName;*/
 
     public Category() {
     }
@@ -37,12 +40,20 @@ public class Category implements Serializable {
         this.categoryId = categoryId;
     }
 
-    public String getLOGO() {
-        return LOGO;
+    public List<CategoryI18n> getCategoryName() {
+        return categoryName;
     }
 
-    public void setLOGO(String LOGO) {
-        this.LOGO = LOGO;
+    public void setCategoryName(List<CategoryI18n> categoryName) {
+        this.categoryName = categoryName;
+    }
+
+    public byte[] getLogo() {
+        return logo;
+    }
+
+    public void setLogo(byte[] logo) {
+        this.logo = logo;
     }
 
     public List<Animal> getAnimalCategory() {
@@ -53,20 +64,6 @@ public class Category implements Serializable {
         this.animalCategory = animalCategory;
     }
 
-    public List<CategoryI18n> getCategoryName() {
-        return categoryName;
-    }
-
-    public void setCategoryName(List<CategoryI18n> categoryName) {
-        this.categoryName = categoryName;
-    }
-
-    @Override
-    public String toString() {
-        return "Category{" +
-                "LOGO='" + LOGO + '\'' +
-                '}';
-    }
 }
 
 

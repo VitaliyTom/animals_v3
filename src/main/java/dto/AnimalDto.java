@@ -12,11 +12,11 @@ public class AnimalDto {
 
     private long categoryId;
 
-    private String animalCategory;
-
     private MultipartFile ImageAnimal;
 
     private MultipartFile audioAnimal;
+
+
 
     public AnimalDto() {
     }
@@ -51,14 +51,6 @@ public class AnimalDto {
 
     public void setCategoryId(long categoryId) {
         this.categoryId = categoryId;
-    }
-
-    public String getAnimalCategory() {
-        return animalCategory;
-    }
-
-    public void setAnimalCategory(String animalCategory) {
-        this.animalCategory = animalCategory;
     }
 
     public MultipartFile getImageAnimal() {

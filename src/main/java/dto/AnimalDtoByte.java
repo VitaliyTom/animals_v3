@@ -13,6 +13,9 @@ public class AnimalDtoByte {
 
     private byte[] audioAnimal;
 
+    private byte[] logoCategory;
+
+
     public AnimalDtoByte() {
     }
 
@@ -62,5 +65,13 @@ public class AnimalDtoByte {
 
     public void setAudioAnimal(byte[] audioAnimal) {
         this.audioAnimal = audioAnimal;
+    }
+
+    public byte[] getLogoCategory() {
+        return logoCategory;
+    }
+
+    public void setLogoCategory(byte[] logoCategory) {
+        this.logoCategory = logoCategory;
     }
 }

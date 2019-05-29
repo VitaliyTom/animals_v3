@@ -14,7 +14,7 @@
     <link href="<c:url value="/resources/css/style.css"/>" type="text/css" rel="stylesheet">
 
     <meta charset="utf-8"/>
-    <title>Загрузка файла</title>
+    <title>create animal</title>
 </head>
 <body class="crud">
 
@@ -26,15 +26,24 @@
         Введите животное на английском<springform:input type="text" path="nameAnimalEng"/>
         <springform:errors path="nameAnimalEng"/>
         <br>
+        <%--Введите категорию на русском<springform:input type="text" path="nameCategoryRus"/>--%>
+        <%--<springform:errors path="nameCategoryRus"/>--%>
+        <%--<br>--%>
+        <%--Введите категорию на английском<springform:input type="text" path="nameCategoryEng"/>--%>
+        <%--<springform:errors path="nameCategoryEng"/>--%>
+        <%--<br>--%>
         Введите id категорий <springform:input type="text" path="categoryId"/>
         <springform:errors path="categoryId"/>
         <br>
-        Загрузите фотографию на сервер <springform:input type="file" path="imageAnimal" accept="image/*"/>
+        Загрузите фотографию  <springform:input type="file" path="imageAnimal" accept="image/*"/>
         <springform:errors path="imageAnimal"/>
         <br>
-        Загрузите звук на сервер <springform:input type="file" path="audioAnimal"/>
+        Загрузите звук  <springform:input type="file" path="audioAnimal"/>
         <springform:errors path="audioAnimal"/>
         <br>
+        <%--Загрузите лого <springform:input type="file" path="logo" accept="image/*"/>--%>
+        <%--<springform:errors path="logo"/>--%>
+        <%--<br>--%>
         <input type="submit" value="save animal"/>
     </springform:form>
 
