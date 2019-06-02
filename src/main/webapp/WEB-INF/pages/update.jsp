@@ -19,7 +19,8 @@
 
 <div align="center" class="update-animal">
 
-    <springform:form method="post" action="${contextPath}/update" enctype="multipart/form-data" modelAttribute="newAnimal">
+    <springform:form method="post" action="${contextPath}/update" enctype="multipart/form-data"
+                     modelAttribute="newAnimal">
         Введите id животного для обновления <springform:input type="text" path="idAnimal"/>
         <springform:errors path="idAnimal"/>
         <br>
@@ -31,9 +32,6 @@
         <br>
         Введите id категорий <springform:input type="text" path="categoryId"/>
         <springform:errors path="categoryId"/>
-        <br>
-        Введите название категорий <springform:input type="text" path="animalCategory"/>
-        <springform:errors path="animalCategory"/>
         <br>
         Загрузите фотографию <springform:input type="file" path="imageAnimal" accept="image/*"/>
         <springform:errors path="imageAnimal"/>

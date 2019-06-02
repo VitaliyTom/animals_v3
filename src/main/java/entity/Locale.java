@@ -14,10 +14,10 @@ public class Locale implements Serializable {
     @Column(name = "LOCALE")
     private String locale;
 
-    @OneToMany(mappedBy = "localeAnimalI18n")
+    @OneToMany(mappedBy = "localeAnimalI18n", cascade={CascadeType.ALL})
     private List<AnimalI18n> animalI18nLocale;
 
-    @OneToMany(mappedBy = "localeCategoryI18n")
+    @OneToMany(mappedBy = "localeCategoryI18n", cascade={CascadeType.ALL})
     private List<CategoryI18n> categoryI18nLocale;
 
 

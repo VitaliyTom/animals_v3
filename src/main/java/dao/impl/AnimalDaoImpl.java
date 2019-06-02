@@ -39,7 +39,6 @@ public class AnimalDaoImpl implements AnimalDao {
     public void saveOrUpdate(Animal animal) {
 
         sessionFactory.getCurrentSession().saveOrUpdate(animal);
-
     }
 
     @Override

@@ -1,23 +1,22 @@
 package service.impl;
 
-import converter.Converter;
-import dao.AnimalDao;
-import dao.AnimalI18nDao;
-import dao.CategoryI18nDao;
-import dao.LocaleDao;
+import converter.Dto2Entity.AnimalAjaxDto2AnimalConverter;
+import converter.Dto2Entity.AnimalDto2AnimalEntityConverter;
+import converter.Entity2Dto.AnimalI18n2AnimalDtoByteConverter;
+import converter.Entity2Dto.CategoryI18n2AnimalDtoByteConverter;
+import dao.*;
+import dto.AnimalAjaxDto;
 import dto.AnimalDto;
 import dto.AnimalDtoByte;
-import entity.Animal;
-import entity.AnimalI18n;
-import entity.CategoryI18n;
+import entity.*;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import service.AnimalService;
-import service.CategoryService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -28,23 +27,66 @@ public class AnimalServiceImpl implements AnimalService {
     private static final Logger LOGGER = Logger.getLogger(AnimalServiceImpl.class);
 
     @Autowired
+    LocaleDao localeDao;
+    @Autowired
     AnimalDao animalDao;
     @Autowired
-    CategoryService categoryService;
+    CategoryDao categoryDao;
     @Autowired
     AnimalI18nDao animalI18nDao;
     @Autowired
-    Converter cnvrt;
-    @Autowired
-    LocaleDao localeDao;
-    @Autowired
     CategoryI18nDao categoryI18nDao;
-//-------------------------block CRUD------------------------------------
+    @Autowired
+    AnimalDto2AnimalEntityConverter animalDto2AnimalEntityConverter;
+    @Autowired
+    AnimalAjaxDto2AnimalConverter animalAjaxDto2AnimalConverter;
+    @Autowired
+    AnimalI18n2AnimalDtoByteConverter animalI18n2AnimalDtoByteConverter;
+    @Autowired
+    CategoryI18n2AnimalDtoByteConverter categoryI18n2AnimalDtoByteConverter;
 
     @Override
-    @Transactional                    //fixme разобраться!
+    @Transactional                                                //fixme разобраться с этой аннотацией!
     public void create(AnimalDto animalDto) {
-        animalDao.saveOrUpdate(cnvrt.animalDtoToAnimal(animalDto));
+        String ru = "ru";
+        String en = "en";
+        List<AnimalI18n> animalI18nList = new ArrayList<>();
+        Animal animal = animalDto2AnimalEntityConverter.convert(animalDto);
+        animalDao.saveOrUpdate(animal);
+        AnimalI18n animalI18nRu = new AnimalI18n();
+        animalI18nRu.setLocaleAnimalI18n(localeDao.read(ru));
+        animalI18nRu.setNameAnimalI18n(animalDto.getNameAnimalRus());
+        animalI18nRu.setIdAnimals(animal);
+        animalI18nList.add(animalI18nRu);
+        AnimalI18n animalI18nEn = new AnimalI18n();
+        animalI18nEn.setLocaleAnimalI18n(localeDao.read(en));
+        animalI18nEn.setNameAnimalI18n(animalDto.getNameAnimalEng());
+        animalI18nEn.setIdAnimals(animal);
+        animalI18nList.add(animalI18nEn);
+        animal.setAnimalName(animalI18nList);
+               animalDao.saveOrUpdate(animal);
+    }
+    @Override
+    public void update(AnimalDto animalDto) {
+        String ru = "ru";
+        String en = "en";
+        List<AnimalI18n> animalI18nList = new ArrayList<>();
+        Animal animal = animalDto2AnimalEntityConverter.convert(animalDto);
+        AnimalI18n animalI18nRu = new AnimalI18n();
+        animalI18nRu.setLocaleAnimalI18n(localeDao.read(ru));
+        animalI18nRu.setIdAnimals(animal);
+        animalI18nRu.setI18nAnimalId(animalI18nDao.getId(animalI18nRu).getI18nAnimalId());
+        animalI18nRu.setNameAnimalI18n(animalDto.getNameAnimalRus());
+        animalI18nList.add(animalI18nRu);
+        AnimalI18n animalI18nEn = new AnimalI18n();
+        animalI18nEn.setLocaleAnimalI18n(localeDao.read(en));
+        animalI18nEn.setIdAnimals(animal);
+        animalI18nEn.setI18nAnimalId(animalI18nDao.getId(animalI18nEn).getI18nAnimalId());
+        animalI18nEn.setNameAnimalI18n(animalDto.getNameAnimalEng());
+        animalI18nList.add(animalI18nEn);
+        animal.setAnimalName(animalI18nList);
+        animalDao.saveOrUpdate(animal);
+
     }
 
     @Override
@@ -53,12 +95,7 @@ public class AnimalServiceImpl implements AnimalService {
         animalDao.delete(id);
     }
 
-    @Override                       //fixme добавить апдейт на конкретные поля
-    public void update(AnimalDto animalDto) {
 
-           animalDao.saveOrUpdate(cnvrt.animalDtoToAnimal(animalDto));
-    }
-//------------------------block CRUD end---------------------------------
 
     @Override
     @Transactional
@@ -66,28 +103,47 @@ public class AnimalServiceImpl implements AnimalService {
 
         List<AnimalI18n> getAllAnimalI18n = animalI18nDao.getAll(localeDao.read(locale));
         List<CategoryI18n> getAllCategoryI18n = categoryI18nDao.getAll(localeDao.read(locale));
-        List<Animal> getAll = animalDao.getAll();
-        return cnvrt.animalToAnimalDtoByte(getAll, getAllAnimalI18n, getAllCategoryI18n);
+        List<AnimalDtoByte> animalDtoByteList = animalI18n2AnimalDtoByteConverter.convert(getAllAnimalI18n);
+        List<AnimalDtoByte> animalDtoByteListCategoryName = categoryI18n2AnimalDtoByteConverter.convert(getAllCategoryI18n);
+
+        for (AnimalDtoByte animalDtoByte : animalDtoByteList) {
+
+            for (AnimalDtoByte AnimalDtoByteCategory : animalDtoByteListCategoryName) {
+                if (animalDtoByte.getCategoryId() == AnimalDtoByteCategory.getCategoryId()) {
+                    animalDtoByte.setNameCategory(AnimalDtoByteCategory.getNameCategory());
+                    animalDtoByte.setLogoCategory(AnimalDtoByteCategory.getLogoCategory());
+                }
+            }
+        }
+        return animalDtoByteList;
     }
 
-    //fixme пересмотреть методы и лишние удалить
     @Override
-    public void getId(AnimalDto animalDto, ModelMap model) {
+    public AnimalDtoByte getIdAjax(AnimalAjaxDto animalAjaxDto) {
 
-//        Animal animal = new Animal();
-//        animal.setAnimalId(animalDto.getIdAnimal());
+        Animal animal = animalAjaxDto2AnimalConverter.convert(animalAjaxDto);
+        Locale locale = localeDao.read(animalAjaxDto.getAnimalI18nLocaleDto());
+        AnimalI18n animalI18n = new AnimalI18n();
+        animalI18n.setIdAnimals(animal);
+        animalI18n.setLocaleAnimalI18n(locale);
+        animalI18n = animalI18nDao.getId(animalI18n);
 
-//        animalDto = cnvrt.animalToAnimalDto(animalDao.read(animal.getAnimalId()));
-//        model.addAttribute("animalDto", animalDto);
-    }
+        Category category = categoryDao.read(animal.getCategoryAnimal().getCategoryId());
+        CategoryI18n categoryI18n = new CategoryI18n();
+        categoryI18n.setIdCategory(category);
+        categoryI18n.setLocaleCategoryI18n(locale);
+        categoryI18n = categoryI18nDao.getId(categoryI18n);
 
-    //fixme пересмотреть методы и лишние удалить
-    @Override
-    public AnimalDto getId(AnimalDto animalDto) {
-        Animal animal = new Animal();
-        animal.setAnimalId(animalDto.getIdAnimal());
+        AnimalDtoByte animalDtoByte = new AnimalDtoByte();
+        animalDtoByte.setIdAnimal(animal.getAnimalId());
+        animalDtoByte.setNameAnimal(animalI18n.getNameAnimalI18n());
+        animalDtoByte.setImageAnimal(animal.getAnimalImage());
+        animalDtoByte.setAudioAnimal(animal.getAnimalAudio());
+        animalDtoByte.setCategoryId(category.getCategoryId());
+        animalDtoByte.setNameCategory(categoryI18n.getNameCategoryI18n());
+        animalDtoByte.setLogoCategory(category.getLogo());
 
-        return cnvrt.animalToAnimalDto(animalDao.read(animal.getAnimalId()));
+        return animalDtoByte;
     }
 
     @Deprecated
@@ -95,29 +151,22 @@ public class AnimalServiceImpl implements AnimalService {
     @Transactional
     public void getIdMax(ModelMap model) {
         Animal animalIdMax = animalDao.getIdMax();
-
         Random rnd = new Random();
         int id = 0;
         int i = 1;
         boolean flag = true;
-
         while (flag) {
             //selection of an arbitrary id in the range of existing
             id = 1 + rnd.nextInt((int) animalIdMax.getAnimalId());
             Animal animal = animalDao.read((long) id);
-
             //we check there is an object under such id or not
             if (animal == null) {
                 i++;
-
             } else {
-
                 flag = false;
                 LOGGER.info("найден существующий идишник c " + i + " попытки.");
-
-                AnimalDto animalDto = cnvrt.animalToAnimalDto(animal);
-                model.addAttribute("animalDto", animalDto);
             }
         }
     }
+
 }

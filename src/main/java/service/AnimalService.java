@@ -1,5 +1,6 @@
 package service;
 
+import dto.AnimalAjaxDto;
 import dto.AnimalDto;
 import dto.AnimalDtoByte;
 import org.springframework.ui.ModelMap;
@@ -18,7 +19,5 @@ public interface AnimalService {
 
     List<AnimalDtoByte> getAll(String locale);
 
-    void getId(AnimalDto animalDto, ModelMap model);
-
-    AnimalDto getId(AnimalDto animalDto);
+    AnimalDtoByte getIdAjax(AnimalAjaxDto animalAjaxDto);
 }

@@ -12,14 +12,14 @@ public class AnimalI18n implements Serializable {
     @Column(name = "I18N_ANIMAL_ID")
     private long i18nAnimalId;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade={CascadeType.ALL})
     @JoinColumn(name = "ID_ANIMALS")
     private Animal idAnimals;
 
     @Column(name = "NAME_ANIMAL_I18N")
     private String nameAnimalI18n;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY,  cascade={CascadeType.ALL})
     @JoinColumn(name = "ID_LOCALE")
     private Locale localeAnimalI18n;
 
@@ -56,5 +56,4 @@ public class AnimalI18n implements Serializable {
     public void setLocaleAnimalI18n(Locale localeAnimalI18n) {
         this.localeAnimalI18n = localeAnimalI18n;
     }
-
-   }
+}

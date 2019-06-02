@@ -11,5 +11,7 @@ public interface AnimalI18nDao {
 
     List<AnimalI18n> getAll(Locale locale);
 
+    void saveOrUpdate(AnimalI18n animalI18n);
+
 /*    void saveOrUpdate(List<AnimalI18n> animalI18nList);*/
 }

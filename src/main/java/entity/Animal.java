@@ -1,9 +1,5 @@
 package entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -18,13 +14,10 @@ public class Animal implements Serializable {
     @Column(name = "ANIMAL_ID")
     private long animalId;
 
-    @OneToMany(mappedBy = "idAnimals", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "idAnimals", cascade={CascadeType.ALL})
     private List<AnimalI18n> animalName;
 
-    //    @JsonManagedReference
-    @JsonIgnore
-    @JsonBackReference
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY, cascade={CascadeType.ALL})
     @JoinColumn(name = "ID_CATEGORY")
     private Category categoryAnimal;
 

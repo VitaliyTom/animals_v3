@@ -26,7 +26,7 @@
                 <td>name</td>
                 <td>category</td>
                 <td>img</td>
-                <td>logo</td>
+
                 <td>audio</td>
             </tr>
             <c:forEach var="ani" items="${getAllList}">
@@ -36,8 +36,6 @@
                     <td><c:out value="${ani.nameCategory}"/></td>
                     <td><img src="data:image/png;base64,<media:mediaByte mediaByte="${ani.imageAnimal}"/>" height="50px"
                              width="70px"></td>
-                    <td><img src="data:image/png;base64,<media:mediaByte mediaByte="${ani.logoCategory}"/>"
-                             height="50px" width="70px"></td>
                     <td>
                         <audio controls="controls" autobuffer="autobuffer">
                             <source src="data:audio/mp3;base64,<media:mediaByte mediaByte="${ani.audioAnimal}"/>">
@@ -53,6 +51,7 @@
                 <tr>
                     <td>id</td>
                     <td>category</td>
+                    <td>logo</td>
                 </tr>
                 <c:forEach var="cat" items="${getAllCategory}">
                     <tr>
@@ -64,6 +63,8 @@
                             <c:out value="${cat.nameCategoryRus}"/>
                             <c:out value="${cat.nameCategoryEng}"/>
                         </td>
+                        <td><img src="data:image/png;base64,<media:mediaByte mediaByte="${cat.logo.bytes}"/>"  height="50px" width="70px"></td>
+
                     </tr>
                 </c:forEach>
             </table>

@@ -1,12 +1,13 @@
 package controllers;
 
+import dto.AnimalAjaxDto;
 import dto.AnimalDtoByte;
-import dto.AnimalI18nDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import service.AnimalI18nService;
+import service.AnimalService;
 
 import java.util.Locale;
 //@CrossOrigin  /*methods = RequestMethod.POST,*/ /* (origins = "*",   allowedHeaders ="*")*/
@@ -14,18 +15,18 @@ import java.util.Locale;
 public class AnimalAjaxController {
 
     @Autowired
-    private AnimalI18nService animalI18nService;
+    private AnimalService animalService;
 
 
     @ResponseBody
     @RequestMapping(value = "/getAnimalInBaseAjax{PathVarId}", produces = MediaType.APPLICATION_JSON_VALUE)
      public AnimalDtoByte getAnimalInBaseAjax(@PathVariable("PathVarId") long animalIdDto, Locale loc) {
         String locale = loc.getLanguage();
-        AnimalI18nDto animalI18nDto = new AnimalI18nDto();
-        animalI18nDto.setAnimalI18nLocaleDto(locale);
-        animalI18nDto.setIdAnimals(animalIdDto);
+        AnimalAjaxDto animalAjaxDto = new AnimalAjaxDto();
+        animalAjaxDto.setAnimalI18nLocaleDto(locale);
+        animalAjaxDto.setIdAnimals(animalIdDto);
 
-        return animalI18nService.getIdAjaxI18n(animalI18nDto);
+        return animalService.getIdAjax(animalAjaxDto);
     }
 }
 

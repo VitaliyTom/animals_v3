@@ -41,7 +41,7 @@ public class AnimalController {
     }
 
     @RequestMapping("/getAll")
-    public String getAllGet(ModelMap model, Locale loc) {
+    public String getAll(ModelMap model, Locale loc) {
         String locale = loc.getLanguage();
         model.addAttribute("getAllList", animalService.getAll(locale));
         model.addAttribute("getAllCategory", categoryService.getCategory(locale));
@@ -75,25 +75,6 @@ public class AnimalController {
         return "loginAdmin";
     }
 
-    @RequestMapping(value = "/createCategory", method = RequestMethod.GET)
-    public String createCategory(Model model) {
-        CategoryDto categoryDto = new CategoryDto();
-        model.addAttribute("newCategory", categoryDto);
-        return "createCategory";
-    }
-
-    @RequestMapping(value = "/createCategory", method = RequestMethod.POST)
-    public String createCategory(@Valid @ModelAttribute("newCategory") CategoryDto categoryDto,
-                                 BindingResult result) {
-
-        if (!result.hasErrors()) {
-            categoryService.create(categoryDto);
-
-        }
-        return "loginAdmin";
-    }
-
-
     @RequestMapping("/read")
     public String readAnimal(ModelMap model) {
 
@@ -103,7 +84,7 @@ public class AnimalController {
 
     //fixme не работает, переделать на saveOrUpdate
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String updatePost(@Valid @ModelAttribute("newAnimal") AnimalDto animalDto,
+    public String update(@Valid @ModelAttribute("newAnimal") AnimalDto animalDto,
                              BindingResult result) {
 
         if (!result.hasErrors()) {
@@ -113,7 +94,7 @@ public class AnimalController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.GET)
-    public String updateGet(HttpServletRequest request, Model model) {
+    public String update(Model model) {
 
         AnimalDto animalDto = new AnimalDto();
         model.addAttribute("newAnimal", animalDto);

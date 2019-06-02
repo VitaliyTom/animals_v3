@@ -12,9 +12,6 @@ public class CategoryDto {
 
     private MultipartFile logo;
 
-    //    private String animalCategory;
-
-
     public CategoryDto() {
     }
 
