@@ -13,13 +13,13 @@ public class Category implements Serializable {
     @Column(name = "CATEGORY_ID")
     private long categoryId;
 
-    @OneToMany(mappedBy = "idCategory", cascade={CascadeType.ALL})
+    @OneToMany(mappedBy = "idCategory", cascade=CascadeType.ALL)
     private List<CategoryI18n> categoryName;
 
     @Column(name = "logo")
     private byte[] logo;
 
-    @OneToMany(mappedBy = "categoryAnimal", cascade={CascadeType.ALL})
+    @OneToMany(mappedBy = "categoryAnimal", cascade=CascadeType.ALL)
     private List<Animal> animalCategory;
 
     public Category() {

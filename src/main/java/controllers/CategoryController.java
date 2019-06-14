@@ -6,12 +6,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import service.CategoryService;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.Locale;
 
@@ -19,7 +20,7 @@ import java.util.Locale;
 public class CategoryController {
 
     @Autowired
-    private CategoryService categoryService;
+    private CategoryService  categoryService;
 
 
     @RequestMapping(value = "/createCategory", method = RequestMethod.GET)
@@ -39,6 +40,23 @@ public class CategoryController {
         }
         return "loginAdmin";
     }
+    @RequestMapping(value = "/updateCategory", method = RequestMethod.POST)
+    public String update(@Valid @ModelAttribute("newCategory") CategoryDto categoryDto,
+                         BindingResult result) {
+
+        if (!result.hasErrors()) {
+            categoryService.update(categoryDto);
+        }
+        return "loginAdmin";
+    }
+
+    @RequestMapping(value = "/updateCategory", method = RequestMethod.GET)
+    public String update(Model model) {
+
+        CategoryDto categoryDto = new CategoryDto();
+        model.addAttribute("newCategory", categoryDto);
+        return "updateCategory";
+    }
 
     @RequestMapping("/getCategory")
     public String getCategory(ModelMap model, Locale loc) {
@@ -46,5 +64,14 @@ public class CategoryController {
         model.addAttribute("getAllCategory", categoryService.getCategory(locale));
 
         return "/getCategory";
+    }
+    @RequestMapping(value = "/deleteCategory", method = RequestMethod.POST)
+    public String deletePost(@RequestParam("id") long id) {
+        categoryService.delete(id);
+        return "loginAdmin";
+    }
+    @RequestMapping(value = "/deleteCategory", method = RequestMethod.GET)
+    public String deleteGet(HttpServletRequest request, Model model) {
+                return "deleteCategory";
     }
 }

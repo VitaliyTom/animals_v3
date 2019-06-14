@@ -29,6 +29,8 @@ public class AnimalI18nDaoImpl implements AnimalI18nDao {
         return (AnimalI18n) query.uniqueResult();
     }
 
+
+
     @Override
     public List<AnimalI18n> getAll(Locale locale) {
         String animalI18nGetAllHQL = "FROM AnimalI18n WHERE  localeAnimalI18n =:locale";

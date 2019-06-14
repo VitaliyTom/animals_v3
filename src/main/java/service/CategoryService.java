@@ -11,5 +11,7 @@ public interface CategoryService {
 
     List<CategoryDto> getCategory(String locale);
 
+    void delete(long id);
 
+    void update(CategoryDto categoryDto);
 }

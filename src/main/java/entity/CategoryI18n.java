@@ -12,14 +12,14 @@ public class CategoryI18n implements Serializable {
     @Column(name = "I18N_CATEGORY_ID")
     private long i18nCategoryId;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade={CascadeType.ALL})
+    @ManyToOne
     @JoinColumn(name = "ID_CATEGORY")
     private Category idCategory;
 
     @Column(name = "NAME_CATEGORY_I18N")
     private String nameCategoryI18n;
 
-    @ManyToOne(fetch = FetchType.LAZY,cascade={CascadeType.ALL})
+    @ManyToOne
     @JoinColumn(name = "ID_LOCALE")
     private Locale localeCategoryI18n;
 

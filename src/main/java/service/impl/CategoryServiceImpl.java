@@ -1,6 +1,6 @@
 package service.impl;
 
-import converter.Entity2Dto.CategoryDto2CategoryConverter;
+import converter.Dto2Entity.CategoryDto2CategoryConverter;
 import converter.Entity2Dto.CategoryEntity2CategoryDtoConverter;
 import dao.CategoryDao;
 import dao.CategoryI18nDao;
@@ -10,9 +10,9 @@ import entity.Category;
 import entity.CategoryI18n;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import service.CategoryService;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service("CategoryService")
@@ -30,6 +30,7 @@ public class CategoryServiceImpl implements CategoryService {
     CategoryEntity2CategoryDtoConverter categoryEntity2CategoryDtoConverter;
 
     @Override
+    @Transactional
     public void create(CategoryDto categoryDto) {
 
         categoryDao.saveOrUpdate(categoryDto2CategoryConverter.convert(categoryDto));
@@ -37,6 +38,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
+    @Transactional
     public List<CategoryDto> getCategory(String locale) {
         List<Category> categoryList = categoryDao.getAllCategory();
         List<CategoryDto> categoryDtoList = categoryEntity2CategoryDtoConverter.convert(categoryList);
@@ -50,4 +52,18 @@ public class CategoryServiceImpl implements CategoryService {
         }
         return categoryDtoList;
     }
+
+    @Override
+    @Transactional
+    public void delete(long id) {
+
+        categoryDao.delete(id);
+    }
+
+    @Override
+    @Transactional
+    public void update(CategoryDto categoryDto) {
+        categoryDao.saveOrUpdate(categoryDto2CategoryConverter.convert(categoryDto));
+    }
+
 }

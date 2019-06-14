@@ -16,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import service.AnimalService;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -48,45 +47,13 @@ public class AnimalServiceImpl implements AnimalService {
     @Override
     @Transactional                                                //fixme разобраться с этой аннотацией!
     public void create(AnimalDto animalDto) {
-        String ru = "ru";
-        String en = "en";
-        List<AnimalI18n> animalI18nList = new ArrayList<>();
-        Animal animal = animalDto2AnimalEntityConverter.convert(animalDto);
-        animalDao.saveOrUpdate(animal);
-        AnimalI18n animalI18nRu = new AnimalI18n();
-        animalI18nRu.setLocaleAnimalI18n(localeDao.read(ru));
-        animalI18nRu.setNameAnimalI18n(animalDto.getNameAnimalRus());
-        animalI18nRu.setIdAnimals(animal);
-        animalI18nList.add(animalI18nRu);
-        AnimalI18n animalI18nEn = new AnimalI18n();
-        animalI18nEn.setLocaleAnimalI18n(localeDao.read(en));
-        animalI18nEn.setNameAnimalI18n(animalDto.getNameAnimalEng());
-        animalI18nEn.setIdAnimals(animal);
-        animalI18nList.add(animalI18nEn);
-        animal.setAnimalName(animalI18nList);
-               animalDao.saveOrUpdate(animal);
+            Animal animal = animalDto2AnimalEntityConverter.convert(animalDto);
+            animalDao.saveOrUpdate(animal);
     }
     @Override
     public void update(AnimalDto animalDto) {
-        String ru = "ru";
-        String en = "en";
-        List<AnimalI18n> animalI18nList = new ArrayList<>();
         Animal animal = animalDto2AnimalEntityConverter.convert(animalDto);
-        AnimalI18n animalI18nRu = new AnimalI18n();
-        animalI18nRu.setLocaleAnimalI18n(localeDao.read(ru));
-        animalI18nRu.setIdAnimals(animal);
-        animalI18nRu.setI18nAnimalId(animalI18nDao.getId(animalI18nRu).getI18nAnimalId());
-        animalI18nRu.setNameAnimalI18n(animalDto.getNameAnimalRus());
-        animalI18nList.add(animalI18nRu);
-        AnimalI18n animalI18nEn = new AnimalI18n();
-        animalI18nEn.setLocaleAnimalI18n(localeDao.read(en));
-        animalI18nEn.setIdAnimals(animal);
-        animalI18nEn.setI18nAnimalId(animalI18nDao.getId(animalI18nEn).getI18nAnimalId());
-        animalI18nEn.setNameAnimalI18n(animalDto.getNameAnimalEng());
-        animalI18nList.add(animalI18nEn);
-        animal.setAnimalName(animalI18nList);
         animalDao.saveOrUpdate(animal);
-
     }
 
     @Override
@@ -94,8 +61,6 @@ public class AnimalServiceImpl implements AnimalService {
     public void delete(long id) {
         animalDao.delete(id);
     }
-
-
 
     @Override
     @Transactional

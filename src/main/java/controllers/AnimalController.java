@@ -103,15 +103,12 @@ public class AnimalController {
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public String deletePost(@RequestParam("id") long id) {
-
         animalService.delete(id);
         return "loginAdmin";
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
     public String deleteGet(HttpServletRequest request, Model model) {
-
-
         return "delete";
     }
 

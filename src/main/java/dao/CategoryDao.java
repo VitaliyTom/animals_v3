@@ -12,4 +12,7 @@ public interface CategoryDao {
 
     void saveOrUpdate(Category  category);
 
+    void delete(long id);
+
+
 }
