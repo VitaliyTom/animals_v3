@@ -13,8 +13,6 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="springform" %>
 
 
-
-
 <html>
 <head>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
@@ -38,7 +36,8 @@
 
     <div align="center" class="get-Animal-Text-Left">
         <div align="center" id="ga1">
-            <h3 style="color: bisque"><spring:message code="getAnimal.animal"/> - <spring:message code="getAnimal.category"/></h3>
+            <h3 style="color: bisque"><spring:message code="getAnimal.animal"/> - <spring:message
+                    code="getAnimal.category"/></h3>
             <div align="center" id="ga2">
             </div>
             <div align="left" id="ga">
@@ -46,7 +45,7 @@
         </div>
     </div>
     <div align="right" class="getAll-animal">       <%--fixme желательно добавить рандомный выбор животного--%>
-        <h3 class="h3" >Выберите животное:</h3>
+        <h3 class="h3">Выберите животное:</h3>
         <select id="select">
             <option disabled>Выберите животное</option>
             <%--FIXME 1 животное автоматичеки выбрано, тем самым первым его выбрать нельзя--%>

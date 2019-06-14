@@ -20,7 +20,7 @@
 <div align="center" class="delete-animal">
 
     <form action="${contextPath}/delete" method="post">
-        <input type="number"  name="id">
+        <input type="number" name="id">
         <input type="submit" value="delete">
     </form>
 

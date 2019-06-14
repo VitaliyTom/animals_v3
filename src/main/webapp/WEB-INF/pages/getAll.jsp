@@ -63,7 +63,8 @@
                             <c:out value="${cat.nameCategoryRus}"/>
                             <c:out value="${cat.nameCategoryEng}"/>
                         </td>
-                        <td><img src="data:image/png;base64,<media:mediaByte mediaByte="${cat.logo.bytes}"/>"  height="50px" width="70px"></td>
+                        <td><img src="data:image/png;base64,<media:mediaByte mediaByte="${cat.logo.bytes}"/>"
+                                 height="50px" width="70px"></td>
 
                     </tr>
                 </c:forEach>

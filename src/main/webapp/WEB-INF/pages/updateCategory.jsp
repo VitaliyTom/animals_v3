@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: tomas
-  Date: 25.05.2019
-  Time: 18:16
+  Date: 03.06.2019
+  Time: 12:13
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -13,11 +13,16 @@
 <head>
     <meta charset="utf-8"/>
 
-    <title>create category</title>
+    <title>update category</title>
 </head>
 <body>
-<div align="center" class="create-category">
-    <springform:form method="post" action="${contextPath}/createCategory" enctype="multipart/form-data"
+<span style="float: right">
+    <a href="?lang=en">en</a>
+    |
+    <a href="?lang=ru">ru</a>
+</span>
+<div align="center" class="update-category">
+    <springform:form method="post" action="${contextPath}/updateCategory" enctype="multipart/form-data"
                      modelAttribute="newCategory">
         <br>
         Введите id категорий <springform:input type="text" path="categoryIdDto"/>
@@ -37,6 +42,8 @@
 
 
     <p><a href="${contextPath}">[ index ]</a></p>
+    <p><a href="${contextPath}/loginAdmin">[ loginAdmin ]</a></p>
 </div>
 </body>
 </html>
+

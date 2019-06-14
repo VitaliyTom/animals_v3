@@ -19,26 +19,22 @@
 <body class="crud">
 
 <div align="center" class="create-animal">
-    <springform:form method="post" action="${contextPath}/create" enctype="multipart/form-data" modelAttribute="newAnimal">
+    <springform:form method="post" action="${contextPath}/create" enctype="multipart/form-data"
+                     modelAttribute="newAnimal">
         Введите животное на русском<springform:input type="text" path="nameAnimalRus"/>
         <springform:errors path="nameAnimalRus"/>
         <br>
         Введите животное на английском<springform:input type="text" path="nameAnimalEng"/>
         <springform:errors path="nameAnimalEng"/>
         <br>
-        <%--Введите категорию на русском<springform:input type="text" path="nameCategoryRus"/>--%>
-        <%--<springform:errors path="nameCategoryRus"/>--%>
-        <%--<br>--%>
-        <%--Введите категорию на английском<springform:input type="text" path="nameCategoryEng"/>--%>
-        <%--<springform:errors path="nameCategoryEng"/>--%>
-        <%--<br>--%>
+
         Введите id категорий <springform:input type="text" path="categoryId"/>
         <springform:errors path="categoryId"/>
         <br>
-        Загрузите фотографию  <springform:input type="file" path="imageAnimal" accept="image/*"/>
+        Загрузите фотографию <springform:input type="file" path="imageAnimal" accept="image/*"/>
         <springform:errors path="imageAnimal"/>
         <br>
-        Загрузите звук  <springform:input type="file" path="audioAnimal"/>
+        Загрузите звук <springform:input type="file" path="audioAnimal"/>
         <springform:errors path="audioAnimal"/>
         <br>
         <%--Загрузите лого <springform:input type="file" path="logo" accept="image/*"/>--%>
