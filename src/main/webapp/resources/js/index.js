@@ -20,7 +20,7 @@ $(document).ready(function () {
                     ' <h3 style="color: bisque">' + data.nameAnimal + " " + data.nameCategory+ '</h3> </div>');
                 var $getAnimalMediaLeft = $('<div align="center" class="info">' +
                     ' <spring:message code="getAnimal.animal"/> </div>' +
-                    '<div align="center" class="get-animal">' + id +
+                    '<div align="center" class="get-animal">' +/* id +*/
                     '<img class="img2" src="data:image/png;base64,' + data.logoCategory + '" height="100px" width="100px">' +
                     '<p>' +
                     '<img class="img" src="data:image/png;base64,' + data.imageAnimal + '" height="500px" width="700px">' +
