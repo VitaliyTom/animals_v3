@@ -9,7 +9,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="springform" %>
 
 
@@ -45,10 +44,10 @@
         </div>
     </div>
     <div align="right" class="getAll-animal">       <%--fixme желательно добавить рандомный выбор животного--%>
-        <h3 class="h3">Выберите животное:</h3>
+        <h3 class="h3"><spring:message code="check.Animal"/>:</h3>
         <select id="select">
-            <option disabled>Выберите животное</option>
-            <%--FIXME 1 животное автоматичеки выбрано, тем самым первым его выбрать нельзя--%>
+            <option disabled><spring:message code="check.Animal"/></option>
+            <%--FIXME  1 животное автоматичеки выбрано, тем самым первым его выбрать нельзя--%>
             <c:forEach var="ani" items="${getAllList}">
                 <option value="<c:out value="${ani.idAnimal}"/> ">
                     <c:out value="${ani.nameAnimal}"/>
@@ -57,8 +56,6 @@
         </select>
     </div>
 </div>
-
-
 </body>
 </html>
 

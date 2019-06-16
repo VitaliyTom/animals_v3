@@ -6,11 +6,12 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib prefix="springform" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="media" uri="/WEB-INF/taglib/MediaTag.tld" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
-<%--<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false"%>--%>
+
 <html>
 <head>
     <link href="<c:url value="/resources/css/style.css"/>" type="text/css" rel="stylesheet">
@@ -18,16 +19,21 @@
 
 </head>
 <body>
+<span style="float: right">
+    <a href="?lang=en">en</a>
+    |
+    <a href="?lang=ru">ru</a>
+</span>
+<h1><spring:message code="get.all.animals.and.categories"/></h1>
 <div class="wrapper">
     <div align="right">
         <table align="center" class="animal">
             <tr>
-                <td>id</td>
-                <td>name</td>
-                <td>category</td>
-                <td>img</td>
-
-                <td>audio</td>
+                <td><spring:message code="getAll.id.animal"/></td>
+                <td><spring:message code="getAll.name"/></td>
+                <td><spring:message code="getAll.category"/></td>
+                <td><spring:message code="getAll.img"/></td>
+                <td><spring:message code="getAll.audio"/></td>
             </tr>
             <c:forEach var="ani" items="${getAllList}">
                 <tr>
@@ -49,15 +55,14 @@
         <div align="left">
             <table align="center" class="category">
                 <tr>
-                    <td>id</td>
-                    <td>category</td>
-                    <td>logo</td>
+                    <td><spring:message code="getAll.id.category"/></td>
+                    <td><spring:message code="getAll.category"/></td>
+                    <td><spring:message code="getAll.logo"/></td>
                 </tr>
                 <c:forEach var="cat" items="${getAllCategory}">
                     <tr>
                         <td>
                             <c:out value="${cat.categoryIdDto}"/>
-
                         </td>
                         <td>
                             <c:out value="${cat.nameCategoryRus}"/>
@@ -65,13 +70,13 @@
                         </td>
                         <td><img src="data:image/png;base64,<media:mediaByte mediaByte="${cat.logo.bytes}"/>"
                                  height="50px" width="70px"></td>
-
                     </tr>
                 </c:forEach>
             </table>
         </div>
         <div align="center" class="href__index">
             <a href="${contextPath}">[ index ]</a>
+            <p><a href="${contextPath}/loginAdmin">[ loginAdmin ]</a></p>
         </div>
     </div>
 </div>

@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib prefix="springform" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
@@ -21,13 +22,12 @@
     |
     <a href="?lang=ru">ru</a>
 </span>
+<h1><spring:message code="delete.category"/></h1>
 <div align="center" class="delete-animal">
-
     <form action="${contextPath}/deleteCategory" method="post">
-        Введите id для удаления категорий <input type="number" name="id">
-        <input type="submit" value="delete">
+        <spring:message code="Enter.id.to.delete.categories"/>: <input type="number" name="id">
+        <input type="submit" value="<spring:message code="delete"/>">
     </form>
-
     <a href="${contextPath}">[ index ]</a>
     <p><a href="${contextPath}/loginAdmin">[ loginAdmin ]</a></p>
 </div>

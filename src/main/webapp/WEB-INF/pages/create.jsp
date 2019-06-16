@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib prefix="springform" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
@@ -17,37 +18,37 @@
     <title>create animal</title>
 </head>
 <body class="crud">
+<span class="lang">
+    <a class="href" href="?lang=en">en</a>
+    |
+    <a class="href" href="?lang=ru">ru</a>
+</span>
+
+<h1><spring:message code="create.animal"/></h1>
 
 <div align="center" class="create-animal">
     <springform:form method="post" action="${contextPath}/create" enctype="multipart/form-data"
                      modelAttribute="newAnimal">
-        Введите животное на русском<springform:input type="text" path="nameAnimalRus"/>
+        <spring:message code="Enter.the.animal.in.Russian"/>: <springform:input type="text" path="nameAnimalRus"/>
         <springform:errors path="nameAnimalRus"/>
         <br>
-        Введите животное на английском<springform:input type="text" path="nameAnimalEng"/>
+        <spring:message code="Enter.the.animal.in.English"/>: <springform:input type="text" path="nameAnimalEng"/>
         <springform:errors path="nameAnimalEng"/>
         <br>
-
-        Введите id категорий <springform:input type="text" path="categoryId"/>
+        <spring:message code="Enter.categories.id"/>: <springform:input type="text" path="categoryId"/>
         <springform:errors path="categoryId"/>
         <br>
-        Загрузите фотографию <springform:input type="file" path="imageAnimal" accept="image/*"/>
+        <spring:message code="Upload.a.photo"/>: <springform:input type="file" path="imageAnimal" accept="image/*"/>
         <springform:errors path="imageAnimal"/>
         <br>
-        Загрузите звук <springform:input type="file" path="audioAnimal"/>
+        <spring:message code="Upload.a.sound"/>: <springform:input type="file" path="audioAnimal"/>
         <springform:errors path="audioAnimal"/>
         <br>
-        <%--Загрузите лого <springform:input type="file" path="logo" accept="image/*"/>--%>
-        <%--<springform:errors path="logo"/>--%>
-        <%--<br>--%>
-        <input type="submit" value="save animal"/>
+        <input type="submit" value="<spring:message code="save.animal"/>"/>
     </springform:form>
-
-
     <p><a href="${contextPath}">[ index ]</a></p>
+    <p><a href="${contextPath}/loginAdmin">[ loginAdmin ]</a></p>
 </div>
 </body>
 </html>
 
-<%--Введите название категорий <springform:input type="text" path="animalCategory"/>--%>
-<%--<springform:errors path="animalCategory"/>--%>
