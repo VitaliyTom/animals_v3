@@ -14,6 +14,7 @@ public class MediaToBase64 extends TagSupport {
         this.mediaByte = mediaByte;
     }
 
+//    декодер бейс64
     @Override
     public int doStartTag() {
 

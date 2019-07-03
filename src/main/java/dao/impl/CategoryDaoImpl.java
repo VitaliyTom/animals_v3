@@ -11,12 +11,12 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Component
-@Transactional
 //@Repository("categories")  fixme разобрать!
+@Transactional
 public class CategoryDaoImpl implements CategoryDao {
 
     @Autowired
-    private SessionFactory sessionFactory;
+    SessionFactory sessionFactory;
 
     @Override
     public List<Category> getAllCategory() {
@@ -41,5 +41,4 @@ public class CategoryDaoImpl implements CategoryDao {
     public void delete(long id) {
         sessionFactory.getCurrentSession().delete(this.read(id));
     }
-
 }

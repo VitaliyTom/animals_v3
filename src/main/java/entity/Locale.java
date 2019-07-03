@@ -7,10 +7,12 @@ import java.util.List;
 @Entity
 @Table(name ="locale")
 public class Locale implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "LOCALE_ID")
     private long localeId;
+
     @Column(name = "LOCALE")
     private String locale;
 
@@ -19,7 +21,6 @@ public class Locale implements Serializable {
 
     @OneToMany(mappedBy = "localeCategoryI18n", cascade=CascadeType.ALL)
     private List<CategoryI18n> categoryI18nLocale;
-
 
     public Locale() {
     }

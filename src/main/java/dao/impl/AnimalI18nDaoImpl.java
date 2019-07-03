@@ -3,7 +3,6 @@ package dao.impl;
 import dao.AnimalI18nDao;
 import entity.AnimalI18n;
 import entity.Locale;
-import org.hibernate.Hibernate;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +27,6 @@ public class AnimalI18nDaoImpl implements AnimalI18nDao {
         query.setParameter("animalId", animalI18n.getIdAnimals());
         return (AnimalI18n) query.uniqueResult();
     }
-
-
 
     @Override
     public List<AnimalI18n> getAll(Locale locale) {

@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-
 @Component
 @Transactional
 public class AnimalDaoImpl implements AnimalDao {
@@ -18,12 +17,13 @@ public class AnimalDaoImpl implements AnimalDao {
     @Autowired
     private SessionFactory sessionFactory;
 
+//    использовать метод saveOrUpdate
     @Deprecated
     @Override
     public void create(Animal animal) {
         sessionFactory.getCurrentSession().save(animal);
     }
-
+//    использовать метод saveOrUpdate
     @Deprecated
     @Override
     public void update(Animal animal) {
@@ -47,14 +47,16 @@ public class AnimalDaoImpl implements AnimalDao {
         return sessionFactory.getCurrentSession().get(Animal.class, animalId);
     }
 
+ //   selection search max id пока не используется
+    @Deprecated
     @Override
-    public Animal getIdMax() {              //selection search max id
+    public Animal getIdMax() {
 
         String animalHQL = "FROM Animal WHERE  animalId = (SELECT MAX(animalId) FROM Animal)";
         Query query = sessionFactory.getCurrentSession().createQuery(animalHQL);
         return (Animal) query.uniqueResult();
     }
-
+//    список всех животных
     @Override
     public List<Animal> getAll() {
         String getAllHql = "From Animal";

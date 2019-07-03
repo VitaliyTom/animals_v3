@@ -45,7 +45,7 @@ public class AnimalServiceImpl implements AnimalService {
     CategoryI18n2AnimalDtoByteConverter categoryI18n2AnimalDtoByteConverter;
 
     @Override
-    @Transactional                                                //fixme разобраться с этой аннотацией!
+    @Transactional
     public void create(AnimalDto animalDto) {
             Animal animal = animalDto2AnimalEntityConverter.convert(animalDto);
             animalDao.saveOrUpdate(animal);
@@ -62,6 +62,7 @@ public class AnimalServiceImpl implements AnimalService {
         animalDao.delete(id);
     }
 
+//    получение всех животных по локали
     @Override
     @Transactional
     public List<AnimalDtoByte> getAll(String locale) {
@@ -83,6 +84,7 @@ public class AnimalServiceImpl implements AnimalService {
         return animalDtoByteList;
     }
 
+//      получение животного через ajax по ид
     @Override
     public AnimalDtoByte getIdAjax(AnimalAjaxDto animalAjaxDto) {
 
@@ -111,6 +113,8 @@ public class AnimalServiceImpl implements AnimalService {
         return animalDtoByte;
     }
 
+//    временно не используется, для рандомного существующего животного
+//    FIXME переделать
     @Deprecated
     @Override
     @Transactional

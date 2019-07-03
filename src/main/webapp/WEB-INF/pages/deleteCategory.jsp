@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: tomas
-  Date: 03.06.2019
-  Time: 11:47
-  To change this template use File | Settings | File Templates.
---%>
 <%@ taglib prefix="springform" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -13,7 +6,6 @@
 <html>
 <head>
     <link href="<c:url value="/resources/css/style.css"/>" type="text/css" rel="stylesheet">
-
     <title>DeleteCategory</title>
 </head>
 <body class="crud">
@@ -31,6 +23,5 @@
     <a href="${contextPath}">[ index ]</a>
     <p><a href="${contextPath}/loginAdmin">[ loginAdmin ]</a></p>
 </div>
-
 </body>
 </html>

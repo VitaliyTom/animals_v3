@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: tomas
-  Date: 25.05.2019
-  Time: 18:16
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib prefix="springform" uri="http://www.springframework.org/tags/form" %>
@@ -13,7 +6,6 @@
 <html>
 <head>
     <meta charset="utf-8"/>
-
     <title>create category</title>
 </head>
 <body><span style="float: right">
@@ -21,9 +13,7 @@
     |
     <a href="?lang=ru">ru</a>
 </span>
-
 <h1><spring:message code="create.category"/></h1>
-
 <div align="center" class="create-category">
     <springform:form method="post" action="${contextPath}/createCategory" enctype="multipart/form-data"
                      modelAttribute="newCategory">

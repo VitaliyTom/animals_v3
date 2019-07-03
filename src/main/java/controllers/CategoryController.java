@@ -40,6 +40,7 @@ public class CategoryController {
         }
         return "loginAdmin";
     }
+
     @RequestMapping(value = "/updateCategory", method = RequestMethod.POST)
     public String update(@Valid @ModelAttribute("newCategory") CategoryDto categoryDto,
                          BindingResult result) {
@@ -65,11 +66,13 @@ public class CategoryController {
 
         return "/getCategory";
     }
+
     @RequestMapping(value = "/deleteCategory", method = RequestMethod.POST)
     public String deletePost(@RequestParam("id") long id) {
         categoryService.delete(id);
         return "loginAdmin";
     }
+
     @RequestMapping(value = "/deleteCategory", method = RequestMethod.GET)
     public String deleteGet(HttpServletRequest request, Model model) {
                 return "deleteCategory";

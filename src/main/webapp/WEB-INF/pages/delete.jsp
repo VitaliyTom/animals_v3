@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: tomas
-  Date: 10.12.2018
-  Time: 0:46
-  To change this template use File | Settings | File Templates.
---%>
 <%@ taglib prefix="springform" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
@@ -13,7 +6,6 @@
 <html>
 <head>
     <link href="<c:url value="/resources/css/style.css"/>" type="text/css" rel="stylesheet">
-
     <title>Delete</title>
 </head>
 <body class="crud">
@@ -22,7 +14,6 @@
     |
     <a href="?lang=ru">ru</a>
 </span>
-
 <h1><spring:message code="delete.animal"/></h1>
 <div align="center" class="delete-animal">
     <form action="${contextPath}/delete" method="post">

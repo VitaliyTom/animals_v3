@@ -3,8 +3,6 @@
 <%@page contentType="text/html;charset=UTF-8" language="java" %>
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 <html>
-
-
 <head>
     <meta charset="utf-8"/>
     <link href="<c:url value="/resources/css/style.css"/>" type="text/css" rel="stylesheet">
@@ -21,7 +19,6 @@
         <input type="submit" value="<spring:message code="label.start"/>">
     </form>
 </div>
-
 <div align="center" class="index-2">
     <form action="${contextPath}/loginAdmin" method="get">
         <input type="submit" value="<spring:message code="label.login"/>">

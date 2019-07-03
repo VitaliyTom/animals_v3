@@ -5,19 +5,20 @@ import dto.AnimalDtoByte;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
-import service.AnimalI18nService;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import service.AnimalService;
 
 import java.util.Locale;
-//@CrossOrigin  /*methods = RequestMethod.POST,*/ /* (origins = "*",   allowedHeaders ="*")*/
+
 @Controller
 public class AnimalAjaxController {
 
     @Autowired
     private AnimalService animalService;
 
-
+    //ajax запрос животного по иди и локали
     @ResponseBody
     @RequestMapping(value = "/getAnimalInBaseAjax{PathVarId}", produces = MediaType.APPLICATION_JSON_VALUE)
      public AnimalDtoByte getAnimalInBaseAjax(@PathVariable("PathVarId") long animalIdDto, Locale loc) {

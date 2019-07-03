@@ -32,9 +32,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     @Transactional
     public void create(CategoryDto categoryDto) {
-
         categoryDao.saveOrUpdate(categoryDto2CategoryConverter.convert(categoryDto));
-
     }
 
     @Override
@@ -56,7 +54,6 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     @Transactional
     public void delete(long id) {
-
         categoryDao.delete(id);
     }
 

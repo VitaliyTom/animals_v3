@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: tomas
-  Date: 28.11.2018
-  Time: 17:14
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring" %>
 <%@ taglib prefix="springform" uri="http://www.springframework.org/tags/form" %>
@@ -13,7 +6,6 @@
 <html>
 <head>
     <link href="<c:url value="/resources/css/style.css"/>" type="text/css" rel="stylesheet">
-
     <meta charset="utf-8"/>
     <title>create animal</title>
 </head>
@@ -23,9 +15,7 @@
     |
     <a class="href" href="?lang=ru">ru</a>
 </span>
-
 <h1><spring:message code="create.animal"/></h1>
-
 <div align="center" class="create-animal">
     <springform:form method="post" action="${contextPath}/create" enctype="multipart/form-data"
                      modelAttribute="newAnimal">

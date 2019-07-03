@@ -15,7 +15,6 @@
 
     <mvc:annotation-driven>
     </mvc:annotation-driven>
-   <!-- <mvc:resources mapping="/resources/**" location="/" />-->
 
     <context:component-scan base-package="controllers,converter,dao,dto,entity,service,tags">
     </context:component-scan>
@@ -26,7 +25,6 @@
                   value="org.springframework.web.servlet.view.JstlView"/>
         <property name="prefix" value="/WEB-INF/pages/"/>
         <property name="suffix" value=".jsp"/>
-
     </bean>
 
     <!--start i18n block-->
@@ -64,23 +62,20 @@
         <property name="location" value="classpath:jdbc.properties"/>
     </bean>
 
-    <!-- <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor">
-     </bean>-->
-
     <!-- Определение источника данных - мост между СУБД и Hibernate.-->
     <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
         <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
         <property name="url" value="jdbc:mysql://localhost:3306/animalbase?serverTimezone=UTC"/>
         <property name="username" value="root"/>
         <property name="password" value="root"/>
-            <!--A5642810b-->
+            
     </bean>
-
 
     <!-- Фабрика, которая будет строить Hibernate-сессии -->
     <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+
         <!-- бины снизу как бы ссылаются на конфигурационный файл hibernate-cfg, настройки которого описаны в dataSource
-        поэтому у нас hibernate.cfg.xml не используется   -->
+        поэтому hibernate.cfg.xml не используется   -->
         <property name="dataSource" ref="dataSource"/>
         <property name="packagesToScan" value="entity"/>
 
@@ -92,11 +87,11 @@
         </property>
     </bean>
 
-
     <!-- СЛЕДУЮЩАЯ секция для того, чтобы работал механизм транзакций с использованием @Transactional  -->
     <!--  tx:annotation-driven включает механизм управления транзакциями через аннотации -->
     <tx:annotation-driven transaction-manager="txManager" proxy-target-class="true"/>
     <!-- Менеджер транзакций-->
+
     <bean id="txManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
         <property name="sessionFactory" ref="sessionFactory"/>
     </bean>
@@ -109,7 +104,6 @@
 
     <bean id="modelMapper" class="org.springframework.context.annotation.Bean"
           abstract="true">
-
     </bean>
 
 </beans>

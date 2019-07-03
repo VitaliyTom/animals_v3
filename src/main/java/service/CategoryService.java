@@ -2,7 +2,6 @@ package service;
 
 import dto.CategoryDto;
 
-
 import java.util.List;
 
 public interface CategoryService {

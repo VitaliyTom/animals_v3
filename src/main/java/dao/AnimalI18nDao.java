@@ -13,5 +13,4 @@ public interface AnimalI18nDao {
 
     void saveOrUpdate(AnimalI18n animalI18n);
 
-/*    void saveOrUpdate(List<AnimalI18n> animalI18nList);*/
 }
