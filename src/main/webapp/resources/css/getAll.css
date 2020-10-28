@@ -1,23 +1,385 @@
+body {
+	width: 100%;
+	background-color: rgba(88, 25, 18, 0.62);
+}
+
+.wrapper_header {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.navi {
+	font-size: 2rem;
+}
+
+.header a:hover {
+	line-height: 0;
+	padding: 0 5px;
+	border-radius: 8px;
+	box-shadow: 0 0 5px 1px rgba(255, 232, 216, 0.62) inset;
+	transition: 0.4s;
+}
+
+.main_Description_Category,
+.main_Description_Animal {
+	display: flex;
+	justify-content: center;
+	margin-top: 15px;
+	font-size: 2.3rem;
+	color: rgba(255, 232, 216, 0.62);
+}
+
+.container_Get_All {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+}
+
+.container_Get_All {
+	padding: 0 30px;
+}
+
+.wrapper_arrow_left,
+.wrapper_arrow_right {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 50px;
+	height: 320px;
+}
+
+.arrow_left.hidden,
+.arrow_right.hidden,
+.arrow_left_Category.hidden,
+.arrow_right_Category.hidden {
+	display: none;
+}
+
+.arrow_left_Category,
+.arrow_left {
+	width: 40px;
+	height: 40px;
+	padding: 1px;
+	background-image: url('../js/assets/arrow.png');
+	background-size: cover;
+	background-repeat: no-repeat;
+	transform: rotate(-180deg);
+	transition: 0.4s;
+}
+
+.arrow_right_Category,
+.arrow_right {
+	width: 40px;
+	height: 40px;
+	padding: 1px;
+	background-image: url('../js/assets/arrow.png');
+	background-size: cover;
+	background-repeat: no-repeat;
+	transition: 0.4s;
+}
+
+.arrow_left_Category.deactive,
+.arrow_right_Category.deactive,
+.arrow_left.deactive,
+.arrow_right.deactive {
+	background: url("../js/assets/arrowDeactivate.png") no-repeat;
+	background-size: cover;
+	border-radius: 50%;
+	transition: 0.4s;
+}
+
+.arrow_left_Category:hover,
+.arrow_left:hover {
+	transform: rotate(180deg);
+}
+
+.arrow_right_Category:hover,
+.arrow_right:hover {
+	transform: rotate(360deg);
+}
+
+.arrow_left_Category:hover,
+.arrow_right_Category:hover,
+.arrow_left:hover,
+.arrow_right:hover {
+	box-shadow: 0 0 10px 2px #99ff00;
+	border-radius: 50%;
+	cursor: pointer;
+	transition: 0.6s;
+}
+
+.arrow_left_Category.deactive:hover,
+.arrow_right_Category.deactive:hover,
+.arrow_left.deactive:hover,
+.arrow_right.deactive:hover {
+	box-shadow: 0 0 10px 2px red inset;
+	border-radius: 50%;
+	cursor: pointer;
+	transition: 0.6s;
+}
+
+.wrapper_Category_All,
+.wrapper_Animal_All {
+	position: relative;
+	overflow: hidden;
+	display: flex;
+	width: 500px;
+	height: 320px;
+	padding: 5px 10px;
+	font-size: 2rem;
+	color: rgba(255, 232, 216, 0.62);
+}
+
+.wrapper_description {
+	display: flex;
+	justify-content: space-between;
+	margin: 20px;
+}
+
+.description_text {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 200px;
+	max-height: 155px;
+	font-size: 2rem;
+}
+
+.description_text div {
+	text-align: center;
+}
+
+.description_text span,
+.description_text p {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.name_animal,
+.category_animal {
+	margin-top: 10px;
+}
+
+.category_logo,
+.id_category,
+.category_name,
+.id_animal,
+.name_animal,
+.category_animal {
+	max-width: 200px;
+	max-height: 150px;
+	white-space: nowrap;
+	overflow: hidden;
+}
+
+.category_logo_span,
+.id_category_span,
+.category_name_span,
+.id_animal_span,
+.name_animal_span,
+.category_animal_span {
+	font-weight: bold;
+}
+
+.category,
 .animal {
-    border: 3px solid brown;
-    background: bisque;
-    width: 500px;
-    margin: 10px;
-    font-family: "Arial";
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 480px;
+	height: 300px;
+	padding: 20px;
+	margin: 10px;
+	border-radius: 25px;
+	background: rgb(160, 146, 179);
+	box-shadow: 2px 2px 5px -2px rgb(0, 0, 0), -2px -2px 5px -1px rgba(255, 232, 216, 0.62);
+	color: black;
+	transition: 0.4s;
 }
 
-.category {
-    border: 3px solid darkolivegreen;
-    background: aquamarine;
-    width: 100px;
-    margin: 10px;
-    font-family: "Arial";
+.category.active,
+.animal.active {
+	display: none;
 }
 
-.block {
-    position: absolute;
-    top: 0;
-    left: 0;
+.description_image img {
+	width: 200px;
+	height: 150px;
+	border-radius: 25px;
+	border: 2px solid rgba(1, 11, 0, 0.62);
 }
 
+.category .description_image img {
+	width: 150px;
+	height: 150px;
+	border-radius: 50%;
+	border: 2px solid rgba(1, 11, 0, 0.62);
+}
 
+.description_image div {
+	padding: 5px;
+}
+
+.category .description_image {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	font-size: 2rem;
+}
+
+.description_audio {
+	display: flex;
+	justify-content: center;
+}
+
+.href__index.allAnimals {
+	margin-top: 0;
+}
+
+.spinner.active {
+	position: absolute;
+	top: 40%;
+	left: 0;
+	margin-left: 45%;
+	transform: translate(-45%, 0);
+	width: 100px;
+	height: 100px;
+	border: 10px solid;
+	border-color: #22901a #f2b805 #22901a #f2b805;
+	border-radius: 50%;
+	box-shadow: 0 0 5px 2px #05f2ce;
+	animation: spinner 1.5s infinite linear;
+}
+
+@keyframes spinner {
+	0% {
+		box-shadow: 0 0 20px 2px #05f2ce;
+		transform: rotate(0deg);
+	}
+	50% {
+		box-shadow: 0 0 20px 2px #f108ee;
+	}
+	100% {
+		box-shadow: 0 0 20px 2px #05f2ce;
+		transform: rotate(360deg);
+	}
+}
+
+@media (max-width: 700px) {
+	.container_Get_All {
+		justify-content: space-evenly;
+		margin-bottom: 0;
+	}
+
+	.wrapper_Category_All,
+	.wrapper_Animal_All {
+		margin-top: 5px;
+		width: 300px;
+		height: 460px;
+	}
+
+	.category,
+	.animal {
+		width: 280px;
+		height: 440px;
+		box-shadow: none;
+		border: 1px solid black;
+	}
+
+	.wrapper_description {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.main_Description_Category,
+	.main_Description_Animal {
+		margin-top: 10px;
+	}
+
+	.description_text {
+		text-overflow: ellipsis;
+		overflow: hidden;
+	}
+
+	.description_text.category_Text {
+		margin-top: 20px;
+	}
+
+	.href__index.allAnimals {
+		margin-top: 10px;
+	}
+}
+
+@media (max-width: 500px) {
+	.container_Get_All {
+		justify-content: space-evenly;
+		padding: 0;
+		margin-bottom: 0;
+	}
+
+	.wrapper_arrow_left,
+	.wrapper_arrow_right {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		width: 35px;
+		height: 350px;
+	}
+
+	.arrow_left_Category,
+	.arrow_left {
+		width: 35px;
+		height: 35px;
+		padding: 1px;
+	}
+
+	.arrow_right_Category,
+	.arrow_right {
+		width: 35px;
+		height: 35px;
+		padding: 1px;
+	}
+
+	.wrapper_Category_All,
+	.wrapper_Animal_All {
+		width: 240px;
+		height: 400px;
+	}
+
+	.category,
+	.animal {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 240px;
+		height: 400px;
+		padding: 0 5px;
+		margin: 0;
+		border-radius: 25px;
+		box-shadow: none;
+		color: #000000;
+		transition: 0.4s;
+	}
+
+	.description_image {
+		margin-top: 15px;
+	}
+
+	.wrapper_description {
+		margin: 5px;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.description_audio {
+		padding: 5px;
+	}
+
+	.spinner.active {
+		margin-left: 35%;
+		transform: translate(-35%, 0);
+	}
+}

@@ -11,7 +11,7 @@
 
     <name>animals Maven Webapp</name>
 
-    <url>http://93.125.1.133:88/animal</url>
+    <url>http://93.125.1.133:88/animals</url>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
