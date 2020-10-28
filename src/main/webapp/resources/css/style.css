@@ -368,38 +368,31 @@ label:hover {
 .qr_Code.active.link_Cv {
 	position: absolute;
 	display: block;
-	font-size: 3rem;
-	color: bisque;
 }
 
 .link_Cv {
 	display: none;
 }
 
-.link_Cv:hover {
-	padding: 5px;
-	border-radius: 25px;
-	box-shadow: 0 0 5px 1px bisque inset;
-	transition: 0.4s;
+.button.cv{
+	width: 250px;
+	border-radius: 6px;
+}
+
+.cv{
+	padding: 5px 0;
 }
 
 .qr_Code.active .link_Cv {
 	position: absolute;
 	left: 0;
 	right: 0;
-	bottom: -50px;
+	bottom: -65px;
 	display: block;
 	width: 250px;
 	margin-left: 50%;
-	padding: 5px;
 	transform: translate(-50%, 0);
 	text-align: center;
-}
-
-.cv:link,
-.cv:visited {
-	font-size: 3rem;
-	color: bisque;
 }
 
 @media (max-width: 1000px) {

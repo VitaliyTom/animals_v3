@@ -38,7 +38,11 @@
         <div class="wrapper_qr_Code">
             <div class="qr"></div>
             <div class="link_Cv">
-                <a class="cv" href="https://vitaliytom-my-cv.netlify.app/" target="_blank"><spring:message code="go.to.cv"/></a>
+                <a class="cv" href="https://vitaliy-tamashevich-cv.netlify.app" target="_blank">
+                    <button class="button index cv">
+                        <spring:message code="go.to.cv"/>
+                    </button>
+                </a>
             </div>
         </div>
     </div>
