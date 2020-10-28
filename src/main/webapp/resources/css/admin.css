@@ -1,8 +1,116 @@
 .admin {
-    /*FIXME не правильно отображается в хроме,edge*/
-    background:   url(/animal/resources/background/Geometric-Icons016.jpg);
-    background-size: contain  ;
+	background-color: rgba(88, 25, 18, 0.62);
 }
-.crud {
-    background:  darkcyan;
+
+.description_app {
+	margin: 25px;
+	font-size: 2.5rem;
+	text-align: center;
+	color: bisque;
+}
+
+.CRUD_Animal {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	flex-wrap: wrap;
+	width: 70%;
+	margin: 0 auto;
+}
+
+.wrapper_Animal_category {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	width: 100%;
+	max-width: 850px;
+	padding: 5px;
+	margin-top: 50px;
+}
+
+.wrapper_category,
+.wrapper_animal,
+.wrapper_All {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	flex-wrap: wrap;
+	width: 100%;
+	max-width: 300px;
+	padding: 15px;
+	margin: 0 10px 0 10px;
+	font-size: 1.4rem;
+}
+
+.wrapper_category,
+.wrapper_animal {
+	box-shadow: 0 0 5px -1px black;
+	border-radius: 25px;
+}
+
+.wrapper_All {
+	padding: 0;
+	margin-top: 25px;
+}
+
+.button {
+	margin: 10px 0 0;
+}
+
+.button.get_All_animals_Categories_button {
+	margin-bottom: 0;
+}
+
+.button.index.loginAdmin {
+	margin: 0;
+}
+
+.go_To_Index {
+	display: flex;
+	justify-content: center;
+	margin: 20px 0 20px;
+}
+
+@media (max-width: 750px) {
+	.CRUD_Animal {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex-wrap: wrap;
+	}
+
+	.wrapper_Animal_category {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		width: 100%;
+		margin-top: 0;
+	}
+
+	.wrapper_category,
+	.wrapper_animal {
+		margin-top: 15px;
+	}
+
+	.wrapper_All {
+		margin-top: 0;
+	}
+
+	.go_To_Index {
+		margin: 15px 0 0;
+	}
+}
+
+@media (max-width: 450px) {
+	.CRUD_Animal {
+		width: 100%;
+		margin: 0;
+	}
+
+	.go_To_Index {
+		display: flex;
+		justify-content: center;
+		margin: 15px 0 20px;
+	}
 }

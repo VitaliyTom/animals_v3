@@ -1,7 +1,274 @@
 .getAnimal {
-       background: url(/animal/resources/background/2.jpg) top center;
-   }
-.img {
-    border: 3px solid bisque;
+	background: url("../background/2.jpg") no-repeat;
+	background-size: cover;
 }
-/*no-repeat top center*/
+
+.name_Animal_Category {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 25px;
+	font-size: 3rem;
+	color: bisque;
+}
+
+.wrapper_name_Animal,
+.wrapper_name_Category {
+	display: flex;
+}
+
+.wrapper_logo {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 10px;
+}
+
+.logo_img {
+	width: 75px;
+	height: 75px;
+	border: 1px solid bisque;
+	border-radius: 50%;
+	margin-left: 15px;
+}
+
+.get_Animal {
+	position: absolute;
+	top: -100%;
+	left: 45%;
+	right: 45%;
+}
+
+.get_Animal.active {
+	position: fixed;
+	top: 0;
+	left: 0;
+	min-width: 100%;
+	min-height: 100%;
+	background-color: rgba(22, 22, 22, 0.8);
+	z-index: 100;
+	font-size: 4rem;
+	color: bisque;
+	text-align: center;
+}
+
+.get_Animal.active > p {
+	margin-top: 20px;
+}
+
+.blur {
+	transition: 0.5s;
+	filter: blur(5px) brightness(0.6);
+}
+
+.check_Animal {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 30%;
+	height: 50vh;
+	padding: 20px;
+	margin: 10% auto 0;
+	transform: translate(0, -10%);
+	overflow: scroll;
+	box-shadow: 0 0 5px 1px black;
+	overflow-x: hidden;
+}
+
+.animal_List {
+	width: 100%;
+	margin: 0;
+	padding: 5px 10%;
+	border-radius: 10px;
+	transition: .3s;
+	font-size: 2.5rem;
+	cursor: pointer;
+}
+
+.animal_List:hover {
+	background-color: rgba(198, 196, 196, 0.55);
+	border-radius: 10px;
+	transition: .2s;
+}
+
+.container_get_Animal {
+	width: 100%;
+	margin-top: 20px;
+}
+
+.wrapper_Parse_Animal {
+	width: 100%;
+	margin: 0 auto;
+}
+
+.wrapper_Img_Animal {
+	min-width: 800px;
+	width: 45%;
+	margin: 0 auto;
+}
+
+.img_Animal {
+	width: 100%;
+	padding-top: 66%;
+	border: 1px solid bisque;
+	box-shadow: 0 0 10px -1px bisque;
+	border-radius: 25px;
+}
+
+.audio_check {
+	display: flex;
+	justify-content: center;
+	margin: 20px 0 20px 50%;
+	transform: translate(-50%, 0);
+	max-width: 1000px;
+	width: 100%;
+}
+
+.button.check {
+	width: 300px;
+	height: 54px;
+	margin: 0 0 0 15px;
+	font-size: 2.5rem;
+	text-align: center;
+	border-radius: 50px;
+	border: 1px solid #83531a;
+	color: #83531a;
+}
+
+.button.check:hover {
+	color: bisque;
+}
+
+.button.index.main {
+	margin: 0;
+}
+
+.spinnerAnimal.active {
+	position: absolute;
+	top: 40%;
+	left: 0;
+	margin-left: 45%;
+	transform: translate(-45%, 0);
+	width: 100px;
+	height: 100px;
+	border: 10px solid;
+	border-color: #22901a #f2b805 #22901a #f2b805;
+	border-radius: 50%;
+	box-shadow: 0 0 5px 2px #05f2ce;
+	animation: spinner 1.5s infinite linear;
+}
+
+@keyframes spinner {
+	0% {
+		box-shadow: 0 0 20px 2px #05f2ce;
+		transform: rotate(0deg);
+	}
+	50% {
+		box-shadow: 0 0 20px 2px #f108ee;
+	}
+	100% {
+		box-shadow: 0 0 20px 2px #05f2ce;
+		transform: rotate(360deg);
+	}
+}
+
+.go_To_Index.getAnimalPage {
+	margin-top: 0;
+	margin-bottom: 15px;
+}
+
+@media (max-width: 830px) {
+	.get_Animal {
+		position: absolute;
+		top: -100%;
+		left: 45%;
+		right: 45%;
+	}
+
+	.get_Animal.active {
+		font-size: 3rem;
+	}
+
+	.get_Animal.active > p {
+		margin-top: 20px;
+	}
+
+	.check_Animal {
+		width: 55%;
+		height: 40vh;
+		margin: 40% auto 0;
+	}
+
+	.animal_List {
+		width: 100%;
+		margin: 0;
+		padding: 5px 10%;
+		border-radius: 10px;
+		transition: .3s;
+		font-size: 2rem;
+		cursor: pointer;
+	}
+
+	.animal_List:hover {
+		background-color: rgba(198, 196, 196, 0.55);
+		border-radius: 10px;
+		transition: .3s;
+	}
+
+	.wrapper_Img_Animal {
+		min-width: 500px;
+		width: 97%;
+		margin: 0 auto;
+	}
+}
+
+@media (max-width: 640px) {
+	.spinnerAnimal.active {
+		top: 32%;
+		margin-left: 40%;
+		transform: translate(-40%, 0);
+	}
+
+	.check_Animal {
+		width: 75%;
+	}
+
+	.name_Animal_Category {
+		font-size: 2rem;
+	}
+
+	.wrapper_Img_Animal {
+		min-width: 500px;
+		width: 96%;
+		margin: 0 auto;
+	}
+
+	.audio_check {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin: 10px auto 0;
+		transform: translate(0, 0);
+	}
+
+	.button.check {
+		width: 300px;
+		height: 54px;
+		margin: 10px 0;
+		border-radius: 50px;
+	}
+}
+
+@media (max-width: 520px) {
+	.spinnerAnimal.active {
+		margin-left: 35%;
+		transform: translate(-35%, 0);
+	}
+
+	.wrapper_Img_Animal {
+		min-width: 300px;
+		width: 96%;
+		margin: 0 auto;
+	}
+}

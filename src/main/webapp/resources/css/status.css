@@ -1,11 +1,51 @@
-.er404 {
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
 
-    background:   url(/animal/resources/background/er.gif);
-    background-size: auto  ;
+html {
+	width: 100%;
+	font-size: 10px;
 }
 
 .er500 {
+	background: url("../background/er500.gif") no-repeat;
+	background-size: cover;
+}
 
-    background:   url(/animal/resources/background/er500.gif);
-    background-size: auto  ;
+.er404 {
+	background: url("../background/er.gif") no-repeat;
+	background-size: cover;
+}
+
+.bodyException,
+.er400,
+.er403,
+.er405 {
+	background-color: #242424;
+}
+
+.bodyException,
+.er500,
+.er400,
+.er403,
+.er404,
+.er405 {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 2.8rem;
+	color: bisque;
+}
+
+@media (max-width: 500px) {
+	.bodyException,
+	.er500,
+	.er400,
+	.er403,
+	.er404,
+	.er405 {
+		font-size: 1.8rem;
+	}
 }

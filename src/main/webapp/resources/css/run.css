@@ -1,6 +1,6 @@
+@import "style.css";
+
 .bodyIndex {
-    background: url(/animal/resources/background/ani.jpg) top center ;
-    /*background: url(/resources/background/ani.jpg) no-repeat top center;*/
-    /*background-attachment: fixed;*/
-    /*background-size: 100%  ;*/
+	background: url("../background/ani.jpg") no-repeat;
+	background-size: cover;
 }

@@ -4,46 +4,77 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="springform" %>
 <html>
 <head>
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"></script>
-    <script type="text/javascript" src="<c:url value="/resources/js/index.js"/>"></script>
     <link href="<c:url value="/resources/css/style.css"/>" type="text/css" rel="stylesheet">
+    <link rel="shortcut icon" href="<c:url value="/resources/js/assets/tiger.png"/>" type="image/png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><spring:message code="label.title"/></title>
 </head>
 <body class="getAnimal">
-<span class="lang">
-    <a class="href" href="?lang=en">en</a>
-    |
-    <a class="href" href="?lang=ru">ru</a>
-</span>
-<div align="center" class="wrapper">
-    <div align="center" class="get-Animal-Text-Left">
-        <div align="center" id="ga1">
-            <h3 style="color: bisque"><spring:message code="getAnimal.animal"/> - <spring:message
-                    code="getAnimal.category"/></h3>
-            <div align="center" id="ga2">
+<div class="shadow"></div>
+<header class="header">
+    <span class="lang">
+        <a href="?lang=en">en</a> | <a href="?lang=ru">ru</a>
+    </span>
+    <div class="name_Animal_Category">
+        <div class="wrapper_name_Animal">
+            <p class="animal_description">
+                <spring:message code="getAnimal.animal"/> -&nbsp;
+            </p>
+            <p class="animal_Name"></p>
+        </div>
+
+        <div class="wrapper_name_Category">
+            <p class="category_description">
+                <spring:message code="getAnimal.category"/> -&nbsp;
+            </p>
+            <p class="category_name"></p>
+        </div>
+        <div class="wrapper_logo">
+            <p class="logo_text">
+                <spring:message code="getAll.logo.category"/> -
+            </p>
+            <div class="logo_img"></div>
+        </div>
+    </div>
+</header>
+<main class="main">
+    <div class="spinnerAnimal active"></div>
+    <div class="modal">
+        <div class="message_modal">
+            <p>
+                <spring:message code="getAnimal.attention"/>
+            </p>
+            <div class="close"></div>
+        </div>
+    </div>
+    <div class="get_Animal">
+        <p><spring:message code="change.Animal"/></p>
+        <div class="check_Animal" id="selectId">
+            <c:forEach var="ani" items="${getAllList}">
+                <div class="animal_List">
+                    <input type="hidden" id="<c:out value="${ani.nameAnimal}"/>"
+                           value="<c:out value="${ani.idAnimal}"/>">
+                    <c:out value="${ani.nameAnimal}"/>
+                </div>
+            </c:forEach>
+        </div>
+    </div>
+    <div class="container_get_Animal">
+        <div class="wrapper_Parse_Animal">
+            <div class="wrapper_Img_Animal">
+                <div class="img_Animal"></div>
             </div>
-            <div align="left" id="ga">
+            <div class="audio_check">
+                <div class="wrapper_Audio"></div>
+                <div class="button check"><spring:message code="change.Animal"/></div>
             </div>
         </div>
     </div>
-    <div align="right" class="getAll-animal">       <%--fixme желательно добавить рандомный выбор животного--%>
-        <h3 class="h3"><spring:message code="check.Animal"/>:</h3>
-        <select id="select">
-            <option disabled><spring:message code="check.Animal"/></option>
-            <%--FIXME  1 животное автоматичеки выбрано, тем самым первым его выбрать нельзя--%>
-            <c:forEach var="ani" items="${getAllList}">
-                <option value="<c:out value="${ani.idAnimal}"/> ">
-                    <c:out value="${ani.nameAnimal}"/>
-                </option>
-            </c:forEach>
-        </select>
-    </div>
-</div>
+</main>
+<form class="go_To_Index getAnimalPage" action="${contextPath}/animals" method="get">
+    <input class="button index main" type="submit" value="<spring:message code="main.page"/>"/>
+</form>
+<script type="module" src="<c:url value="/resources/js/index.js"/>"></script>
 </body>
 </html>
-
-<%--autoplay="autoplay"--%>
-
-
-
-
