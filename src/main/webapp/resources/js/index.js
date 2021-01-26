@@ -12,7 +12,7 @@ const buttonIndexMain = document.querySelector('.button.index.main');
 
 // вызов модалльного окна
 modal();
-getAminal(37);
+getAminal(65);
 
 // добавление эффекта блюр
 buttonCheck.addEventListener('click', (event) => {
@@ -28,7 +28,6 @@ checkAnimal.addEventListener('click', (event) => {
 	spinner.classList.add('active');
 	animalList.forEach((item) => {
 		if (event.target.closest('.animal_List') === item) {
-			console.log(item.children[0].value);
 			getAminal(item.children[0].value);
 		}
 	});
