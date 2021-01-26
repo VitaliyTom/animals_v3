@@ -2,7 +2,7 @@
 
 ## This app was developed for my daughter to teach her what kind of animals and what sounds they make.
 
-## [Deploy on the home linux-server](http://93.125.1.133:3588/animals) 
+## [Deploy on the home linux-server](http://93.125.1.133:3588/animals) (Orange Pi 3)
 
     There is a sql dump, import it with the name of the "animalbase" schema. 
 >**/src/main/resources/dumpSql/animalbase.sql**
